@@ -54,16 +54,6 @@ abstract class BaseBindingFragment<T: ViewDataBinding>(@LayoutRes private val la
             }
         )
     }
-
-    inner class NetworkConnectionCallback : ConnectivityManager.NetworkCallback() {
-        override fun onAvailable(network: Network) {
-            super.onAvailable(network)
-        }
-        override fun onLost(network: Network) {
-            super.onLost(network)
-        }
-    }
-
     override fun onDestroy() {
         keyboardVisibilityUtils.detachKeyboardListeners()
         super.onDestroy()

@@ -10,8 +10,6 @@ import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
-import com.garamgaebi.garamgaebi.R
-import com.garamgaebi.garamgaebi.src.main.MainActivity
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
@@ -21,136 +19,136 @@ import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {
-    /** 푸시 알림으로 보낼 수 있는 메세지는 2가지
-     * 1. Notification: 앱이 실행중(포그라운드)일 떄만 푸시 알림이 옴
-     * 2. Data: 실행중이거나 백그라운드(앱이 실행중이지 않을때) 알림이 옴 -> TODO: 대부분 사용하는 방식 */
-
-    private val FIREBASE_TAG = "FirebaseService"
-    /** Token 생성 메서드(FirebaseInstanceIdService 사라짐) */
-    override fun onNewToken(token: String) {
-       // Log.d(FIREBASE_TAG, "new Token: $token")
-
-        // 토큰 값을 따로 저장
-        runBlocking {
-            GaramgaebiApplication().saveStringToDataStore("pushToken",token)
-        }
-
-        Log.i(FIREBASE_TAG, "성공적으로 토큰을 저장함")
-    }
-
-    /** 메시지 수신 메서드(포그라운드) */
-    override fun onMessageReceived(remoteMessage: RemoteMessage) {
-        super.onMessageReceived(remoteMessage)
-        // Notification 메시지를 수신할 경우
-        // remoteMessage.notification?.body!! 여기에 내용이 저장되있음
-        //Log.d(TAG, "Notification Message Body: " + remoteMessage.notification?.body!!)
-
-        //받은 remoteMessage의 값 출력해보기. 데이터메세지 / 알림메세지
-        //Log.d(FIREBASE_TAG, "Message data : ${remoteMessage.data}")
-        //Log.d(TAG, "Message noti : ${remoteMessage.notification}")
-
-        if(remoteMessage.data.isNotEmpty()){
-            //알림생성
-            sendNotification(remoteMessage)
-            LocalBroadcastManager.getInstance(this).sendBroadcast(Intent("fcmPushListener"))
-           // Log.d(FIREBASE_TAG, remoteMessage.from!!)
-        } else {
-           // Log.e(FIREBASE_TAG, "data가 비어있습니다. 메시지를 수신하지 못했습니다.")
-        }
-    }
-
-    /** 알림 생성 메서드 */
-    private fun sendNotification(remoteMessage: RemoteMessage) {
-        // RequestCode, Id를 고유값으로 지정하여 알림이 개별 표시
-        val uniId: Int = (System.currentTimeMillis() / 7).toInt()
-
-
-        val target = Intent(this, MainActivity::class.java)
-        target.action = "fcmPushClickListener"
-
-        //각 key, value 추가
-        for(key in remoteMessage.data.keys){
-            target.putExtra(key, remoteMessage.data.getValue(key))
-        }
-       // Log.d("fireBaseGetProgram", "${remoteMessage.data["programIdx"]} ${remoteMessage.data["programType"]}")
-        target.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-
-        // 일회용 PendingIntent : Intent 의 실행 권한을 외부의 어플리케이션에게 위임
-        val pendingTarget = PendingIntent.getActivity(this, uniId, target, PendingIntent.FLAG_IMMUTABLE)
-
-        // 알림 채널 이름
-        val channelId = "my_channel"
-
-        // 알림에 대한 UI 정보, 작업
-        val notificationBuilder = NotificationCompat.Builder(this, channelId)
-            .setContentText(remoteMessage.data["content"]) // 메시지 내용
-            .setAutoCancel(true) // 알람클릭시 삭제여부
-            .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))  // 알림 소리
-            .setContentIntent(pendingTarget) // 알림 실행 시 Intent
-
-
-        when(remoteMessage.data["notificationType"]) {
-            getString(R.string.collection) -> {
-                notificationBuilder.setContentTitle(getString(R.string.noti_collection))
-                    .setSmallIcon(R.drawable.ic_item_fragment_notification_gathering)
-            }
-            getString(R.string.soon_close) -> {
-                notificationBuilder.setContentTitle(getString(R.string.noti_soon_close))
-                    .setSmallIcon(R.drawable.ic_item_fragment_notification_deadline)
-            }
-            getString(R.string.apply_complete) -> {
-                notificationBuilder.setContentTitle(getString(R.string.noti_apply_complete))
-                    .setSmallIcon(R.drawable.ic_item_fragment_notification_complete)
-            }
-            getString(R.string.apply_cancel_complete) -> {
-                notificationBuilder.setContentTitle(getString(R.string.noti_apply_cancel_complete))
-                    .setSmallIcon(R.drawable.ic_item_fragment_notification_cancel_complete)
-            }
-            getString(R.string.non_deposit_cancel) -> {
-                notificationBuilder.setContentTitle(getString(R.string.noti_non_deposit_cancel))
-                    .setSmallIcon(R.drawable.ic_item_fragment_notification_cancel_complete)
-            }
-            getString(R.string.refund_complete) -> {
-                notificationBuilder.setContentTitle(getString(R.string.noti_refund_complete))
-                    .setSmallIcon(R.drawable.ic_item_fragment_notification_refund_complete)
-            }
-            getString(R.string.apply_confirm) -> {
-                notificationBuilder.setContentTitle(getString(R.string.noti_apply_confirm))
-                    .setSmallIcon(R.drawable.ic_item_fragment_notification_complete)
-            }
-        }
-        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-
-        // 오레오 버전 이후에는 채널이 필요
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel = NotificationChannel(channelId, "Notice", NotificationManager.IMPORTANCE_DEFAULT)
-            notificationManager.createNotificationChannel(channel)
-        }
-        // 알림 생성
-        notificationManager.notify(uniId, notificationBuilder.build())
-    }
-
-    /** Token 가져오기 */
-    suspend fun getFirebaseToken(): String = suspendCoroutine { continuation ->
-        FirebaseMessaging.getInstance().token.addOnSuccessListener { token ->
-            runBlocking {
-                GaramgaebiApplication().saveStringToDataStore("pushToken", token)
-                continuation.resume(token)
-            }
-        }.addOnFailureListener { e ->
-            continuation.resumeWithException(e)
-        }
-
-//		  //동기방식
-//        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
-//                if (!task.isSuccessful) {
-//                    Log.d(TAG, "Fetching FCM registration token failed ${task.exception}")
-//                    return@OnCompleteListener
-//                }
-//                var deviceToken = task.result
-//                Log.e(TAG, "token=${deviceToken}")
-//            })
-    }
+//    /** 푸시 알림으로 보낼 수 있는 메세지는 2가지
+//     * 1. Notification: 앱이 실행중(포그라운드)일 떄만 푸시 알림이 옴
+//     * 2. Data: 실행중이거나 백그라운드(앱이 실행중이지 않을때) 알림이 옴 -> TODO: 대부분 사용하는 방식 */
+//
+//    private val FIREBASE_TAG = "FirebaseService"
+//    /** Token 생성 메서드(FirebaseInstanceIdService 사라짐) */
+//    override fun onNewToken(token: String) {
+//       // Log.d(FIREBASE_TAG, "new Token: $token")
+//
+//        // 토큰 값을 따로 저장
+//        runBlocking {
+//            GaramgaebiApplication().saveStringToDataStore("pushToken",token)
+//        }
+//
+//        Log.i(FIREBASE_TAG, "성공적으로 토큰을 저장함")
+//    }
+//
+//    /** 메시지 수신 메서드(포그라운드) */
+//    override fun onMessageReceived(remoteMessage: RemoteMessage) {
+//        super.onMessageReceived(remoteMessage)
+//        // Notification 메시지를 수신할 경우
+//        // remoteMessage.notification?.body!! 여기에 내용이 저장되있음
+//        //Log.d(TAG, "Notification Message Body: " + remoteMessage.notification?.body!!)
+//
+//        //받은 remoteMessage의 값 출력해보기. 데이터메세지 / 알림메세지
+//        //Log.d(FIREBASE_TAG, "Message data : ${remoteMessage.data}")
+//        //Log.d(TAG, "Message noti : ${remoteMessage.notification}")
+//
+//        if(remoteMessage.data.isNotEmpty()){
+//            //알림생성
+//            sendNotification(remoteMessage)
+//            LocalBroadcastManager.getInstance(this).sendBroadcast(Intent("fcmPushListener"))
+//           // Log.d(FIREBASE_TAG, remoteMessage.from!!)
+//        } else {
+//           // Log.e(FIREBASE_TAG, "data가 비어있습니다. 메시지를 수신하지 못했습니다.")
+//        }
+//    }
+//
+//    /** 알림 생성 메서드 */
+//    private fun sendNotification(remoteMessage: RemoteMessage) {
+//        // RequestCode, Id를 고유값으로 지정하여 알림이 개별 표시
+//        val uniId: Int = (System.currentTimeMillis() / 7).toInt()
+//
+//
+//        val target = Intent(this, MainActivity::class.java)
+//        target.action = "fcmPushClickListener"
+//
+//        //각 key, value 추가
+//        for(key in remoteMessage.data.keys){
+//            target.putExtra(key, remoteMessage.data.getValue(key))
+//        }
+//       // Log.d("fireBaseGetProgram", "${remoteMessage.data["programIdx"]} ${remoteMessage.data["programType"]}")
+//        target.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//
+//        // 일회용 PendingIntent : Intent 의 실행 권한을 외부의 어플리케이션에게 위임
+//        val pendingTarget = PendingIntent.getActivity(this, uniId, target, PendingIntent.FLAG_IMMUTABLE)
+//
+//        // 알림 채널 이름
+//        val channelId = "my_channel"
+//
+//        // 알림에 대한 UI 정보, 작업
+//        val notificationBuilder = NotificationCompat.Builder(this, channelId)
+//            .setContentText(remoteMessage.data["content"]) // 메시지 내용
+//            .setAutoCancel(true) // 알람클릭시 삭제여부
+//            .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))  // 알림 소리
+//            .setContentIntent(pendingTarget) // 알림 실행 시 Intent
+//
+//
+//        when(remoteMessage.data["notificationType"]) {
+//            getString(R.string.collection) -> {
+//                notificationBuilder.setContentTitle(getString(R.string.noti_collection))
+//                    .setSmallIcon(R.drawable.ic_item_fragment_notification_gathering)
+//            }
+//            getString(R.string.soon_close) -> {
+//                notificationBuilder.setContentTitle(getString(R.string.noti_soon_close))
+//                    .setSmallIcon(R.drawable.ic_item_fragment_notification_deadline)
+//            }
+//            getString(R.string.apply_complete) -> {
+//                notificationBuilder.setContentTitle(getString(R.string.noti_apply_complete))
+//                    .setSmallIcon(R.drawable.ic_item_fragment_notification_complete)
+//            }
+//            getString(R.string.apply_cancel_complete) -> {
+//                notificationBuilder.setContentTitle(getString(R.string.noti_apply_cancel_complete))
+//                    .setSmallIcon(R.drawable.ic_item_fragment_notification_cancel_complete)
+//            }
+//            getString(R.string.non_deposit_cancel) -> {
+//                notificationBuilder.setContentTitle(getString(R.string.noti_non_deposit_cancel))
+//                    .setSmallIcon(R.drawable.ic_item_fragment_notification_cancel_complete)
+//            }
+//            getString(R.string.refund_complete) -> {
+//                notificationBuilder.setContentTitle(getString(R.string.noti_refund_complete))
+//                    .setSmallIcon(R.drawable.ic_item_fragment_notification_refund_complete)
+//            }
+//            getString(R.string.apply_confirm) -> {
+//                notificationBuilder.setContentTitle(getString(R.string.noti_apply_confirm))
+//                    .setSmallIcon(R.drawable.ic_item_fragment_notification_complete)
+//            }
+//        }
+//        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+//
+//        // 오레오 버전 이후에는 채널이 필요
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            val channel = NotificationChannel(channelId, "Notice", NotificationManager.IMPORTANCE_DEFAULT)
+//            notificationManager.createNotificationChannel(channel)
+//        }
+//        // 알림 생성
+//        notificationManager.notify(uniId, notificationBuilder.build())
+//    }
+//
+//    /** Token 가져오기 */
+//    suspend fun getFirebaseToken(): String = suspendCoroutine { continuation ->
+//        FirebaseMessaging.getInstance().token.addOnSuccessListener { token ->
+//            runBlocking {
+//                GaramgaebiApplication().saveStringToDataStore("pushToken", token)
+//                continuation.resume(token)
+//            }
+//        }.addOnFailureListener { e ->
+//            continuation.resumeWithException(e)
+//        }
+//
+////		  //동기방식
+////        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+////                if (!task.isSuccessful) {
+////                    Log.d(TAG, "Fetching FCM registration token failed ${task.exception}")
+////                    return@OnCompleteListener
+////                }
+////                var deviceToken = task.result
+////                Log.e(TAG, "token=${deviceToken}")
+////            })
+//    }
 }
 
 /**

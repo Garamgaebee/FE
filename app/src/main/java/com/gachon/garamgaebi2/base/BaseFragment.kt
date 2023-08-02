@@ -18,7 +18,6 @@ abstract class BaseFragment<B : ViewBinding>(
     @LayoutRes val layoutResId: Int
 ) : Fragment(layoutResId) {
     private var _binding: B? = null
-    lateinit var mLoadingDialog: LoadingDialog
     protected val binding get() = _binding!!
     var disposables = CompositeDisposable()
     override fun onCreateView(
@@ -39,16 +38,6 @@ abstract class BaseFragment<B : ViewBinding>(
         Toast.makeText(activity, message, Toast.LENGTH_SHORT).show()
     }
 
-    fun showLoadingDialog(context: Context) {
-        mLoadingDialog = LoadingDialog(context)
-        mLoadingDialog.show()
-    }
-
-    fun dismissLoadingDialog() {
-       if (mLoadingDialog.isShowing) {
-            mLoadingDialog.dismiss()
-        }
-    }
 
     override fun onStop() {
         super.onStop()

@@ -17,9 +17,6 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.*
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.MutableLiveData
-import com.kakao.sdk.common.KakaoSdk
-import com.garamgaebi.garamgaebi.BuildConfig
-import com.garamgaebi.garamgaebi.common.*
 import kotlinx.coroutines.flow.first
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -112,44 +109,13 @@ class GaramgaebiApplication : Application() {
         registerNetworkCallback(this)
         sSharedPreferences =
             applicationContext.getSharedPreferences("GARAMGAEBI_APP", MODE_PRIVATE)
-        KakaoSdk.init(this, "${BuildConfig.KAKAO_API_KEY}")
+        //KakaoSdk.init(this, "${BuildConfig.KAKAO_API_KEY}")
         // 레트로핏 인스턴스 생성
         initRetrofitInstance()
         settingScreenPortrait()
         val dataStore = applicationContext.dataStore
-        setHashMap()
+
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-
-    }
-    override fun onTerminate() {
-        unregisterNetworkCallback(applicationContext)
-        super.onTerminate()
-    }
-    fun setHashMap(){
-        //put 데이터 추가 실시
-        fragmentHashMap[SEMINAR] = "세미나"
-        fragmentHashMap[SEMINAR_APPLY_FREE] = "세미나"
-        fragmentHashMap[SEMINAR_APPLY_CHARGED] = "세미나"
-        fragmentHashMap[NETWORKING] = "네트워킹"
-        fragmentHashMap[NETWORKING_APPLY_FREE] = "네트워킹"
-
-        fragmentHashMap[NETWORKING_APPLY_CHARGED] = "네트워킹"
-        fragmentHashMap[CANCEL] = "신청 취소"
-        fragmentHashMap[ICEBREAKING] = "아이스브레이킹"
-        fragmentHashMap[PROFILE_EDIT] = "프로필 편집"
-        fragmentHashMap[SNS_ADD] = "SNS 추가하기"
-
-        fragmentHashMap[SNS_EDIT] = "SNS 편집하기"
-        fragmentHashMap[CAREER_ADD] = "경력 추가하기"
-        fragmentHashMap[CAREER_EDIT] = "경력 편집하기"
-        fragmentHashMap[EDU_ADD] = "교육 추가하기"
-        fragmentHashMap[EDU_EDIT] = "교육 편집하기"
-
-        fragmentHashMap[SERVICE_CENTER] = "고객 센터"
-        fragmentHashMap[WITHDRAWAL] = "회원 탈퇴"
-        fragmentHashMap[USER_PROFILE] = "프로필"
-        fragmentHashMap[NOTIFICATION] = "알림"
-
 
     }
     private fun settingScreenPortrait() {
@@ -177,7 +143,7 @@ class GaramgaebiApplication : Application() {
             .connectTimeout(10000, TimeUnit.MILLISECONDS)
             // 로그캣에 okhttp.OkHttpClient로 검색하면 http 통신 내용을 보여줍니다.
             //.addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-            .addInterceptor(XAccessTokenInterceptor()) // JWT 자동 헤더 전송
+            //.addInterceptor(XAccessTokenInterceptor()) // JWT 자동 헤더 전송
             .build()
 
         // sRetrofit 이라는 전역변수에 API url, 인터셉터, Gson을 넣어주고 빌드해주는 코드

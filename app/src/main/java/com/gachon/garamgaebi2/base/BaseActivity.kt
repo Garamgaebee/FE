@@ -12,7 +12,6 @@ abstract class BaseActivity<B : ViewBinding>(private val inflate: (LayoutInflate
     AppCompatActivity() {
     protected lateinit var binding: B
         private set
-    lateinit var mLoadingDialog: LoadingDialog
     lateinit var keyboardVisibilityUtils: KeyboardVisibilityUtils
 
     // 뷰 바인딩 객체를 받아서 inflate해서 화면을 만들어줌.
@@ -32,18 +31,7 @@ abstract class BaseActivity<B : ViewBinding>(private val inflate: (LayoutInflate
         setContentView(binding.root)
     }
 
-    // 홈 로딩 다이얼로그
-    // 네트워크가 시작될 때 사용자가 무작정 기다리게 하지 않기 위해 작성.
-    fun showLoadingDialog(context: Context) {
-        mLoadingDialog = LoadingDialog(context)
-        mLoadingDialog.show()
-    }
-    // 띄워 놓은 홈 로딩 다이얼로그를 없앰.
-    fun dismissLoadingDialog() {
-        if (mLoadingDialog.isShowing) {
-            mLoadingDialog.dismiss()
-        }
-    }
+
 
     override fun onDestroy() {
         keyboardVisibilityUtils.detachKeyboardListeners()
