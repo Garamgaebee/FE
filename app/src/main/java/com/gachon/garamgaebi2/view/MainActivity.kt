@@ -1,7 +1,8 @@
-package com.gachon.garamgaebi2
+package com.gachon.garamgaebi2.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.gachon.garamgaebi2.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
