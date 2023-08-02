@@ -1,6 +1,5 @@
-package com.gachon.garamgaebi2.common
+package com.gachon.garamgaebi2.base
 
-import android.util.Log
 import android.widget.EditText
 import androidx.databinding.BindingAdapter
 

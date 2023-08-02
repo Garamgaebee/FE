@@ -9,7 +9,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.gachon.garamgaebi2.common.GaramgaebiApplication
+import com.gachon.garamgaebi2.base.GaramgaebiApplication
 import com.garamgaebi.garamgaebi.common.SNS_EDIT
 import com.garamgaebi.garamgaebi.databinding.ItemMyprofileSnsBinding
 import com.garamgaebi.garamgaebi.model.SNSData

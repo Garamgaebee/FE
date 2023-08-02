@@ -1,9 +1,8 @@
-package com.gachon.garamgaebi2.common
+package com.gachon.garamgaebi2.base
 
 import android.os.Bundle
 import android.view.View
 import com.garamgaebi.garamgaebi.R
-import com.garamgaebi.garamgaebi.common.BaseFragment
 import com.garamgaebi.garamgaebi.databinding.FragmentNetworkDisconnectedBinding
 
 class NetworkDisconnectedFragment : BaseFragment<FragmentNetworkDisconnectedBinding>(

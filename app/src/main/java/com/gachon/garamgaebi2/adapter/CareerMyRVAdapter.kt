@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.garamgaebi.garamgaebi.common.CAREER_EDIT
-import com.gachon.garamgaebi2.common.GaramgaebiApplication
+import com.gachon.garamgaebi2.base.GaramgaebiApplication
 import com.garamgaebi.garamgaebi.databinding.ItemMyprofileCareerBinding
 import com.garamgaebi.garamgaebi.model.CareerData
 import com.garamgaebi.garamgaebi.src.main.ContainerActivity

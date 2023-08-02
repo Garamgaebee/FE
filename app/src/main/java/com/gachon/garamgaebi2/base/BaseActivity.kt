@@ -1,18 +1,11 @@
-package com.gachon.garamgaebi2.common
+package com.gachon.garamgaebi2.base
 
 import android.content.Context
-import android.net.ConnectivityManager
-import android.net.Network
-import android.net.NetworkCapabilities
-import android.net.NetworkRequest
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.MutableLiveData
 import androidx.viewbinding.ViewBinding
-import com.garamgaebi.garamgaebi.util.LoadingDialog
 
 // 액티비티의 기본을 작성, 뷰 바인딩 활용
 abstract class BaseActivity<B : ViewBinding>(private val inflate: (LayoutInflater) -> B) :
@@ -38,20 +31,7 @@ abstract class BaseActivity<B : ViewBinding>(private val inflate: (LayoutInflate
 
         setContentView(binding.root)
     }
-    fun networkAlertDialog(){
-        NetworkErrorDialog() { it ->
-            when (it) {
-                -1 -> {
-                }
-                1 -> {
-                    //(activity as ContainerActivity).onBackPressed()
-                }
-            }
-        }.show(
-            supportFragmentManager!!,
-            "com.example.garamgaebi.common.NetworkErrorDialog"
-        )
-    }
+
     // 홈 로딩 다이얼로그
     // 네트워크가 시작될 때 사용자가 무작정 기다리게 하지 않기 위해 작성.
     fun showLoadingDialog(context: Context) {

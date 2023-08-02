@@ -1,4 +1,4 @@
-package com.gachon.garamgaebi2.common
+package com.gachon.garamgaebi2.base
 
 import android.content.Context
 import android.graphics.Point
@@ -12,7 +12,6 @@ import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.DialogFragment
 import androidx.viewbinding.ViewBinding
-import com.garamgaebi.garamgaebi.util.LoadingDialog
 
 abstract class BaseDialogFragment<B : ViewBinding>(
     private val bind: (View) -> B,

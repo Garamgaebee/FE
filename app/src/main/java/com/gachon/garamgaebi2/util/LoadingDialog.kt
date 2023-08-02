@@ -1,11 +1,9 @@
-package com.gachon.garamgaebi2.common
+package com.gachon.garamgaebi2.base
 
-import android.animation.ObjectAnimator
 import android.app.Dialog
 import android.content.Context
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.Log
 import android.view.Window
 import android.view.animation.AnimationUtils
 import com.garamgaebi.garamgaebi.R

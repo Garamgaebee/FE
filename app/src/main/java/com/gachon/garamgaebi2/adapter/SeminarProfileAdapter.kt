@@ -12,7 +12,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.garamgaebi.garamgaebi.R
 import com.garamgaebi.garamgaebi.common.BLUE
 import com.garamgaebi.garamgaebi.common.GRAY
-import com.gachon.garamgaebi2.common.GaramgaebiApplication
+import com.gachon.garamgaebi2.base.GaramgaebiApplication
 import com.garamgaebi.garamgaebi.common.ORIGIN
 import com.garamgaebi.garamgaebi.databinding.ItemSeminarProfileBinding
 import com.garamgaebi.garamgaebi.databinding.ItemSeminarProfileBlueBinding

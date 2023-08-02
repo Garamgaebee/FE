@@ -1,4 +1,4 @@
-package com.gachon.garamgaebi2.common
+package com.gachon.garamgaebi2.base
 
 import com.google.gson.annotations.SerializedName
 

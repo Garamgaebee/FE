@@ -1,14 +1,11 @@
-package com.gachon.garamgaebi2.common
+package com.gachon.garamgaebi2.base
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.IOException
-import java.io.InputStream
-import java.net.HttpURLConnection
 import java.net.MalformedURLException
 import java.net.URL
 import java.time.LocalDate

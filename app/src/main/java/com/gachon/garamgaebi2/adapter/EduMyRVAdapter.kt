@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.garamgaebi.garamgaebi.common.EDU_EDIT
-import com.gachon.garamgaebi2.common.GaramgaebiApplication
+import com.gachon.garamgaebi2.base.GaramgaebiApplication
 import com.garamgaebi.garamgaebi.databinding.ItemMyprofileEduBinding
 import com.garamgaebi.garamgaebi.model.EducationData
 import com.garamgaebi.garamgaebi.src.main.ContainerActivity

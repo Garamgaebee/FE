@@ -1,8 +1,7 @@
-package com.gachon.garamgaebi2.common
+package com.gachon.garamgaebi2.base
 
-import com.gachon.garamgaebi2.common.GaramgaebiApplication
-import com.gachon.garamgaebi2.common.GaramgaebiApplication.Companion.X_ACCESS_TOKEN
-import com.gachon.garamgaebi2.common.GaramgaebiApplication.Companion.X_REFRESH_TOKEN
+import com.gachon.garamgaebi2.base.GaramgaebiApplication.Companion.X_ACCESS_TOKEN
+import com.gachon.garamgaebi2.base.GaramgaebiApplication.Companion.X_REFRESH_TOKEN
 import com.garamgaebi.garamgaebi.model.AutoLoginRequest
 import com.garamgaebi.garamgaebi.repository.HomeRepository
 import kotlinx.coroutines.*

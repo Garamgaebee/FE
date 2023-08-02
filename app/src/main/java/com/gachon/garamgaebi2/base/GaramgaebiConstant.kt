@@ -1,4 +1,4 @@
-package com.gachon.garamgaebi2.common
+package com.gachon.garamgaebi2.base
 
 
 const val HOME_TAG = 0
