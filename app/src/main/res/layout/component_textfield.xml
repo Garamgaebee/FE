@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="inputName"
+            type="String" />
+        <variable
+            name="inputContent"
+            type="String" />
+        <variable
+            name="inputType"
+            type="String" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginHorizontal="48dp">
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@{inputName}"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/container_input"
+        />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="14dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/name"
+        >
+        <EditText
+            android:id="@+id/input"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="@{inputContent}"
+            android:textColor="@color/heavy_gray"
+            android:textSize="20sp"
+            android:inputType="@{inputType == null ? `text` : inputType}"
+            style="@style/NoUnderlineEditText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/extra"
+            />
+        <TextView
+            android:id="@+id/extra"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textSize="20sp"
+            android:textColor="@color/heavy_gray"
+            app:layout_constraintStart_toEndOf="@id/input"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black"
+        app:layout_constraintTop_toBottomOf="@id/container_input"
+        />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

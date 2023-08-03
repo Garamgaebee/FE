@@ -7,4 +7,12 @@
     <string name="go_register">가입하기</string>
     <string name="got_login"><u>로그인하기</u></string>
 
+    <string name="id">아이디</string>
+    <string name="password">비밀번호</string>
+    <string name="login">로그인</string>
+    <string name="email">이메일</string>
+    <string name="forgot_password">비밀번호를 잊으셨나요?</string>
+    <string name="gc_email">\&#64;gachon.ac.kr</string>
+    <string name="find_id_pw">아이디/비밀번호 찾기</string>
+
 </resources>
