@@ -9,9 +9,18 @@
             type="String" />
         <variable
             name="inputType"
+            type="Integer" />
+        <variable
+            name="sideIcon"
+            type="String" />
+        <variable
+            name="inputValid"
+            type="Boolean" />
+        <variable
+            name="inputError"
             type="String" />
     </data>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -19,9 +28,9 @@
     <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="20dp"
         android:text="@{inputName}"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:textColor="@color/black"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,8 +39,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/container_input"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingVertical="14dp"
+        android:layout_height="48dp"
         android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@id/name"
         >
@@ -41,9 +49,10 @@
             android:layout_height="match_parent"
             android:text="@{inputContent}"
             android:textColor="@color/heavy_gray"
-            android:textSize="20sp"
-            android:inputType="@{inputType == null ? `text` : inputType}"
+            android:textSize="18sp"
+            android:inputType="@{inputType}"
             style="@style/NoUnderlineEditText"
+            android:layout_marginVertical="14dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/extra"
             />
@@ -51,18 +60,42 @@
             android:id="@+id/extra"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textColor="@color/heavy_gray"
+            android:text="@{sideIcon == null ? null : sideIcon}"
             app:layout_constraintStart_toEndOf="@id/input"
             app:layout_constraintEnd_toEndOf="parent"
+            android:gravity="center_vertical"
+            />
+        <ImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:padding="14dp"
+            android:src="@{sideIcon == null ? @drawable/pw_cancel : null}"
+            app:layout_constraintStart_toEndOf="@id/input"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/input"
+            app:layout_constraintBottom_toBottomOf="@id/input"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     <View
+        android:id="@+id/border"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/black"
         app:layout_constraintTop_toBottomOf="@id/container_input"
+        />
+    <TextView
+        android:id="@+id/check_tv"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:paddingHorizontal="17dp"
+        android:paddingVertical="7dp"
+        android:text="@{inputValid == true ? null : inputError}"
+        android:textSize="12sp"
+        android:textColor="@color/red"
+        app:layout_constraintTop_toBottomOf="@id/border"
         />
 
 

@@ -15,4 +15,8 @@
     <string name="gc_email">\&#64;gachon.ac.kr</string>
     <string name="find_id_pw">아이디/비밀번호 찾기</string>
 
+    <string name="id_error">이미 가입된 아이디 입니다.</string>
+    <string name="pw_error">아이디 혹은 비밀번호가 틀렸습니다!</string>
+    <string name="email_error">잘못된 코드를 입력하셨습니다!</string>
+
 </resources>

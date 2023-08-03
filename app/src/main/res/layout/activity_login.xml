@@ -38,14 +38,20 @@
         />
     <include
         layout="@layout/component_textfield"
-        app:inputName="@string/id"
+        app:inputName="@{@string/id}"
         app:inputContent="@={viewModel.id}"
+        app:inputType="@{android.text.InputType.TYPE_CLASS_TEXT}"
+        app:inputValid="@{viewModel.idIsValid}"
+        app:sideIcon="@{@string/gc_email}"
+        app:inputError="@{@string/id_error}"
         />
     <include
         layout="@layout/component_textfield"
-        app:inputName="@string/password"
+        app:inputName="@{@string/password}"
         app:inputContent="@={viewModel.pw}"
-        app:inputType="password"
+        app:inputType="@{android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD}"
+        app:inputValid="@{viewModel.loginIsValid}"
+        app:inputError="@{@string/pw_error}"
         />
 </LinearLayout>
 
@@ -78,7 +84,7 @@
             android:layout_height="wrap_content"
             android:text="@string/find_id_pw"
             android:textColor="@color/heavy_gray"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:textStyle="normal"
             android:paddingVertical="10dp"
             android:paddingHorizontal="8dp"

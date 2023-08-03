@@ -106,7 +106,9 @@ class GaramgaebiApplication : Application() {
     // 앱이 처음 생성되는 순간, SP를 새로 만들어주고, 레트로핏 인스턴스를 생성합니다.
     override fun onCreate() {
         super.onCreate()
-        registerNetworkCallback(this)
+        appInstance = this
+
+        //registerNetworkCallback(this)
         sSharedPreferences =
             applicationContext.getSharedPreferences("GARAMGAEBI_APP", MODE_PRIVATE)
         //KakaoSdk.init(this, "${BuildConfig.KAKAO_API_KEY}")
