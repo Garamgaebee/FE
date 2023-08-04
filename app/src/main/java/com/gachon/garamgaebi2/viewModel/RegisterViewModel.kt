@@ -2,6 +2,7 @@ package com.gachon.garamgaebi2.viewModel
 
 import android.graphics.Color
 import android.provider.Settings.System.getString
+import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -87,4 +88,52 @@ class RegisterViewModel : ViewModel(){
     fun setInitialBorderColor() {
         setEditTextBorderColor(R.color.black)
     }
+
+    val isTermsAllChecked = MutableLiveData<Boolean>(false)
+    val isTerms1Checked = MutableLiveData<Boolean>(false)
+    val isTerms2Checked = MutableLiveData<Boolean>(false)
+    val isTerms3Checked = MutableLiveData<Boolean>(false)
+
+    fun onOptionClicked(num : Int){
+        when(num){
+            1-> onTerms1Clicked()
+            2-> onTerms2Clicked()
+            3-> onTerms3Clicked()
+            0-> onTermsAllClicked()
+        }
+    }
+
+    fun onTermsAllClicked() {
+        isTermsAllChecked.value = !isTermsAllChecked.value!!
+        isTerms1Checked.value = isTermsAllChecked.value
+        isTerms2Checked.value = isTermsAllChecked.value
+        isTerms3Checked.value = isTermsAllChecked.value
+    }
+
+    fun onTerms1Clicked() {
+        Log.d("RegisterViewModel", "onTerms1Clicked: ")
+        isTerms1Checked.value = !isTerms1Checked.value!!
+        if(isTerms1Checked.value == false){
+            isTermsAllChecked.value = false
+        }
+        isTermsAllChecked.value = isTerms1Checked.value == true && isTerms2Checked.value == true && isTerms3Checked.value == true
+    }
+
+    fun onTerms2Clicked() {
+        isTerms2Checked.value = !isTerms2Checked.value!!
+        if(isTerms2Checked.value == false){
+            isTermsAllChecked.value = false
+        }
+        isTermsAllChecked.value = isTerms1Checked.value == true && isTerms2Checked.value == true && isTerms3Checked.value == true
+
+    }
+
+    fun onTerms3Clicked() {
+        isTerms3Checked.value = !isTerms3Checked.value!!
+        if(isTerms3Checked.value == false){
+            isTermsAllChecked.value = false
+        }
+        isTermsAllChecked.value = isTerms1Checked.value == true && isTerms2Checked.value == true && isTerms3Checked.value == true
+    }
+
 }

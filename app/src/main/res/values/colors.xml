@@ -18,4 +18,6 @@
     <color name="heavy_gray">#44484D</color>
     <color name="red">#B3261E</color>
 
+    <color name="dark_back">#B2000000</color>
+
 </resources>

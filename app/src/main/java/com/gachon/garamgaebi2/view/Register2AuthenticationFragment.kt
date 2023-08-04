@@ -11,6 +11,7 @@ import com.gachon.garamgaebi2.BR
 import com.gachon.garamgaebi2.R
 import com.gachon.garamgaebi2.base.BaseBindingFragment
 import com.gachon.garamgaebi2.base.GaramgaebiApplication
+import com.gachon.garamgaebi2.base.OrderBottomDialogFragment
 import com.gachon.garamgaebi2.databinding.FragmentRegister2AuthenticationBinding
 import com.gachon.garamgaebi2.viewModel.RegisterViewModel
 
@@ -37,6 +38,11 @@ class Register2AuthenticationFragment : BaseBindingFragment<FragmentRegister2Aut
 
         GaramgaebiApplication.registerProcess = 2
 
+        binding.resendTv.setOnClickListener {
+
+            val orderBottomDialogFragment = OrderBottomDialogFragment()
+            orderBottomDialogFragment.show(parentFragmentManager, "OrderBottomDialogFragment")
+        }
 
     }
 

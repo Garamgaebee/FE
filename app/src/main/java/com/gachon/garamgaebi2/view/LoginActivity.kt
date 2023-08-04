@@ -16,6 +16,7 @@ import com.gachon.garamgaebi2.viewModel.LoginViewModel
 import com.gachon.garamgaebi2.R
 import com.gachon.garamgaebi2.BR
 import com.gachon.garamgaebi2.base.CustomPasswordTransformation
+import com.gachon.garamgaebi2.base.OrderBottomDialogFragment
 
 
 class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::inflate){

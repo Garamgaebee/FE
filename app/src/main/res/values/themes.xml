@@ -21,5 +21,15 @@
         <item name="android:editTextStyle">@style/customEditTextFontStyle</item>
         <item name="android:radioButtonStyle">@style/customRadioButtonFontStyle</item>
         <item name="android:checkboxStyle">@style/customCheckboxFontStyle</item>
+
+        <item name="bottomSheetDialogTheme">@style/CustomBottomSheetDialogTheme</item>
+
+    </style>
+    <!-- Bottom sheet dialog Style -->
+    <style name="CustomBottomSheetDialogTheme" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/CustomRoundedBackgroundBottomSheet</item>
+    </style>
+    <style name="CustomRoundedBackgroundBottomSheet" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
     </style>
 </resources>
