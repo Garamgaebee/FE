@@ -9,7 +9,7 @@
         android:fontWeight="100"
         app:font="@font/spoqa_han_sans_neo_thin"
         app:fontStyle="normal"
-        app:fontWeight="100" />
+        app:fontWeight="200" />
 
     <!--light-->
     <font
@@ -18,7 +18,7 @@
         android:fontWeight="200"
         app:font="@font/spoqa_han_sans_neo_light"
         app:fontStyle="normal"
-        app:fontWeight="200" />
+        app:fontWeight="300" />
 
     <!--regular-->
     <font

@@ -31,7 +31,11 @@
             android:textSize="28sp"
             android:textColor="@color/black"
             android:textStyle="bold"
-            android:layout_marginBottom="21dp"/>
+            android:fontFamily="@font/spoqa_han_sans_neo_bold"
+            android:lineSpacingExtra="1sp"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="21dp"
+            />
 
         <TextView
             android:layout_width="match_parent"
@@ -41,6 +45,9 @@
             android:textSize="14sp"
             android:textColor="@color/heavy_gray"
             android:textStyle="normal"
+            android:fontFamily="@font/spoqa_han_sans_neo_regular"
+            android:lineSpacingExtra="2sp"
+            android:gravity="center_vertical"
             android:layout_marginBottom="21dp"/>
 
         <TextView
@@ -51,6 +58,7 @@
             android:textSize="12sp"
             android:textColor="@color/red"
             android:textStyle="normal"
+            android:fontFamily="@font/spoqa_han_sans_neo_medium"
             />
 
     </LinearLayout>
@@ -60,7 +68,6 @@
         layout="@layout/component_textfield"
         app:inputName="@{@string/email}"
         app:inputContent="@={viewModel.email}"
-        app:inputType="@{android.text.InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS}"
         app:inputValid="@{viewModel.emailIsValid}"
         app:inputError="@{@string/email_error}"
         />

@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
+        <import type="android.view.View" />
         <variable
             name="inputName"
             type="String" />
         <variable
             name="inputContent"
             type="String" />
-        <variable
-            name="inputType"
-            type="Integer" />
         <variable
             name="sideIcon"
             type="String" />
@@ -28,59 +26,71 @@
     <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
-        android:layout_height="20dp"
+        android:layout_height="wrap_content"
         android:text="@{inputName}"
         android:textSize="18sp"
         android:textColor="@color/black"
+        android:textAlignment="center"
+        android:fontFamily="@font/spoqa_han_sans_neo_medium"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@id/container_input"
         />
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:id="@+id/container_input"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:paddingHorizontal="14dp"
         app:layout_constraintTop_toBottomOf="@id/name"
+        android:gravity="center_vertical"
         >
         <EditText
             android:id="@+id/input"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:text="@{inputContent}"
+            android:layout_height="wrap_content"
+            android:text="@={inputContent}"
             android:textColor="@color/heavy_gray"
             android:textSize="18sp"
-            android:textFontWeight="400"
-            android:inputType="@{inputType}"
+            android:fontFamily="@font/spoqa_han_sans_neo_regular"
+            android:gravity="center_vertical"
+            android:inputType="text"
             style="@style/NoUnderlineEditText"
             android:layout_marginVertical="14dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/extra"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_weight="1"
             />
         <TextView
             android:id="@+id/extra"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textColor="@color/heavy_gray"
-            android:textFontWeight="300"
+            android:fontFamily="@font/spoqa_han_sans_neo_light"
             android:text="@{sideIcon == null ? null : sideIcon}"
+            android:visibility="@{sideIcon == null ? View.GONE : View.VISIBLE}"
             app:layout_constraintStart_toEndOf="@id/input"
             app:layout_constraintEnd_toEndOf="parent"
             android:gravity="center_vertical"
+            android:layout_marginEnd="24dp"
             />
         <ImageView
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:padding="14dp"
             android:src="@{sideIcon == null ? @drawable/pw_cancel : null}"
+            android:visibility="@{sideIcon == null ? View.VISIBLE : View.GONE}"
             app:layout_constraintStart_toEndOf="@id/input"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/input"
             app:layout_constraintBottom_toBottomOf="@id/input"
+
             />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
     <View
         android:id="@+id/border"
         android:layout_width="match_parent"
@@ -91,11 +101,12 @@
     <TextView
         android:id="@+id/check_tv"
         android:layout_width="match_parent"
-        android:layout_height="32dp"
+        android:layout_height="wrap_content"
         android:paddingHorizontal="17dp"
         android:paddingVertical="7dp"
         android:text="@{inputValid == true ? null : inputError}"
         android:textSize="12sp"
+        android:fontFamily="@font/spoqa_han_sans_neo_medium"
         android:textColor="@color/red"
         app:layout_constraintTop_toBottomOf="@id/border"
         />

@@ -19,6 +19,8 @@ class RegisterViewModel : ViewModel(){
     val email = MutableLiveData<String>("")
     val emailIsValid = MutableLiveData<Boolean>(false)
 
+    val codeIsValid = MutableLiveData<Boolean>(false)
+
     val nickName = MutableLiveData<String>("")
     val nickNameIsValid = MutableLiveData<Boolean>(false)
 
@@ -27,14 +29,6 @@ class RegisterViewModel : ViewModel(){
 
 
     val registerIsValid = MutableLiveData<Boolean>(false)
-
-    val registerProcess = MutableLiveData<String>()
-
-    init {
-        // 리소스에서 문자열 가져오기
-        val initialText = getApplication().getString(R.string.next)
-        registerProcess.value = initialText
-    }
 
     val btnColor = MutableLiveData<Int>(
         ContextCompat.getColor(getApplication(), R.color.light_gray)
@@ -57,6 +51,12 @@ class RegisterViewModel : ViewModel(){
             ContextCompat.getColor(getApplication(), R.color.main_blue)
         }
     }
+
+    // 인증코드 시간
+
+    var time = "00:00"
+    var minute = 0
+    var second = 0
 
     // 초기 상태를 설정합니다.
     fun setInitialBorderColor() {

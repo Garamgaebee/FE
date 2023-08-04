@@ -44,7 +44,7 @@
             <include
                 android:id="@+id/register_process_btn"
                 layout="@layout/component_btn"
-                app:text="@{viewModel.registerProcess}"
+                app:text="@string/next"
                 app:btnColor="@{viewModel.btnColor}"
                 app:textColor="@{@color/white}"
                 android:layout_marginBottom="180dp"

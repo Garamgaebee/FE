@@ -41,17 +41,15 @@
         layout="@layout/component_textfield"
         app:inputName="@{@string/id}"
         app:inputContent="@={viewModel.id}"
-        app:inputType="@{android.text.InputType.TYPE_CLASS_TEXT}"
         app:inputValid="@{viewModel.idIsValid}"
         app:sideIcon="@{@string/gc_email}"
-        app:inputError="@{@string/id_error}"
+        app:inputError="@{``}"
         />
     <include
         android:id="@+id/pw_textfield"
         layout="@layout/component_textfield"
         app:inputName="@{@string/password}"
         app:inputContent="@={viewModel.pw}"
-        app:inputType="@{android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD}"
         app:inputValid="@{viewModel.loginIsValid}"
         app:inputError="@{@string/pw_error}"
         />
@@ -69,9 +67,8 @@
         <include
             android:id="@+id/login_process_btn"
             layout="@layout/component_btn"
-            app:btnText="@{@string/login}"
+            app:text="@{@string/login}"
             app:btnColor="@{@color/dark_gray}"
-            app:btnClick="@{viewModel::login}"
             />
 
 
@@ -83,6 +80,7 @@
             android:textColor="@color/heavy_gray"
             android:textSize="16sp"
             android:textStyle="normal"
+            android:fontFamily="@font/spoqa_han_sans_neo_medium"
             android:paddingVertical="10dp"
             android:paddingHorizontal="8dp"
             android:layout_marginTop="12dp"

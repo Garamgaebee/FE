@@ -4,14 +4,11 @@
 
     <style name="NoUnderlineEditText" parent="Widget.AppCompat.EditText">
         <item name="android:background">@null</item>
-        <!-- 아래 속성은 필요에 따라 수정할 수 있습니다 -->
-        <item name="android:inputType">text</item>
-        <item name="android:gravity">top|start</item>
     </style>
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="android:fontFamily">@font/spoqaHasNeo-Bold</item>
+        <item name="android:fontFamily">@font/default_font</item>
     </style>
 
     <style name="ProgressBarNoPaddingGray" parent="Widget.AppCompat.ProgressBar.Horizontal">
@@ -21,6 +18,26 @@
         <item name="android:progressDrawable">@color/thin_gray</item> <!-- 테두리 제거 -->
         <item name="android:progressBackgroundTint">@color/thin_gray</item>
         <item name="android:progressTint">@color/thin_gray</item>
+    </style>
+    <!-- Custom font 적용 -->
+    <style name="customTextViewFontStyle" parent="@android:style/Widget.DeviceDefault.TextView">
+        <item name="android:fontFamily">@font/default_font</item>
+    </style>
+
+    <style name="customButtonFontStyle" parent="@android:style/Widget.DeviceDefault.Button.Borderless">
+        <item name="android:fontFamily">@font/default_font</item>
+    </style>
+
+    <style name="customEditTextFontStyle" parent="@android:style/Widget.DeviceDefault.EditText">
+        <item name="android:fontFamily">@font/default_font</item>
+    </style>
+
+    <style name="customRadioButtonFontStyle" parent="@android:style/Widget.DeviceDefault.CompoundButton.RadioButton">
+        <item name="android:fontFamily">@font/default_font</item>
+    </style>
+
+    <style name="customCheckboxFontStyle" parent="@android:style/Widget.DeviceDefault.CompoundButton.CheckBox">
+        <item name="android:fontFamily">@font/default_font</item>
     </style>
 
 </resources>
