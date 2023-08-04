@@ -61,7 +61,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(ActivityRegisterB
             }
             3->{
                 // Register 3로 이동
-                supportFragmentManager.beginTransaction().add(binding.fragmentContainer.id, Register3InfoFragment()).commit()
+                supportFragmentManager.beginTransaction().add(binding.fragmentContainer.id, Register4detailFragment()).commit()
                 binding.registerProcessBtn.nextBtn.text= application.getString(R.string.start)
             }
             4->{

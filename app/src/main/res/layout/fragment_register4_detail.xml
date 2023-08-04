@@ -33,34 +33,65 @@
             android:layout_marginHorizontal="38dp"
             />
 
-        <include
-            android:id="@+id/nickName_textfield"
-            layout="@layout/component_textfield"
-            app:inputName="@{@string/nickname}"
-            app:inputContent="@={viewModel.nickName}"
-            app:inputValid="@{viewModel.nickNameIsValid}"
-            app:inputError="@{@string/nickname_error}"
-            android:layout_marginBottom="22dp"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="@string/register4_2"
+            android:fontFamily="@font/spoqa_han_sans_neo_medium"
+            android:gravity="center_vertical"
+            android:textSize="18sp"
+            android:textColor="@color/black"
             android:layout_marginHorizontal="48dp"
             />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="48dp"
+            android:paddingVertical="17dp"
+            android:layout_marginBottom="20dp">
+
+            <include
+                android:id="@+id/student"
+                layout="@layout/component_detail_btn"
+                app:text="@{@string/student}"
+                app:isSelected="@{viewModel.isStudent}"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> viewModel.isStudentClicked()}"
+                />
+
+            <include
+                android:id="@+id/graduate"
+                layout="@layout/component_detail_btn"
+                app:text="@{@string/graduate}"
+                app:isSelected="@{viewModel.isGraduate}"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> viewModel.isGraduateClicked()}"
+                />
+
+        </LinearLayout>
+
         <include
-            android:id="@+id/pw_textfield"
+            android:id="@+id/major_textfield"
             layout="@layout/component_textfield"
-            app:inputName="@{@string/password}"
-            app:inputContent="@={viewModel.pw}"
-            app:inputValid="@{viewModel.pwIsValid}"
-            app:inputError="@{@string/pw_register_error}"
-            app:sideText="@{` `}"
+            app:inputName="@{@string/major}"
+            app:inputContent="@={viewModel.major}"
+            app:inputValid="@{viewModel.majorIsValid}"
+            app:inputError="@{@string/major_error}"
+            app:sideText="@{`search`}"
             />
         <include
-            android:id="@+id/pwCheck_textfield"
+            android:id="@+id/company_textfield"
             layout="@layout/component_textfield"
-            app:inputName="@{@string/password_check}"
-            app:inputContent="@={viewModel.pwCheck}"
-            app:inputValid="@{viewModel.pwCheckIsValid}"
-            app:inputError="@{@string/pw_check_error}"
+            app:inputName="@{@string/company}"
+            app:inputContent="@={viewModel.company}"
+            app:inputValid="@{viewModel.companyIsValid}"
+            app:inputError="@{@string/company_error}"
             app:sideText="@{` `}"
             />
 

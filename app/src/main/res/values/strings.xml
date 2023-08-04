@@ -16,8 +16,10 @@
     <string name="nickname">닉네임</string>
     <string name="major">학과 정보</string>
     <string name="major_hint">학과를 선택해주세요</string>
+    <string name="major_error">학과 에러</string>
     <string name="company">근무 정보</string>
     <string name="company_hint">회사명을 기입해주세요</string>
+    <string name="company_error">회사 에러</string>
 
     <string name="email_code">인증 코드</string>
     <string name="resend"><u>재전송하기</u></string>
@@ -55,7 +57,7 @@
     <string name="register4_2">현재 사용자님은?</string>
 
     <string name="student">신입생·재학생</string>
-    <string name="graduate_staff">졸업생·교직원</string>
+    <string name="graduate">졸업생·교직원</string>
 
     <string name="terms_title">전체 약관에 동의합니다.</string>
     <string name="terms_description_1"><u>서비스 이용약관</u> 동의 (필수)</string>

@@ -27,7 +27,14 @@ class RegisterViewModel : ViewModel(){
     val pwCheck = MutableLiveData<String>("")
     val pwCheckIsValid = MutableLiveData<Boolean>(false)
 
+    val isStudent = MutableLiveData<Boolean>(false)
+    val isGraduate = MutableLiveData<Boolean>(false)
 
+    val major = MutableLiveData<String>("")
+    val majorIsValid = MutableLiveData<Boolean>(false)
+
+    val company = MutableLiveData<String>("")
+    val companyIsValid = MutableLiveData<Boolean>(false)
 
     val registerIsValid = MutableLiveData<Boolean>(false)
 
@@ -51,6 +58,23 @@ class RegisterViewModel : ViewModel(){
         } else {
             ContextCompat.getColor(getApplication(), R.color.main_blue)
         }
+    }
+
+    fun isStudentClicked() {
+        isStudent.value = !isStudent.value!!
+
+        if(isStudent.value == true){
+            isGraduate.value = false
+        }
+    }
+
+    fun isGraduateClicked() {
+        isGraduate.value = !isGraduate.value!!
+
+        if(isGraduate.value == true){
+            isStudent.value = false
+        }
+
     }
 
     // 인증코드 시간
