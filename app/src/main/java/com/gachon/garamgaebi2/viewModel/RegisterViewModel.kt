@@ -15,6 +15,17 @@ class RegisterViewModel : ViewModel(){
     val pw = MutableLiveData<String>("")
     val idIsValid = MutableLiveData<Boolean>(false)
     val pwIsValid = MutableLiveData<Boolean>(false)
+
+    val email = MutableLiveData<String>("")
+    val emailIsValid = MutableLiveData<Boolean>(false)
+
+    val nickName = MutableLiveData<String>("")
+    val nickNameIsValid = MutableLiveData<Boolean>(false)
+
+    val pwCheck = MutableLiveData<String>("")
+    val pwCheckIsValid = MutableLiveData<Boolean>(false)
+
+
     val registerIsValid = MutableLiveData<Boolean>(false)
 
     val registerProcess = MutableLiveData<String>()

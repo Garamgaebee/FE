@@ -11,6 +11,7 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:fontFamily">@font/spoqaHasNeo-Bold</item>
     </style>
 
     <style name="ProgressBarNoPaddingGray" parent="Widget.AppCompat.ProgressBar.Horizontal">

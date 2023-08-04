@@ -1,22 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
         <variable
             name="viewModel"
             type="com.gachon.garamgaebi2.viewModel.RegisterViewModel" />
     </data>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.Register1EmailFragment"
     android:orientation="vertical">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="38dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="38dp"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/register1_1"
+            android:textFontWeight="700"
+            android:textSize="28sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_marginBottom="21dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/register1_2"
+            android:textFontWeight="400"
+            android:textSize="14sp"
+            android:textColor="@color/heavy_gray"
+            android:textStyle="normal"
+            android:layout_marginBottom="21dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/register1_3"
+            android:textFontWeight="500"
+            android:textSize="12sp"
+            android:textColor="@color/red"
+            android:textStyle="normal"
+            />
+
+    </LinearLayout>
+
+    <include
+        android:id="@+id/pw_textfield"
+        layout="@layout/component_textfield"
+        app:inputName="@{@string/email}"
+        app:inputContent="@={viewModel.email}"
+        app:inputType="@{android.text.InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS}"
+        app:inputValid="@{viewModel.emailIsValid}"
+        app:inputError="@{@string/email_error}"
+        />
 
 </LinearLayout>
 </layout>
