@@ -15,6 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".view.RegisterActivity"
+        android:background="@color/white"
         android:orientation="vertical">
 
         <ProgressBar
@@ -25,7 +26,8 @@
             android:padding="0dp"
             style="@style/ProgressBarNoPaddingGray"
             android:max="100"
-            android:progress="@{progress}"
+            android:progress="20"
+            android:progressDrawable="@drawable/custom_progressbar"
             />
 
         <ImageView
@@ -40,10 +42,16 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1">
+
+        <FrameLayout
+            android:id="@+id/fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
             <include
                 android:id="@+id/register_process_btn"
                 layout="@layout/component_btn"
-                app:text="@{viewModel.registerProcess}"
+                app:text="@{@string/next}"
                 app:btnColor="@{viewModel.btnColor}"
                 app:textColor="@{@color/white}"
                 android:layout_marginBottom="180dp"

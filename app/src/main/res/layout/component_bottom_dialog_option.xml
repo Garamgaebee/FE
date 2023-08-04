@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="text"
+            type="String" />
+        <variable
+            name="isChecked"
+            type="Boolean" />
+        <variable
+            name="viewModel"
+            type="com.gachon.garamgaebi2.viewModel.RegisterViewModel" />
+        <variable
+            name="onButtonClick"
+            type="android.view.View.OnClickListener" />
+        <variable
+            name="termsNumber"
+            type= "int" />
+    </data>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@{text}"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:fontFamily="@font/spoqa_han_sans_neo_medium"
+        />
+    <ImageView
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:padding="12dp"
+        android:src="@{isChecked == true ? @drawable/radio_button_checked : @drawable/radio_button_unchecked}"
+        android:onClick="@{() -> viewModel.onOptionClicked(termsNumber)}" /> <!-- 메소드를 호출하면서 text 전달 -->
+        />
+
+</LinearLayout>
+</layout>

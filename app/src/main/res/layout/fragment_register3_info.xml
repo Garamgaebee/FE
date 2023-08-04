@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.gachon.garamgaebi2.viewModel.RegisterViewModel" />
+        <variable
+            name="code"
+            type="String" />
+    </data>
+
+    <LinearLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.Register3InfoFragment"
+        android:paddingTop="20dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:background="@color/white"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/register3_1"
+            android:fontFamily="@font/spoqa_han_sans_neo_bold"
+            android:gravity="center_vertical"
+            android:textSize="28sp"
+            android:textColor="@color/black"
+            android:layout_marginBottom="40dp"
+            android:layout_marginHorizontal="38dp"
+            />
+
+        <include
+            android:id="@+id/nickName_textfield"
+            layout="@layout/component_textfield"
+            app:inputName="@{@string/nickname}"
+            app:inputContent="@={viewModel.nickName}"
+            app:inputValid="@{viewModel.nickNameIsValid}"
+            app:inputError="@{@string/nickname_error}"
+            android:layout_marginBottom="22dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="48dp"
+            />
+        <include
+            android:id="@+id/pw_textfield"
+            layout="@layout/component_textfield"
+            app:inputName="@{@string/password}"
+            app:inputContent="@={viewModel.pw}"
+            app:inputValid="@{viewModel.pwIsValid}"
+            app:inputError="@{@string/pw_register_error}"
+            app:sideText="@{` `}"
+            />
+        <include
+            android:id="@+id/pwCheck_textfield"
+            layout="@layout/component_textfield"
+            app:inputName="@{@string/password_check}"
+            app:inputContent="@={viewModel.pwCheck}"
+            app:inputValid="@{viewModel.pwCheckIsValid}"
+            app:inputError="@{@string/pw_check_error}"
+            app:sideText="@{` `}"
+            />
+
+
+
+    </LinearLayout>
+</layout>

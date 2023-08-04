@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="text"
+            type="String" />
+        <variable
+            name="isSelected"
+            type="Boolean" />
+        <variable
+            name="viewModel"
+            type="com.gachon.garamgaebi2.viewModel.RegisterViewModel" />
+    </data>
+        <Button
+            android:id="@+id/btn"
+            android:layout_width="145dp"
+            android:layout_height="58dp"
+            android:background="@drawable/round_btn_blue"
+            android:fontFamily="@font/spoqa_han_sans_neo_bold"
+            android:paddingVertical="19dp"
+            android:paddingHorizontal="30dp"
+            android:text="@{text}"
+            android:textColor="@{isSelected == true ? @color/white : @color/heavy_gray}"
+            android:backgroundTint="@{isSelected == true ? @color/main_blue : @color/thin_gray}"            android:textAlignment="center"
+            android:textStyle="bold"
+            android:textSize="14sp" />
+
+</layout>

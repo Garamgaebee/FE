@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.gachon.garamgaebi2.viewModel.RegisterViewModel" />
+    </data>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:behavior_hideable="true"
+    app:behavior_peekHeight="56dp"
+    android:paddingStart="6dp"
+    android:paddingEnd="6dp"
+    android:paddingBottom="34dp"
+    android:background="@android:color/transparent"
+    android:orientation="vertical"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="372dp"
+        android:layout_marginBottom="71dp"
+        android:background="@drawable/basic_bottom_sheet_dialog_layout"
+        android:orientation="vertical"
+        android:paddingHorizontal="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="37dp"
+            >
+            <View
+                android:layout_width="32dp"
+                android:layout_height="4dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="22dp"
+                android:background="@drawable/drag_handle" />
+
+            <include
+                layout="@layout/component_bottom_dialog_option"
+                app:isChecked="@{viewModel.isTermsAllChecked}"
+                app:termsNumber="@{0}"
+                app:text="@{@string/terms_title}" /> <!-- 메소드 B를 넘겨줌 -->
+            />
+
+            <include
+                layout="@layout/component_bottom_dialog_option"
+                app:isChecked="@{viewModel.isTerms1Checked}"
+                app:termsNumber="@{1}"
+                app:text="@{@string/terms_description_1}"
+                app:viewModel="@{viewModel}" /> <!-- 메소드 B를 넘겨줌 -->
+            />
+
+            <include
+                layout="@layout/component_bottom_dialog_option"
+                app:isChecked="@{viewModel.isTerms2Checked}"
+                app:termsNumber="@{2}"
+                app:text="@{@string/terms_description_2}" /> <!-- 메소드 B를 넘겨줌 -->
+            />
+
+            <include
+                layout="@layout/component_bottom_dialog_option"
+                app:isChecked="@{viewModel.isTerms3Checked}"
+                app:termsNumber="@{3}"
+                app:text="@{@string/terms_description_3}" /> <!-- 메소드 B를 넘겨줌 -->
+            />
+        </LinearLayout>
+        <include
+            android:id="@+id/next_btn"
+            layout="@layout/component_btn"
+            app:text="@{@string/resend}"
+            app:btnColor="@{@color/main_blue}"
+            android:layout_marginHorizontal="-16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            >
+
+        </include>
+        </LinearLayout>
+</LinearLayout>
+</layout>
