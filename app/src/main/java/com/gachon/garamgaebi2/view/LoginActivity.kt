@@ -3,6 +3,8 @@ package com.gachon.garamgaebi2.view
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.gachon.garamgaebi2.base.BaseActivity
@@ -28,11 +30,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
             id.observe(this@LoginActivity) {
                 idIsValid.value = it.isNotEmpty()
                 loginIsValid.value = idIsValid.value!! && pwIsValid.value!!
-                editTextBorderColor.value = if (it.isEmpty()) {
-                    ContextCompat.getColor(getApplication(), R.color.red)
-                } else {
-                    ContextCompat.getColor(getApplication(), R.color.main_blue)
-                }
             }
             pw.observe(this@LoginActivity) {
                 pwIsValid.value = it.isNotEmpty()
@@ -44,20 +41,22 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
             setInitialBorderColor()
         }
 
-//
-//        val includedLayout = binding.includedLayout // included 레이아웃의 바인딩을 가져옵니다
-//        includedLayout.editText.addTextChangedListener(object : TextWatcher {
-//            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-//            }
-//
-//            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-//            }
-//
-//            override fun afterTextChanged(s: Editable?) {
-//                // EditText의 값이 변경될 때 ViewModel의 setEditTextValue를 호출합니다.
-//                viewModel.setEditTextValue(s.toString())
-//            }
-//        })
+
+
+        val idInput = binding.idTextfield // included 레이아웃의 바인딩을 가져옵니다
+        idInput.input.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                // EditText의 값이 변경될 때 ViewModel의 setEditTextValue를 호출합니다.
+                viewModel.onInputChanged()
+            }
+        })
+
     }
 
 }

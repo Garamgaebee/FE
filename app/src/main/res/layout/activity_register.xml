@@ -4,6 +4,9 @@
         <variable
             name="progress"
             type="int" />
+        <variable
+            name="viewModel"
+            type="com.gachon.garamgaebi2.viewModel.RegisterViewModel" />
     </data>
 
     <LinearLayout
@@ -17,9 +20,10 @@
         <ProgressBar
             android:id="@+id/progress_bar"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:paddingVertical="11dp"
-            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_height="8dp"
+            android:layout_marginVertical="11dp"
+            android:padding="0dp"
+            style="@style/ProgressBarNoPaddingGray"
             android:max="100"
             android:progress="@{progress}"
             />
@@ -32,6 +36,22 @@
             android:src="@drawable/back_arrow"
             android:layout_marginStart="16dp"
             />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+            <include
+                android:id="@+id/register_process_btn"
+                layout="@layout/component_btn"
+                app:text="@{viewModel.registerProcess}"
+                app:btnColor="@{viewModel.btnColor}"
+                app:textColor="@{@color/white}"
+                android:layout_marginBottom="180dp"
+                android:layout_gravity="bottom"
+                android:layout_width="match_parent"
+                android:layout_height="66dp"
+                />
+        </FrameLayout>
 
     </LinearLayout>
 </layout>
