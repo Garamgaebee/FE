@@ -39,6 +39,8 @@ class GaramgaebiApplication : Application() {
         val gameOut : MutableLiveData<Boolean> = MutableLiveData(false)
         const val testEmail = "garamgaebiMaster2"
         const val testPW = "000000"
+        var registerProcess = 0
+
 
         // 네트워크 감지
         val networkValid : MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)

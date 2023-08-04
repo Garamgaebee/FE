@@ -1,0 +1,19 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 프로그레스바 바탕색 -->
+    <item android:id="@android:id/background">
+        <shape>
+            <corners android:radius="0dp" />
+            <solid android:color="@color/thin_gray" />
+        </shape>
+    </item>
+
+    <!-- 프로그레스바 진행 상태 색상 -->
+    <item android:id="@android:id/progress">
+        <clip>
+            <shape>
+                <corners android:radius="0dp" />
+                <solid android:color="@color/main_blue" />
+            </shape>
+        </clip>
+    </item>
+</layer-list>

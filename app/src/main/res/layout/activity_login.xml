@@ -42,7 +42,7 @@
         app:inputName="@{@string/id}"
         app:inputContent="@={viewModel.id}"
         app:inputValid="@{viewModel.idIsValid}"
-        app:sideIcon="@{@string/gc_email}"
+        app:sideText="@{@string/gc_email}"
         app:inputError="@{``}"
         />
     <include

@@ -28,6 +28,7 @@ class RegisterViewModel : ViewModel(){
     val pwCheckIsValid = MutableLiveData<Boolean>(false)
 
 
+
     val registerIsValid = MutableLiveData<Boolean>(false)
 
     val btnColor = MutableLiveData<Int>(

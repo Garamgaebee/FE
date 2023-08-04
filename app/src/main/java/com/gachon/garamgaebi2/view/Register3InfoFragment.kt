@@ -9,10 +9,12 @@ import androidx.lifecycle.ViewModelProvider
 import com.gachon.garamgaebi2.R
 import com.gachon.garamgaebi2.BR
 import com.gachon.garamgaebi2.base.BaseBindingFragment
+import com.gachon.garamgaebi2.base.GaramgaebiApplication
 import com.gachon.garamgaebi2.databinding.FragmentRegister1EmailBinding
+import com.gachon.garamgaebi2.databinding.FragmentRegister3InfoBinding
 import com.gachon.garamgaebi2.viewModel.RegisterViewModel
 
-class Register3InfoFragment  : BaseBindingFragment<FragmentRegister1EmailBinding>(R.layout.fragment_register1_email) {
+class Register3InfoFragment  : BaseBindingFragment<FragmentRegister3InfoBinding>(R.layout.fragment_register3_info) {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,7 +33,13 @@ class Register3InfoFragment  : BaseBindingFragment<FragmentRegister1EmailBinding
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
+        GaramgaebiApplication.registerProcess = 3
+
+
+        binding.nickNameTextfield.checkTv.text="닉네임 중복 확인"
+
     }
+
 
 
 }

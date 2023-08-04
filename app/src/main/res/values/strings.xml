@@ -10,7 +10,7 @@
 
     <string name="id">아이디</string>
     <string name="password">비밀번호</string>
-    <string name="password_confirm">비밀번호 확인</string>
+    <string name="password_check">비밀번호 확인</string>
     <string name="login">로그인</string>
     <string name="email">이메일 주소</string>
     <string name="nickname">닉네임</string>
@@ -21,7 +21,7 @@
 
     <string name="email_code">인증 코드</string>
     <string name="resend"><u>재전송하기</u></string>
-    <string name="code_error">잘못된 코드를 입력하셨습니다!</string>
+    <string name="email_code_error">잘못된 코드를 입력하셨습니다!</string>
     <string name="forgot_password">비밀번호를 잊으셨나요?</string>
     <string name="gc_email">\&#64;gachon.ac.kr</string>
 
@@ -31,6 +31,9 @@
     <string name="pw_error">아이디 혹은 비밀번호가 틀렸습니다!</string>
     <string name="email_error">잘못된 코드를 입력하셨습니다!</string>
     <string name="nickname_error">이미 사용중인 닉네임 입니다</string>
+
+    <string name="pw_register_error">비밀번호 형식 에러</string>
+    <string name="pw_check_error">비밀번호 일치 에러</string>
 
     <string name="next">다음으로</string>
     <string name="authenticate">인증하기</string>

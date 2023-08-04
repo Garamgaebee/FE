@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.gachon.garamgaebi2.R
 import com.gachon.garamgaebi2.BR
 import com.gachon.garamgaebi2.base.BaseBindingFragment
+import com.gachon.garamgaebi2.base.GaramgaebiApplication
 import com.gachon.garamgaebi2.databinding.FragmentRegister1EmailBinding
 import com.gachon.garamgaebi2.viewModel.RegisterViewModel
 
@@ -30,6 +31,9 @@ class Register1EmailFragment  : BaseBindingFragment<FragmentRegister1EmailBindin
         binding.setVariable(BR.viewModel,viewModel)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
+
+        GaramgaebiApplication.registerProcess = 1
+
 
     }
 

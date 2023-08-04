@@ -9,7 +9,7 @@
             name="inputContent"
             type="String" />
         <variable
-            name="sideIcon"
+            name="sideText"
             type="String" />
         <variable
             name="inputValid"
@@ -70,8 +70,8 @@
             android:textSize="16sp"
             android:textColor="@color/heavy_gray"
             android:fontFamily="@font/spoqa_han_sans_neo_light"
-            android:text="@{sideIcon == null ? null : sideIcon}"
-            android:visibility="@{sideIcon == null ? View.GONE : View.VISIBLE}"
+            android:text="@{sideText == null ? null : sideText}"
+            android:visibility="@{sideText == null ? View.GONE : View.VISIBLE}"
             app:layout_constraintStart_toEndOf="@id/input"
             app:layout_constraintEnd_toEndOf="parent"
             android:gravity="center_vertical"
@@ -81,8 +81,8 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:padding="14dp"
-            android:src="@{sideIcon == null ? @drawable/pw_cancel : null}"
-            android:visibility="@{sideIcon == null ? View.VISIBLE : View.GONE}"
+            android:src="@{sideText == null ? @drawable/pw_cancel : null}"
+            android:visibility="@{sideText == null ? View.VISIBLE : View.GONE}"
             app:layout_constraintStart_toEndOf="@id/input"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/input"
@@ -94,20 +94,23 @@
     <View
         android:id="@+id/border"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="2dp"
         android:background="@color/black"
         app:layout_constraintTop_toBottomOf="@id/container_input"
+        app:layout_constraintBottom_toTopOf="@id/check_tv"
         />
     <TextView
         android:id="@+id/check_tv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingHorizontal="17dp"
-        android:paddingVertical="7dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="7dp"
+        android:layout_marginHorizontal="17dp"
         android:text="@{inputValid == true ? null : inputError}"
         android:textSize="12sp"
         android:fontFamily="@font/spoqa_han_sans_neo_medium"
         android:textColor="@color/red"
+        android:gravity="center_vertical"
         app:layout_constraintTop_toBottomOf="@id/border"
         />
 
