@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
+
     <data>
         <variable
             name="viewModel"
@@ -7,6 +8,8 @@
         <variable
             name="code"
             type="String" />
+        <import type="android.view.View" />
+
     </data>
 
     <LinearLayout
@@ -63,6 +66,7 @@
                 android:onClick="@{() -> viewModel.isStudentClicked()}"
                 />
 
+
             <include
                 android:id="@+id/graduate"
                 layout="@layout/component_detail_btn"
@@ -92,7 +96,7 @@
             app:inputContent="@={viewModel.company}"
             app:inputValid="@{viewModel.companyIsValid}"
             app:inputError="@{@string/company_error}"
-            app:sideText="@{` `}"
+            android:visibility="@{viewModel.isGraduate ? View.VISIBLE : View.GONE}"
             />
 
 

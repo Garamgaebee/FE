@@ -14,7 +14,6 @@
     app:behavior_peekHeight="56dp"
     android:paddingStart="6dp"
     android:paddingEnd="6dp"
-    android:paddingBottom="34dp"
     android:background="@android:color/transparent"
     android:orientation="vertical"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
@@ -42,46 +41,61 @@
                 android:background="@drawable/drag_handle" />
 
             <include
+                android:id="@+id/terms_all"
                 layout="@layout/component_bottom_dialog_option"
                 app:isChecked="@{viewModel.isTermsAllChecked}"
-                app:termsNumber="@{0}"
+                app:onButtonClick="@{() -> viewModel.onTermsAllClicked()}"
+                app:viewModel="@{viewModel}"
                 app:text="@{@string/terms_title}" /> <!-- 메소드 B를 넘겨줌 -->
-            />
+
 
             <include
+                android:id="@+id/terms_1"
                 layout="@layout/component_bottom_dialog_option"
                 app:isChecked="@{viewModel.isTerms1Checked}"
-                app:termsNumber="@{1}"
+                app:onButtonClick="@{() -> viewModel.onTerms1Clicked()}"
                 app:text="@{@string/terms_description_1}"
+                app:text2="@{@string/agree}"
                 app:viewModel="@{viewModel}" /> <!-- 메소드 B를 넘겨줌 -->
-            />
+
 
             <include
+                android:id="@+id/terms_2"
                 layout="@layout/component_bottom_dialog_option"
                 app:isChecked="@{viewModel.isTerms2Checked}"
-                app:termsNumber="@{2}"
+                app:onButtonClick="@{() -> viewModel.onTerms2Clicked()}"
+                app:viewModel="@{viewModel}"
+                app:text2="@{@string/agree}"
                 app:text="@{@string/terms_description_2}" /> <!-- 메소드 B를 넘겨줌 -->
-            />
+
 
             <include
+                android:id="@+id/terms_3"
                 layout="@layout/component_bottom_dialog_option"
                 app:isChecked="@{viewModel.isTerms3Checked}"
-                app:termsNumber="@{3}"
-                app:text="@{@string/terms_description_3}" /> <!-- 메소드 B를 넘겨줌 -->
-            />
+                app:onButtonClick="@{() -> viewModel.onTerms3Clicked()}"
+                app:viewModel="@{viewModel}"
+                app:text2="@{@string/agree2}"
+                app:text="@{@string/terms_description_3}"/>
         </LinearLayout>
-        <include
-            android:id="@+id/next_btn"
-            layout="@layout/component_btn"
-            app:text="@{@string/resend}"
-            app:btnColor="@{@color/main_blue}"
-            android:layout_marginHorizontal="-16dp"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            >
+            android:layout_weight="1"
+            android:gravity="bottom"
+            android:paddingBottom="54dp">
 
-        </include>
+            <include
+                android:id="@+id/next_btn"
+                layout="@layout/component_btn"
+                app:text="@{@string/start}"
+                app:on="@{viewModel.btnOn}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+            </include>
+        </LinearLayout>
+
         </LinearLayout>
 </LinearLayout>
 </layout>

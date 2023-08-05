@@ -64,13 +64,22 @@
         android:gravity="center_horizontal"
         android:layout_marginBottom="121dp">
 
-        <include
-            android:id="@+id/login_process_btn"
-            layout="@layout/component_btn"
-            app:text="@{@string/login}"
-            app:btnColor="@{@color/dark_gray}"
-            />
-
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom">
+        <Button
+            android:id="@+id/next_btn"
+            android:layout_width="match_parent"
+            android:layout_height="66dp"
+            android:background="@drawable/round_btn_dark_gray"
+            android:layout_marginHorizontal="16dp"
+            android:fontFamily="@font/spoqa_han_sans_neo_bold"
+            android:text="@{@string/login}"
+            android:textColor="@{@color/white}"
+            android:textAlignment="center"
+            android:textSize="20sp" />
+        </FrameLayout>
 
         <TextView
             android:id="@+id/find_id_pw"

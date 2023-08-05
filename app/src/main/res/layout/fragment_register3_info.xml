@@ -19,6 +19,8 @@
         android:gravity="center_horizontal"
         android:orientation="vertical"
         android:background="@color/white"
+        android:clickable="true"
+        android:focusableInTouchMode="true"
         >
 
         <TextView
@@ -39,7 +41,7 @@
             app:inputName="@{@string/nickname}"
             app:inputContent="@={viewModel.nickName}"
             app:inputValid="@{viewModel.nickNameIsValid}"
-            app:inputError="@{@string/nickname_error}"
+            app:inputError="@{viewModel.nickNameError}"
             android:layout_marginBottom="22dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -52,7 +54,6 @@
             app:inputContent="@={viewModel.pw}"
             app:inputValid="@{viewModel.pwIsValid}"
             app:inputError="@{@string/pw_register_error}"
-            app:sideText="@{` `}"
             />
         <include
             android:id="@+id/pwCheck_textfield"
@@ -61,7 +62,6 @@
             app:inputContent="@={viewModel.pwCheck}"
             app:inputValid="@{viewModel.pwCheckIsValid}"
             app:inputError="@{@string/pw_check_error}"
-            app:sideText="@{` `}"
             />
 
 

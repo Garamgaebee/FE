@@ -18,7 +18,8 @@
         android:paddingTop="20dp"
         android:gravity="center_horizontal"
         android:background="@color/white"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        >
 
         <TextView
             android:layout_marginHorizontal="38dp"
@@ -39,6 +40,7 @@
             app:inputContent="@={viewModel.email}"
             app:inputValid="@{viewModel.emailIsValid}"
             app:inputError="@{@string/email_error}"
+            app:sideText="@{@string/gc_email}"
             android:layout_height="118dp"
             android:layout_width="match_parent"
             android:layout_marginHorizontal="48dp"
@@ -66,7 +68,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingHorizontal="14dp"
+                android:paddingStart="14dp"
                 app:layout_constraintTop_toBottomOf="@id/name"
                 android:gravity="center_vertical"
                 android:layout_marginBottom="39dp"
@@ -79,8 +81,9 @@
                     android:textColor="@color/heavy_gray"
                     android:textSize="18sp"
                     android:fontFamily="@font/spoqa_han_sans_neo_regular"
-                    android:gravity="center_vertical"
+                    android:gravity="center"
                     android:inputType="text"
+                    android:maxLength="6"
                     style="@style/NoUnderlineEditText"
                     android:layout_marginVertical="14dp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -128,7 +131,6 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="7dp"
                 android:layout_marginHorizontal="17dp"
-                android:text="@{viewModel.codeIsValid == true ? null : @string/email_code_error}"
                 android:textSize="12sp"
                 android:gravity="center"
                 android:fontFamily="@font/spoqa_han_sans_neo_medium"

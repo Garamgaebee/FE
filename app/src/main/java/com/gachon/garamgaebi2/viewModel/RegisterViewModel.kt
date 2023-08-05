@@ -12,10 +12,9 @@ import com.gachon.garamgaebi2.base.GaramgaebiApplication.Companion.getApplicatio
 
 class RegisterViewModel : ViewModel(){
 
-    val id = MutableLiveData<String>("")
     val pw = MutableLiveData<String>("")
-    val idIsValid = MutableLiveData<Boolean>(false)
     val pwIsValid = MutableLiveData<Boolean>(false)
+    val pwSideText = MutableLiveData<String>("")
 
     val email = MutableLiveData<String>("")
     val emailIsValid = MutableLiveData<Boolean>(false)
@@ -24,42 +23,34 @@ class RegisterViewModel : ViewModel(){
 
     val nickName = MutableLiveData<String>("")
     val nickNameIsValid = MutableLiveData<Boolean>(false)
+    val nickNameSideText = MutableLiveData<String>("")
+    val nickNameError = MutableLiveData<String>("")
 
     val pwCheck = MutableLiveData<String>("")
     val pwCheckIsValid = MutableLiveData<Boolean>(false)
+    val pwCheckSideText = MutableLiveData<String>("")
+
+    val infoIsValid = MutableLiveData<Boolean>(nickNameIsValid.value == true && pwIsValid.value == true && pwCheckIsValid.value == true)
+
 
     val isStudent = MutableLiveData<Boolean>(false)
     val isGraduate = MutableLiveData<Boolean>(false)
 
     val major = MutableLiveData<String>("")
-    val majorIsValid = MutableLiveData<Boolean>(false)
+    val majorIsValid = MutableLiveData<Boolean>(true)
 
     val company = MutableLiveData<String>("")
     val companyIsValid = MutableLiveData<Boolean>(false)
 
+    val detailIsValid = MutableLiveData<Boolean>(
+        ((isStudent.value == true && majorIsValid.value == true)
+                || (isGraduate.value == true && companyIsValid.value == true && majorIsValid.value == true)))
+
     val registerIsValid = MutableLiveData<Boolean>(false)
 
-    val btnColor = MutableLiveData<Int>(
-        ContextCompat.getColor(getApplication(), R.color.light_gray)
-    )
+    val btnOn = MutableLiveData<Boolean>(false)
 
-    var registerBtnColor = ContextCompat.getColor(getApplication(), R.color.light_gray)
-
-
-    val editTextBorderColor = MutableLiveData<Int>(
-        ContextCompat.getColor(getApplication(), R.color.black)
-    )
-
-    private fun setEditTextBorderColor(color: Int) {
-        editTextBorderColor.value = ContextCompat.getColor(getApplication(), color)
-    }
-    fun onInputChanged(){
-        editTextBorderColor.value = if (id.value?.isEmpty() == true) {
-            ContextCompat.getColor(getApplication(), R.color.red)
-        } else {
-            ContextCompat.getColor(getApplication(), R.color.main_blue)
-        }
-    }
+    val registerBtnColor = MutableLiveData<Int>(ContextCompat.getColor(getApplication(), R.color.light_gray))
 
     fun isStudentClicked() {
         isStudent.value = !isStudent.value!!
@@ -84,24 +75,12 @@ class RegisterViewModel : ViewModel(){
     var minute = 0
     var second = 0
 
-    // 초기 상태를 설정합니다.
-    fun setInitialBorderColor() {
-        setEditTextBorderColor(R.color.black)
-    }
 
     val isTermsAllChecked = MutableLiveData<Boolean>(false)
     val isTerms1Checked = MutableLiveData<Boolean>(false)
     val isTerms2Checked = MutableLiveData<Boolean>(false)
     val isTerms3Checked = MutableLiveData<Boolean>(false)
 
-    fun onOptionClicked(num : Int){
-        when(num){
-            1-> onTerms1Clicked()
-            2-> onTerms2Clicked()
-            3-> onTerms3Clicked()
-            0-> onTermsAllClicked()
-        }
-    }
 
     fun onTermsAllClicked() {
         isTermsAllChecked.value = !isTermsAllChecked.value!!
