@@ -5,17 +5,18 @@
             name="text"
             type="String" />
         <variable
+            name="text2"
+            type="String" />
+        <variable
             name="isChecked"
             type="Boolean" />
         <variable
             name="viewModel"
             type="com.gachon.garamgaebi2.viewModel.RegisterViewModel" />
+
         <variable
             name="onButtonClick"
             type="android.view.View.OnClickListener" />
-        <variable
-            name="termsNumber"
-            type= "int" />
     </data>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -23,11 +24,21 @@
     android:gravity="center_vertical"
     android:orientation="horizontal">
     <TextView
+        android:id="@+id/term"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@{text}"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:fontFamily="@font/spoqa_han_sans_neo_medium"
+        android:bufferType="spannable"
+        />
+    <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="@{text}"
-        android:textColor="@color/black"
+        android:text="@{text2}"
+        android:textColor="@color/heavy_gray"
         android:textSize="16sp"
         android:fontFamily="@font/spoqa_han_sans_neo_medium"
         />
@@ -36,7 +47,7 @@
         android:layout_height="48dp"
         android:padding="12dp"
         android:src="@{isChecked == true ? @drawable/radio_button_checked : @drawable/radio_button_unchecked}"
-        android:onClick="@{() -> viewModel.onOptionClicked(termsNumber)}" /> <!-- 메소드를 호출하면서 text 전달 -->
+        android:onClick="@{onButtonClick}" /> <!-- 메소드를 호출하면서 text 전달 -->
         />
 
 </LinearLayout>

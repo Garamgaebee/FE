@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.activity.OnBackPressedCallback
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
@@ -34,6 +35,12 @@ abstract class BaseBindingFragment<T: ViewDataBinding>(@LayoutRes private val la
         initViewModel()
         initListener()
         afterViewCreated()
+        binding.root.isFocusableInTouchMode = true
+        binding.root.isClickable = true
+        binding.root.setOnTouchListener { view, motionEvent ->
+            hideKeyboard(view)
+            false
+        }
     }
 
     protected open fun initView() {}
@@ -57,5 +64,10 @@ abstract class BaseBindingFragment<T: ViewDataBinding>(@LayoutRes private val la
     override fun onDestroy() {
         keyboardVisibilityUtils.detachKeyboardListeners()
         super.onDestroy()
+    }
+    private fun hideKeyboard(view: View) {
+        val inputMethodManager =
+            requireContext().getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
 }

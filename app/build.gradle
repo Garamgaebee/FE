@@ -120,4 +120,8 @@ dependencies {
     //jsoup
     implementation 'org.jsoup:jsoup:1.14.3'
 
+    //timer
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.3.1"
+
+
 }
