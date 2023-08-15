@@ -29,24 +29,9 @@ import kotlinx.coroutines.launch
 class Register2AuthenticationFragment : BaseBindingFragment<FragmentRegister2AuthenticationBinding>(R.layout.fragment_register2_authentication) {
     private val viewModel: RegisterViewModel by activityViewModels()
     private var timerJob: Job? = null
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return super.onCreateView(inflater, container, savedInstanceState)
+    private var timeOut = false
 
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun initView(){
         binding.setVariable(BR.viewModel,viewModel)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
@@ -57,29 +42,17 @@ class Register2AuthenticationFragment : BaseBindingFragment<FragmentRegister2Aut
             override fun handleOnBackPressed() {
                 Log.d("D","BackPressd In Fragment")
                 requireActivity().supportFragmentManager.popBackStack()
-                val activity = requireActivity() as RegisterActivity
-                activity.backProgressBar(2,4)
             }
         }
 
         requireActivity().onBackPressedDispatcher.addCallback(
             viewLifecycleOwner, callback
         )
+        startTimer()
 
+    }
 
-        binding.resendTv.setOnClickListener {
-
-            val resendBottomDialogFragment = ResendBottomDialogFragment()
-            resendBottomDialogFragment.show(parentFragmentManager, "ResendBottomDialogFragment")
-        }
-
-        binding.checkTv.apply{
-            text = resources.getString(R.string.register2_2)
-            setTextColor(ContextCompat.getColorStateList(GaramgaebiApplication.getApplication(), R.color.black))
-        }
-
-        var timeOut = false
-
+    override fun initListener(){
         binding.input.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
@@ -128,8 +101,35 @@ class Register2AuthenticationFragment : BaseBindingFragment<FragmentRegister2Aut
             }
         })
 
+        binding.input.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
+            if(!hasFocus){
+                binding.border2.visibility = View.INVISIBLE
+
+            }else{
+                binding.border2.visibility = View.VISIBLE
+            }
+        }
+    }
+
+    override fun initViewModel(){
+        observe()
+    }
+
+    private fun observe(){
+        binding.resendTv.setOnClickListener {
+
+            val resendBottomDialogFragment = ResendBottomDialogFragment()
+            resendBottomDialogFragment.show(parentFragmentManager, "ResendBottomDialogFragment")
+        }
+
+        binding.checkTv.apply{
+            text = resources.getString(R.string.register2_2)
+            setTextColor(ContextCompat.getColorStateList(GaramgaebiApplication.getApplication(), R.color.black))
+        }
+    }
+    private fun startTimer() {
         // 타이머를 시작할 총 시간 (초 단위)
-        val totalTimeInSeconds: Long = 1200 // 예: 2분 (2분 * 60초)
+        val totalTimeInSeconds: Long = 600 // 예: 2분 (2분 * 60초)
 
         // 코루틴을 사용하여 타이머를 실행합니다.
         timerJob = lifecycleScope.launch(Dispatchers.Main) {
@@ -156,9 +156,8 @@ class Register2AuthenticationFragment : BaseBindingFragment<FragmentRegister2Aut
 
 
         }
-
     }
 
-    }
+}
 
 

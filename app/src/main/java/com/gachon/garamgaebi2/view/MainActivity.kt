@@ -1,8 +1,12 @@
 package com.gachon.garamgaebi2.view
 
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.DisplayMetrics
+import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import com.gachon.garamgaebi2.R
 import com.gachon.garamgaebi2.base.BaseActivity
 import com.gachon.garamgaebi2.databinding.ActivityMainBinding
@@ -10,15 +14,42 @@ import com.gachon.garamgaebi2.databinding.ActivityMainBinding
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate){
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    @RequiresApi(Build.VERSION_CODES.S)
+    override fun initView() {
+        initListener()
 
+        val marginBottom = binding.loginTv
+
+        // 화면의 높이를 가져옴
+        val displayMetrics = DisplayMetrics()
+        windowManager.defaultDisplay.getMetrics(displayMetrics)
+        val screenHeight = displayMetrics.heightPixels
+
+        // 비율에 따라 마진 값을 계산
+        val marginInPixels = (screenHeight * 0.16).toInt() // 예시로 10%로 설정
+
+        // 마진 값을 뷰에 적용
+        val layoutParams = marginBottom.layoutParams as ViewGroup.MarginLayoutParams
+        layoutParams.setMargins(0, 0, 0, marginInPixels)
+        marginBottom.layoutParams = layoutParams
+
+        val marginTop = binding.logoIV
+        // 비율에 따라 마진 값을 계산
+        val marginInPixelsTop = (screenHeight * 0.146).toInt() // 예시로 10%로 설정
+
+        // 마진 값을 뷰에 적용
+        val layoutParamsTop = marginTop.layoutParams as ViewGroup.MarginLayoutParams
+        layoutParamsTop.setMargins(0, marginInPixelsTop, 0, 0)
+        marginTop.layoutParams = layoutParamsTop
+    }
+
+    private fun initListener(){
         binding.registerBtn.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
         binding.loginTv.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
+            val intent = Intent(this,LoginActivity::class.java)
             startActivity(intent)
         }
     }

@@ -29,7 +29,11 @@ abstract class BaseActivity<B : ViewBinding>(private val inflate: (LayoutInflate
         )
 
         setContentView(binding.root)
+
+        initView()
     }
+
+    abstract fun initView()
 
 
 

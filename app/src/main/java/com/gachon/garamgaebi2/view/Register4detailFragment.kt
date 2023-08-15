@@ -25,19 +25,7 @@ import com.gachon.garamgaebi2.viewModel.RegisterViewModel
 class Register4detailFragment  : BaseBindingFragment<FragmentRegister4DetailBinding>(R.layout.fragment_register4_detail) {
 
     private val viewModel: RegisterViewModel by activityViewModels()
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return super.onCreateView(inflater, container, savedInstanceState)
-
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun initView(){
         binding.setVariable(BR.viewModel,viewModel)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
@@ -49,7 +37,7 @@ class Register4detailFragment  : BaseBindingFragment<FragmentRegister4DetailBind
                 Log.d("D","BackPressd In Fragment")
                 requireActivity().supportFragmentManager.popBackStack()
                 val activity = requireActivity() as RegisterActivity
-                activity.backProgressBar(4,4)
+                activity.backProgressBar(3,3)
             }
         }
 
@@ -57,12 +45,20 @@ class Register4detailFragment  : BaseBindingFragment<FragmentRegister4DetailBind
             viewLifecycleOwner, callback
         )
 
-        binding.majorTextfield.input.hint = this.getString(R.string.major_hint)
-        binding.majorTextfield.sideIcon.visibility = View.VISIBLE
+    }
 
-        binding.companyTextfield.input.hint = this.getString(R.string.company_hint)
+    override fun initListener(){
+        val majorLayout = binding.majorTextfield
+
+        majorLayout.input.hint = this.getString(R.string.major_hint)
+        majorLayout.sideIcon.visibility = View.VISIBLE
+        majorLayout.input.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f) // 18sp로 텍스트 크기 설정
+
 
         val companyLayout = binding.companyTextfield
+
+        companyLayout.input.hint = this.getString(R.string.company_hint)
+
 
         companyLayout.input.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f) // 18sp로 텍스트 크기 설정
 
@@ -112,11 +108,7 @@ class Register4detailFragment  : BaseBindingFragment<FragmentRegister4DetailBind
             }
         }
 
-
-
-
     }
-
 
 
 }

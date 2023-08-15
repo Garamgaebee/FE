@@ -1,5 +1,6 @@
 package com.gachon.garamgaebi2.view
 
+import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.InputType
@@ -7,6 +8,8 @@ import android.text.TextWatcher
 import android.util.Log
 import android.util.TypedValue
 import android.view.View
+import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.gachon.garamgaebi2.base.BaseActivity
@@ -20,16 +23,20 @@ import com.gachon.garamgaebi2.base.GaramgaebiApplication
 
 class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::inflate){
 
+    private val viewModel by viewModels<LoginViewModel>()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    @RequiresApi(Build.VERSION_CODES.S)
+    override fun initView() {
+        observe()
+        initListener()
+    }
 
-        val viewModel = ViewModelProvider(this)[LoginViewModel::class.java]
-        binding.setVariable(BR.viewModel,viewModel)
-        binding.viewModel = viewModel
-        binding.lifecycleOwner = this
+    private fun observe() {
+//        binding.setVariable(BR.viewModel, viewModel)
+//        binding.viewModel = viewModel
+//        binding.lifecycleOwner = this
 
-        with(viewModel){
+        with(viewModel) {
             id.observe(this@LoginActivity) {
                 idIsValid.value = it.isNotEmpty()
                 loginIsValid.value = idIsValid.value!! && pwIsValid.value!!
@@ -38,13 +45,12 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
                 pwIsValid.value = it.isNotEmpty()
                 loginIsValid.value = idIsValid.value!! && pwIsValid.value!!
             }
-
-
             // EditText의 초기 상태를 설정합니다.
             setInitialBorderColor()
         }
+    }
 
-
+    private fun initListener(){
 
         val idInput = binding.idTextfield // included 레이아웃의 바인딩을 가져옵니다
 
@@ -125,7 +131,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
                 pwInput.border2.visibility = View.VISIBLE
             }
         }
-
     }
 
 }

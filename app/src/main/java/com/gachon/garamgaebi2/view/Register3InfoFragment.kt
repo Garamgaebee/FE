@@ -26,18 +26,7 @@ import com.gachon.garamgaebi2.viewModel.RegisterViewModel
 class Register3InfoFragment  : BaseBindingFragment<FragmentRegister3InfoBinding>(R.layout.fragment_register3_info) {
     private val viewModel: RegisterViewModel by activityViewModels()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return super.onCreateView(inflater, container, savedInstanceState)
-
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun initView(){
         binding.setVariable(BR.viewModel,viewModel)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
@@ -49,7 +38,7 @@ class Register3InfoFragment  : BaseBindingFragment<FragmentRegister3InfoBinding>
                 Log.d("D","BackPressd In Fragment")
                 requireActivity().supportFragmentManager.popBackStack()
                 val activity = requireActivity() as RegisterActivity
-                activity.backProgressBar(3,4)
+                activity.backProgressBar(2,3)
             }
         }
 
@@ -57,6 +46,9 @@ class Register3InfoFragment  : BaseBindingFragment<FragmentRegister3InfoBinding>
             viewLifecycleOwner, callback
         )
 
+    }
+
+    override fun initListener(){
         val nickNameLayout = binding.nickNameTextfield
 
         viewModel.nickNameError.value = resources.getString(R.string.nickname_description)
@@ -228,7 +220,6 @@ class Register3InfoFragment  : BaseBindingFragment<FragmentRegister3InfoBinding>
         }
 
     }
-
 
 
 }
