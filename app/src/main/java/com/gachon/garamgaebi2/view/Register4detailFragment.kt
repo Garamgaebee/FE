@@ -107,6 +107,9 @@ class Register4detailFragment  : BaseBindingFragment<FragmentRegister4DetailBind
                 companyLayout.border2.visibility = View.VISIBLE
             }
         }
+        companyLayout.sideIcon.setOnClickListener {
+            companyLayout.input.text = null
+        }
 
     }
 

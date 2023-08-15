@@ -113,6 +113,9 @@ class Register3InfoFragment  : BaseBindingFragment<FragmentRegister3InfoBinding>
                 nickNameLayout.border2.visibility = View.VISIBLE
             }
         }
+        nickNameLayout.sideIcon.setOnClickListener {
+            nickNameLayout.input.text = null
+        }
 
         val pwLayout = binding.pwTextfield
 
@@ -167,6 +170,9 @@ class Register3InfoFragment  : BaseBindingFragment<FragmentRegister3InfoBinding>
                 pwLayout.border2.visibility = View.VISIBLE
             }
         }
+        pwLayout.sideIcon.setOnClickListener {
+            pwLayout.input.text = null
+        }
 
         val pwCheckLayout = binding.pwCheckTextfield
         pwCheckLayout.input.inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD
@@ -208,6 +214,9 @@ class Register3InfoFragment  : BaseBindingFragment<FragmentRegister3InfoBinding>
             override fun afterTextChanged(p0: Editable?) {
             }
         })
+        pwCheckLayout.sideIcon.setOnClickListener {
+            pwCheckLayout.input.text = null
+        }
 
         pwCheckLayout.input.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
             if(!hasFocus){

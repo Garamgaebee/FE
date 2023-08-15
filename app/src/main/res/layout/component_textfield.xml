@@ -91,6 +91,7 @@
             android:padding="14dp"
             android:src='@{sideText == null ? @drawable/pw_cancel : sideText == "search" ? @drawable/search : null}'
             android:visibility='gone'
+            android:clickable="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/input"
             app:layout_constraintBottom_toBottomOf="@id/input"

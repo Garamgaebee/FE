@@ -1,5 +1,6 @@
 package com.gachon.garamgaebi2.view
 
+import android.content.ContentValues
 import android.os.Build
 import android.os.Bundle
 import android.text.Editable
@@ -8,6 +9,8 @@ import android.text.TextWatcher
 import android.util.Log
 import android.util.TypedValue
 import android.view.View
+import android.view.inputmethod.InputMethodManager
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
@@ -29,6 +32,14 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
     override fun initView() {
         observe()
         initListener()
+        binding.root.isFocusableInTouchMode = true
+        binding.root.isClickable = true
+        binding.root.setOnTouchListener { view, motionEvent ->
+            hideKeyboard(view)
+            false
+        }
+        this.onBackPressedDispatcher.addCallback(this, callback) //위에서 생성한 콜백 인스턴스 붙여주기
+
     }
 
     private fun observe() {
@@ -51,6 +62,9 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
     }
 
     private fun initListener(){
+        binding.backBtn.setOnClickListener {
+                finish()
+        }
 
         val idInput = binding.idTextfield // included 레이아웃의 바인딩을 가져옵니다
 
@@ -85,7 +99,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
                 idInput.sideIcon.visibility = View.GONE
                 idInput.border2.visibility = View.INVISIBLE
             }else{
-                idInput.sideIcon.visibility = View.VISIBLE
+                idInput.sideIcon.visibility = View.GONE
                 idInput.border2.visibility = View.VISIBLE
             }
         }
@@ -122,6 +136,10 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
             }
         })
 
+        pwInput.sideIcon.setOnClickListener {
+            pwInput.input.text = null
+        }
+
         pwInput.input.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
             if(!hasFocus){
                 pwInput.sideIcon.visibility = View.GONE
@@ -131,6 +149,18 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
                 pwInput.border2.visibility = View.VISIBLE
             }
         }
+    }
+
+    private val callback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            // 뒤로 버튼 이벤트 처리
+            Log.e(ContentValues.TAG, "뒤로가기 클릭")
+        }
+    }
+    private fun hideKeyboard(view: View) {
+        val inputMethodManager =
+            this.getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
 }
