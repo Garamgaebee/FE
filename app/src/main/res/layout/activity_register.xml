@@ -26,7 +26,7 @@
             android:padding="0dp"
             style="@style/ProgressBarNoPaddingGray"
             android:max="100"
-            android:progress="20"
+            android:progress="33"
             android:progressDrawable="@drawable/custom_progressbar"
             />
 

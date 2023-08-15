@@ -1,5 +1,7 @@
 package com.gachon.garamgaebi2.view
 
+import android.content.ContentValues
+import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.InputType
@@ -7,6 +9,10 @@ import android.text.TextWatcher
 import android.util.Log
 import android.util.TypedValue
 import android.view.View
+import android.view.inputmethod.InputMethodManager
+import androidx.activity.OnBackPressedCallback
+import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.gachon.garamgaebi2.base.BaseActivity
@@ -20,16 +26,28 @@ import com.gachon.garamgaebi2.base.GaramgaebiApplication
 
 class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::inflate){
 
+    private val viewModel by viewModels<LoginViewModel>()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    @RequiresApi(Build.VERSION_CODES.S)
+    override fun initView() {
+        observe()
+        initListener()
+        binding.root.isFocusableInTouchMode = true
+        binding.root.isClickable = true
+        binding.root.setOnTouchListener { view, motionEvent ->
+            hideKeyboard(view)
+            false
+        }
+        this.onBackPressedDispatcher.addCallback(this, callback) //위에서 생성한 콜백 인스턴스 붙여주기
 
-        val viewModel = ViewModelProvider(this)[LoginViewModel::class.java]
-        binding.setVariable(BR.viewModel,viewModel)
-        binding.viewModel = viewModel
-        binding.lifecycleOwner = this
+    }
 
-        with(viewModel){
+    private fun observe() {
+//        binding.setVariable(BR.viewModel, viewModel)
+//        binding.viewModel = viewModel
+//        binding.lifecycleOwner = this
+
+        with(viewModel) {
             id.observe(this@LoginActivity) {
                 idIsValid.value = it.isNotEmpty()
                 loginIsValid.value = idIsValid.value!! && pwIsValid.value!!
@@ -38,13 +56,15 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
                 pwIsValid.value = it.isNotEmpty()
                 loginIsValid.value = idIsValid.value!! && pwIsValid.value!!
             }
-
-
             // EditText의 초기 상태를 설정합니다.
             setInitialBorderColor()
         }
+    }
 
-
+    private fun initListener(){
+        binding.backBtn.setOnClickListener {
+                finish()
+        }
 
         val idInput = binding.idTextfield // included 레이아웃의 바인딩을 가져옵니다
 
@@ -79,7 +99,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
                 idInput.sideIcon.visibility = View.GONE
                 idInput.border2.visibility = View.INVISIBLE
             }else{
-                idInput.sideIcon.visibility = View.VISIBLE
+                idInput.sideIcon.visibility = View.GONE
                 idInput.border2.visibility = View.VISIBLE
             }
         }
@@ -116,6 +136,10 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
             }
         })
 
+        pwInput.sideIcon.setOnClickListener {
+            pwInput.input.text = null
+        }
+
         pwInput.input.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
             if(!hasFocus){
                 pwInput.sideIcon.visibility = View.GONE
@@ -125,7 +149,18 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
                 pwInput.border2.visibility = View.VISIBLE
             }
         }
+    }
 
+    private val callback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            // 뒤로 버튼 이벤트 처리
+            Log.e(ContentValues.TAG, "뒤로가기 클릭")
+        }
+    }
+    private fun hideKeyboard(view: View) {
+        val inputMethodManager =
+            this.getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
 }

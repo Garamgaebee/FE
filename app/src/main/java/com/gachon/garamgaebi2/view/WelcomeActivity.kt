@@ -26,18 +26,18 @@ class WelcomeActivity : BaseActivity<ActivityWelcomeBinding>(ActivityWelcomeBind
 
     private lateinit var transitionDrawable: TransitionDrawable
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun initView() {
+        animation()
+    }
 
-
+    private fun animation(){
         // XML 리소스에서 페이드 애니메이션을 로드합니다.
         val fadeInAnimation = AnimationUtils.loadAnimation(this, R.anim.fade_in)
-        val fadeOutAnimation = AnimationUtils.loadAnimation(this, R.anim.fade_in)
+        val fadeOutAnimation = AnimationUtils.loadAnimation(this, R.anim.fade_out)
 
         // 애니메이션을 ImageView에 적용합니다.
         binding.logoIVWhite.startAnimation(fadeInAnimation)
         binding.logoIVBlack.startAnimation(fadeOutAnimation)
-
     }
 
 

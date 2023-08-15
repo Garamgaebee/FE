@@ -24,20 +24,7 @@ import com.gachon.garamgaebi2.viewModel.RegisterViewModel
 
 class Register1EmailFragment  : BaseBindingFragment<FragmentRegister1EmailBinding>(R.layout.fragment_register1_email) {
     private val viewModel: RegisterViewModel by activityViewModels()
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return super.onCreateView(inflater, container, savedInstanceState)
-
-    }
-
-    @SuppressLint("ClickableViewAccessibility")
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun initView(){
         binding.setVariable(BR.viewModel,viewModel)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
@@ -51,12 +38,13 @@ class Register1EmailFragment  : BaseBindingFragment<FragmentRegister1EmailBindin
                 requireActivity().finish()
             }
         }
-
         requireActivity().onBackPressedDispatcher.addCallback(
             viewLifecycleOwner, callback
         )
+    }
 
-       val emailLayout = binding.emailTextfield
+    override fun initListener(){
+        val emailLayout = binding.emailTextfield
 
         binding.emailTextfield.input.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -107,7 +95,6 @@ class Register1EmailFragment  : BaseBindingFragment<FragmentRegister1EmailBindin
                 emailLayout.border2.visibility = View.VISIBLE
             }
         }
-
     }
 
 }

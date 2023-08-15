@@ -24,12 +24,15 @@ abstract class BaseActivity<B : ViewBinding>(private val inflate: (LayoutInflate
             onShowKeyboard = { keyboardHeight ->
             },
             onHideKeyboard = {
-                // binding.fragmentSnsSaveBtn.visibility = View.VISIBLE
             }
         )
 
         setContentView(binding.root)
+
+        initView()
     }
+
+    abstract fun initView()
 
 
 
