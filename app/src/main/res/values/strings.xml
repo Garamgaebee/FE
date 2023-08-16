@@ -74,6 +74,7 @@
 
 
     <string name="go_home"> 홈으로 이동</string>
-
+    <!--메인 피드-->
+    <string name="member">회원</string>
 
 </resources>
