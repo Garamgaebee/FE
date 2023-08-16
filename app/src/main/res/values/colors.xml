@@ -9,6 +9,7 @@
 
     <color name="black">#FF000000</color>
     <color name="white">#F4EFF4</color>
+    <color name="real_white">#FFFFFF</color>
 
     <!-- 기본 색 추가 -->
     <color name="main_blue">#2724B8</color>
@@ -17,7 +18,10 @@
     <color name="thin_gray">#DEDADF</color>
     <color name="heavy_gray">#44484D</color>
     <color name="red">#B3261E</color>
-
+    <color name="main_green">#68FFC2</color>
     <color name="dark_back">#B2000000</color>
+
+    <!--메인 피드-->
+    <color name="more_image_count_background">#4D000000</color>
 
 </resources>

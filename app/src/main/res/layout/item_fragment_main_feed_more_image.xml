@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/profile_cl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="34dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/personal_profile_cv"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                app:cardCornerRadius="30dp"
+                app:cardElevation="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/profile_iv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@color/black" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/community_profile_cv"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="39dp"
+                app:cardCornerRadius="30dp"
+                app:cardElevation="-1dp"
+                app:layout_constraintStart_toStartOf="@id/personal_profile_cv"
+                app:layout_constraintTop_toTopOf="@id/personal_profile_cv">
+
+                <ImageView
+                    android:id="@+id/community_profile_iv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@color/light_gray" />
+            </androidx.cardview.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/nickname_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="이름은열자이내로작성"
+            android:textColor="@color/heavy_gray"
+            android:textSize="14sp"
+            android:fontFamily="@font/spoqa_han_sans_neo_bold"
+            app:layout_constraintStart_toEndOf="@+id/profile_cl"
+            app:layout_constraintTop_toTopOf="@+id/profile_cl" />
+
+        <TextView
+            android:id="@+id/department_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/spoqa_han_sans_neo_regular"
+            android:text="재학또는졸업 학과"
+            android:textColor="@color/heavy_gray"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/nickname_tv"
+            app:layout_constraintTop_toBottomOf="@+id/nickname_tv" />
+
+        <TextView
+            android:id="@+id/study_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/spoqa_han_sans_neo_medium"
+            android:text="스터디이름 스터디"
+            android:textColor="@color/heavy_gray"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/nickname_tv"
+            app:layout_constraintTop_toBottomOf="@+id/department_tv" />
+
+        <TextView
+            android:id="@+id/member_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/spoqa_han_sans_neo_medium"
+            android:text="@string/member"
+            android:textColor="@color/light_gray"
+            android:textSize="12sp"
+            android:layout_marginStart="7dp"
+            app:layout_constraintBottom_toBottomOf="@+id/study_tv"
+            app:layout_constraintStart_toEndOf="@+id/study_tv"
+            app:layout_constraintTop_toTopOf="@id/study_tv" />
+
+        <ImageView
+            android:id="@+id/kebab_menu_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_kebab_menu"
+            android:layout_marginTop="42dp"
+            android:layout_marginEnd="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/desc_first_iv"
+            android:layout_width="0dp"
+            android:layout_height="160dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="10dp"
+            android:src="@color/light_gray"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/desc_second_iv"
+            app:layout_constraintTop_toBottomOf="@+id/profile_cl" />
+
+        <ImageView
+            android:id="@+id/desc_second_iv"
+            android:layout_width="0dp"
+            android:layout_height="160dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginTop="24dp"
+            android:src="@color/light_gray"
+            app:layout_constraintStart_toEndOf="@id/desc_first_iv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_cl" />
+
+        <TextView
+            android:id="@+id/more_image_count_tv"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="+1"
+            android:fontFamily="@font/spoqa_han_sans_neo_bold"
+            android:textSize="31sp"
+            android:textColor="@color/real_white"
+            android:background="@color/more_image_count_background"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="@+id/desc_second_iv"
+            app:layout_constraintEnd_toEndOf="@+id/desc_second_iv"
+            app:layout_constraintStart_toStartOf="@+id/desc_second_iv"
+            app:layout_constraintTop_toTopOf="@+id/desc_second_iv" />
+
+        <TextView
+            android:id="@+id/desc_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="37.5dp"
+            android:fontFamily="@font/spoqa_han_sans_neo_regular"
+            android:text="커뮤니티 프로필로 작성한 게시물 입니다."
+            android:textColor="@color/black"
+            android:layout_marginTop="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/desc_first_iv" />
+
+        <ImageView
+            android:id="@+id/thumbs_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_heart_blank"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/desc_tv" />
+
+        <TextView
+            android:id="@+id/thumbs_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="999"
+            android:textColor="@color/black"
+            android:fontFamily="@font/spoqa_han_sans_neo_regular"
+            app:layout_constraintBottom_toBottomOf="@+id/thumbs_iv"
+            app:layout_constraintStart_toEndOf="@id/thumbs_iv"
+            app:layout_constraintTop_toTopOf="@+id/thumbs_iv" />
+
+        <ImageView
+            android:id="@+id/comments_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_comments"
+            app:layout_constraintBottom_toBottomOf="@+id/thumbs_tv"
+            app:layout_constraintStart_toEndOf="@+id/thumbs_tv"
+            app:layout_constraintTop_toTopOf="@+id/thumbs_tv" />
+
+        <TextView
+            android:id="@+id/comments_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="999"
+            android:textColor="@color/black"
+            android:fontFamily="@font/spoqa_han_sans_neo_regular"
+            app:layout_constraintBottom_toBottomOf="@+id/comments_iv"
+            app:layout_constraintStart_toEndOf="@id/comments_iv"
+            app:layout_constraintTop_toTopOf="@+id/comments_iv" />
+
+        <TextView
+            android:id="@+id/time_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/spoqa_han_sans_neo_medium"
+            android:text="2023.12.25 18:02"
+            android:textColor="@color/light_gray"
+            android:layout_marginEnd="25dp"
+            app:layout_constraintBottom_toBottomOf="@+id/comments_tv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/comments_tv" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
