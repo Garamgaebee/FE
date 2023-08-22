@@ -65,7 +65,7 @@
         />
 
     <Button
-        android:id="@+id/register_btn"
+        android:id="@+id/mainFeed_btn"
         android:layout_width="0dp"
         android:layout_height="66dp"
         android:textColor="@color/main_blue"

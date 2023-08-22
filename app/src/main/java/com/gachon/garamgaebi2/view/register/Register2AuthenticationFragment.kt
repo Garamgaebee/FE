@@ -1,23 +1,18 @@
-package com.gachon.garamgaebi2.view
+package com.gachon.garamgaebi2.view.register
 
-import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.gachon.garamgaebi2.BR
 import com.gachon.garamgaebi2.R
 import com.gachon.garamgaebi2.base.BaseBindingFragment
 import com.gachon.garamgaebi2.base.GaramgaebiApplication
 import com.gachon.garamgaebi2.base.ResendBottomDialogFragment
-import com.gachon.garamgaebi2.base.TermsBottomDialogFragment
 import com.gachon.garamgaebi2.databinding.FragmentRegister2AuthenticationBinding
 import com.gachon.garamgaebi2.viewModel.RegisterViewModel
 import kotlinx.coroutines.Dispatchers

@@ -60,6 +60,5 @@
         <item name="tabSelectedTextColor">@color/main_blue</item>
         <item name="tabGravity">fill</item>
         <item name="tabMode">fixed</item>
-        <item name="background">@drawable/fragment_main_feed_tab_border</item>
-    </style>>
+    </style>
 </resources>
