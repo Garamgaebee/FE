@@ -1,20 +1,12 @@
-package com.gachon.garamgaebi2.view
+package com.gachon.garamgaebi2.view.register
 
-import android.annotation.SuppressLint
-import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
 import androidx.activity.OnBackPressedCallback
-import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
-import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModelProvider
 import com.gachon.garamgaebi2.R
 import com.gachon.garamgaebi2.BR
 import com.gachon.garamgaebi2.base.BaseBindingFragment

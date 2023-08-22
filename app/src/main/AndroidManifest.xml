@@ -26,10 +26,10 @@
         <activity android:name=".view.mainFeed.MainFeedActivity"
             android:exported="false"/>
         <activity
-            android:name=".view.RegisterActivity"
+            android:name=".view.register.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".view.LoginActivity"
+            android:name=".view.login.LoginActivity"
             android:exported="false" />
         <activity
             android:name=".view.WelcomeActivity"

@@ -1,27 +1,19 @@
-package com.gachon.garamgaebi2.view
+package com.gachon.garamgaebi2.view.register
 
 import android.animation.ValueAnimator
 import android.content.ContentValues.TAG
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.ViewGroup
-import android.widget.FrameLayout
 import android.widget.ProgressBar
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import com.gachon.garamgaebi2.BR
 import com.gachon.garamgaebi2.R
 import com.gachon.garamgaebi2.base.BaseActivity
 import com.gachon.garamgaebi2.base.GaramgaebiApplication
-import com.gachon.garamgaebi2.base.ResendBottomDialogFragment
 import com.gachon.garamgaebi2.base.TermsBottomDialogFragment
-import com.gachon.garamgaebi2.databinding.ActivityLoginBinding
 import com.gachon.garamgaebi2.databinding.ActivityRegisterBinding
-import com.gachon.garamgaebi2.viewModel.LoginViewModel
 import com.gachon.garamgaebi2.viewModel.RegisterViewModel
 
 class RegisterActivity : BaseActivity<ActivityRegisterBinding>(ActivityRegisterBinding::inflate){

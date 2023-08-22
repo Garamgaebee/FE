@@ -18,7 +18,7 @@ class MainFeedActivity : BaseActivity<ActivityMainFeedBinding>(ActivityMainFeedB
         initListener()
         initViewPager()
     }
-    fun initView() {
+    override fun initView() {
     }
     private fun initToolbar() {
         with(binding.toolbar) {

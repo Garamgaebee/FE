@@ -2,14 +2,13 @@ package com.gachon.garamgaebi2.view
 
 import android.content.Intent
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.util.DisplayMetrics
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
-import com.gachon.garamgaebi2.R
 import com.gachon.garamgaebi2.base.BaseActivity
 import com.gachon.garamgaebi2.databinding.ActivityMainBinding
+import com.gachon.garamgaebi2.view.login.LoginActivity
+import com.gachon.garamgaebi2.view.register.RegisterActivity
 
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate){
 
@@ -49,7 +48,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
             startActivity(intent)
         }
         binding.loginTv.setOnClickListener {
-            val intent = Intent(this,LoginActivity::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
     }
