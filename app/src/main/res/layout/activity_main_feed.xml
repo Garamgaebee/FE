@@ -29,6 +29,7 @@
                 app:contentInsetStart="0dp"
                 app:contentInsetEnd="0dp">
                 <ImageView
+                    android:id="@+id/hamburger_menu_iv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
@@ -39,6 +40,7 @@
                     android:layout_gravity="center"
                     android:src="@drawable/gb_logo_simple"/>
                 <ImageView
+                    android:id="@+id/search_iv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
@@ -46,18 +48,41 @@
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.AppBarLayout>
         <com.google.android.material.tabs.TabLayout
-            android:id="@+id/fragemnt_main_feed_tl"
+            android:id="@+id/activity_main_feed_tl"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/main_feed_toolbar_height"
+            android:layout_height="@dimen/main_feed_tablayout_height"
             style="@style/tab_style"
             app:layout_constraintTop_toBottomOf="@id/appbar_layout">
         </com.google.android.material.tabs.TabLayout>
-
+        <View
+            android:background="@drawable/activity_main_feed_tab_border"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            app:layout_constraintBottom_toBottomOf="@id/activity_main_feed_tl"/>
         <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/fragment_main_feed_vp"
+            android:id="@+id/activity_main_feed_vp"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fragemnt_main_feed_tl" />
+            app:layout_constraintTop_toBottomOf="@+id/activity_main_feed_tl" />
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/ic_posting_cv"
+            android:layout_width="@dimen/main_feed_posting_floating_height"
+            android:layout_height="@dimen/main_feed_posting_floating_height"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            app:cardElevation="0dp"
+            android:backgroundTint="@color/main_blue"
+            app:cardCornerRadius="@dimen/main_feed_posting_floating_height"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+            <ImageView
+                android:src="@drawable/ic_posting_floating"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center"/>
+        </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
