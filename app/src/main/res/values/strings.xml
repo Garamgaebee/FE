@@ -77,4 +77,15 @@
     <!--메인 피드-->
     <string name="member">회원</string>
 
+    <!-- 게시물 스레드 -->
+    <string name="thread_name">이름은열자이내로작성</string>
+    <string name="thread_major">재학또는졸업 학과</string>
+    <string name="thread_study">스터디이름 스터디</string>
+    <string name="thread_level">회원</string>
+    <string name="thread_content_1">커뮤니티 프로필로 작성한 게시물 입니다.</string>
+    <string name="thread_content_2">답변 게시물 텍스트 시작점입니다.</string>
+    <string name="thread_number">999</string>
+    <string name="thread_day">2023.12.25 18:02</string>
+    <string name="thread_answer">답변 게시물 작성하기</string>
+
 </resources>
