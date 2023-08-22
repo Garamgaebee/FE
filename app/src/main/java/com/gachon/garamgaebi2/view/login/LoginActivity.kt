@@ -1,8 +1,7 @@
-package com.gachon.garamgaebi2.view
+package com.gachon.garamgaebi2.view.login
 
 import android.content.ContentValues
 import android.os.Build
-import android.os.Bundle
 import android.text.Editable
 import android.text.InputType
 import android.text.TextWatcher
@@ -14,11 +13,9 @@ import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModelProvider
 import com.gachon.garamgaebi2.base.BaseActivity
 import com.gachon.garamgaebi2.databinding.ActivityLoginBinding
 import com.gachon.garamgaebi2.viewModel.LoginViewModel
-import com.gachon.garamgaebi2.BR
 import com.gachon.garamgaebi2.R
 import com.gachon.garamgaebi2.base.CustomPasswordTransformation
 import com.gachon.garamgaebi2.base.GaramgaebiApplication

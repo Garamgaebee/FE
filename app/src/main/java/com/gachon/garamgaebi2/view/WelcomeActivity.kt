@@ -1,5 +1,6 @@
 package com.gachon.garamgaebi2.view
 
+import android.content.Intent
 import android.graphics.drawable.AnimationDrawable
 import android.graphics.drawable.TransitionDrawable
 import android.os.Bundle
@@ -20,6 +21,7 @@ import com.gachon.garamgaebi2.R
 import com.gachon.garamgaebi2.base.CustomPasswordTransformation
 import com.gachon.garamgaebi2.base.GaramgaebiApplication
 import com.gachon.garamgaebi2.databinding.ActivityWelcomeBinding
+import com.gachon.garamgaebi2.view.mainFeed.MainFeedActivity
 
 
 class WelcomeActivity : BaseActivity<ActivityWelcomeBinding>(ActivityWelcomeBinding::inflate){
@@ -28,6 +30,7 @@ class WelcomeActivity : BaseActivity<ActivityWelcomeBinding>(ActivityWelcomeBind
 
     override fun initView() {
         animation()
+        initListener()
     }
 
     private fun animation(){
@@ -38,7 +41,12 @@ class WelcomeActivity : BaseActivity<ActivityWelcomeBinding>(ActivityWelcomeBind
         // 애니메이션을 ImageView에 적용합니다.
         binding.logoIVWhite.startAnimation(fadeInAnimation)
         binding.logoIVBlack.startAnimation(fadeOutAnimation)
+
     }
-
-
-}
+    fun initListener() {
+        binding.mainFeedBtn.setOnClickListener {
+            val intent = Intent(this, MainFeedActivity::class.java)
+            startActivity(intent)
+        }
+        }
+    }
