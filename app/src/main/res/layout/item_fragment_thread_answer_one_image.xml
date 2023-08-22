@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/thread_answer_border">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_img_2"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="75dp"
+            android:layout_marginTop="24dp"
+            android:src="@color/light_gray"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_img_1"
+            android:layout_width="62dp"
+            android:layout_height="62dp"
+            android:layout_marginStart="34dp"
+            android:layout_marginTop="24dp"
+            android:src="@color/black"
+            app:civ_border_color="@color/white"
+            app:civ_border_width="1dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/nickname_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:fontFamily="@font/spoqa_han_sans_neo_bold"
+            android:text="@string/thread_name"
+            android:textColor="@color/heavy_gray"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/profile_img_2"
+            app:layout_constraintTop_toTopOf="@+id/profile_img_2" />
+
+        <TextView
+            android:id="@+id/department_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:fontFamily="@font/spoqa_han_sans_neo_regular"
+            android:text="@string/thread_major"
+            android:textColor="@color/heavy_gray"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/nickname_tv"
+            app:layout_constraintTop_toBottomOf="@+id/nickname_tv" />
+
+        <TextView
+            android:id="@+id/study_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/spoqa_han_sans_neo_medium"
+            android:text="@string/thread_study"
+            android:layout_marginTop="2dp"
+            android:textColor="@color/heavy_gray"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/nickname_tv"
+            app:layout_constraintTop_toBottomOf="@+id/department_tv" />
+
+        <TextView
+            android:id="@+id/member_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="7dp"
+            android:fontFamily="@font/spoqa_han_sans_neo_medium"
+            android:text="@string/thread_level"
+            android:textColor="@color/light_gray"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/study_tv"
+            app:layout_constraintStart_toEndOf="@+id/study_tv"
+            app:layout_constraintTop_toTopOf="@id/study_tv" />
+
+        <ImageView
+            android:id="@+id/kebab_menu_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="42dp"
+            android:layout_marginEnd="24dp"
+            android:src="@drawable/ic_kebab_menu"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/answer_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_keyboard_return"
+            android:layout_marginTop="36dp"
+            android:layout_marginStart="51dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_img_1"/>
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/desc_img"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:layout_marginTop="18dp"
+            android:src="@color/light_gray"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/answer_img"/>
+
+        <ImageView
+            android:id="@+id/thumbs_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_heart_blank"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/desc_img" />
+
+        <TextView
+            android:id="@+id/thumbs_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/thread_number"
+            android:textColor="@color/black"
+            android:fontFamily="@font/spoqa_han_sans_neo_regular"
+            app:layout_constraintBottom_toBottomOf="@+id/thumbs_iv"
+            app:layout_constraintStart_toEndOf="@id/thumbs_iv"
+            app:layout_constraintTop_toTopOf="@+id/thumbs_iv" />
+
+
+
+        <TextView
+            android:id="@+id/time_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/spoqa_han_sans_neo_medium"
+            android:text="@string/thread_day"
+            android:textColor="@color/light_gray"
+            android:layout_marginEnd="25dp"
+            app:layout_constraintBottom_toBottomOf="@+id/thumbs_iv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/thumbs_iv" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
