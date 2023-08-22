@@ -26,13 +26,24 @@ class MainFeedActivity : BaseActivity<ActivityMainFeedBinding>(ActivityMainFeedB
         }
     }
     fun initListener() {
+        with(binding) {
+            icPostingCv.setOnClickListener {
+                //TODO 게시글 작성 페이지로 이동
+            }
+            searchIv.setOnClickListener {
+
+            }
+            hamburgerMenuIv.setOnClickListener {
+
+            }
+        }
     }
     private fun initViewPager() {
         val mainFeedVPAdapter = MainFeedVPAdapter(this)
-        binding.fragmentMainFeedVp.adapter = mainFeedVPAdapter
-        binding.fragmentMainFeedVp.isUserInputEnabled = false
+        binding.activityMainFeedVp.adapter = mainFeedVPAdapter
+        binding.activityMainFeedVp.isUserInputEnabled = false
         val tabNameArray = arrayListOf("최신순","인기순")
-        TabLayoutMediator(binding.fragemntMainFeedTl, binding.fragmentMainFeedVp) {
+        TabLayoutMediator(binding.activityMainFeedTl, binding.activityMainFeedVp) {
                 tab, position -> tab.text = tabNameArray[position]
         }.attach()
     }
