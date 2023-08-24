@@ -35,7 +35,8 @@
         android:layout_width="match_parent"
         android:layout_height="186dp"
         android:src="@drawable/gb_logo"
-        android:layout_marginBottom="66dp"
+        android:layout_marginBottom="@dimen/login_logo_margin_bottom"
+        android:layout_marginTop="@dimen/login_logo_margin_top"
         />
     <include
         android:id="@+id/id_textfield"
@@ -63,7 +64,7 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         android:gravity="center_horizontal"
-        android:layout_marginBottom="121dp">
+        android:layout_marginBottom="@dimen/login_button_margin_bottom">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -74,7 +75,7 @@
             android:layout_width="match_parent"
             android:layout_height="66dp"
             android:background="@drawable/round_btn_dark_gray"
-            android:layout_marginHorizontal="16dp"
+            android:layout_marginHorizontal="@dimen/main_register_button_margin_horizontal"
             android:fontFamily="@font/spoqa_han_sans_neo_bold"
             android:text="@{@string/login}"
             android:textColor="@{@color/white}"
