@@ -2,6 +2,8 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
+
 }
 
 android {
@@ -51,6 +53,9 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    implementation project(path: ':domain')
+    implementation project(path: ':data')
 
     //splash
     implementation 'androidx.core:core-splashscreen:1.0.0-beta01'
@@ -131,6 +136,9 @@ dependencies {
     // 원형 프로필
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
+    // dagger - hilt
+    implementation 'com.google.dagger:hilt-android:2.44.2'
+    kapt 'com.google.dagger:hilt-compiler:2.44.2'
 
 }
 tasks.register("prepareKotlinBuildScriptModel"){}
