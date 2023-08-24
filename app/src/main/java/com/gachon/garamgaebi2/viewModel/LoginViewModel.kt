@@ -10,6 +10,27 @@ import com.gachon.garamgaebi2.base.GaramgaebiApplication.Companion.getApplicatio
 
 class LoginViewModel : ViewModel(){
 
+    /*
+     @Inject constructor(
+    private val repository: ProfileRepository
+) : ViewModel() {
+    private val _profileInfoLiveData = MutableLiveData<ProfileInfo>()
+    private val _withdrawalResponseLiveData = MutableLiveData<String>()
+    private val _nicknameValidationLiveData = MutableLiveData<String>()
+    private val _editProfileResponseLiveData = MutableLiveData<String>()
+    private val _countLiveData = MutableLiveData<Int>()
+    private val _countOpenLiveData = MutableLiveData<Int>()
+    private val _mySentenceListLiveData = MutableLiveData<List<MySentenceList>>()
+    private val _mySentenceResponseLiveData = MutableLiveData<DefaultResponse>()
+    private val _modifySentenceLiveData = MutableLiveData<DefaultResponse>()
+    private val _sentenceInfoMeaningData = MutableLiveData<String>()
+    private val _sentenceInfoKeywordData = MutableLiveData<String>()
+
+    val profileInfoLiveData: LiveData<ProfileInfo> = _profileInfoLiveData
+    val withdrawalResponseLiveData: LiveData<String> = _withdrawalResponseLiveData
+    val nicknameValidationLiveData: LiveData<String> = _nicknameValidationLiveData
+     */
+
     val id = MutableLiveData<String>("")
     val pw = MutableLiveData<String>("")
     val idIsValid = MutableLiveData<Boolean>(false)

@@ -77,7 +77,7 @@
 
             <include
                 android:id="@+id/next_btn"
-                layout="@layout/component_btn"
+                layout="@layout/component_bottom_btn"
                 app:text="@{@string/resend_2}"
                 app:on="@{true}"
                 android:layout_width="match_parent"

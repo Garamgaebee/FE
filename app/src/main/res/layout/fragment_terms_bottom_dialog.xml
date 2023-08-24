@@ -87,7 +87,7 @@
 
             <include
                 android:id="@+id/next_btn"
-                layout="@layout/component_btn"
+                layout="@layout/component_bottom_btn"
                 app:text="@{@string/start}"
                 app:on="@{viewModel.btnOn}"
                 android:layout_width="match_parent"
