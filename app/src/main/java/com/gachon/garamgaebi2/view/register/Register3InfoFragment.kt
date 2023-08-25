@@ -12,8 +12,8 @@ import androidx.fragment.app.activityViewModels
 import com.gachon.garamgaebi2.R
 import com.gachon.garamgaebi2.BR
 import com.gachon.garamgaebi2.base.BaseBindingFragment
-import com.gachon.garamgaebi2.base.CustomPasswordTransformation
-import com.gachon.garamgaebi2.base.GaramgaebiApplication
+import com.gachon.garamgaebi2.util.CustomPasswordTransformation
+import com.gachon.garamgaebi2.di.GaramgaebiApplication
 import com.gachon.garamgaebi2.databinding.FragmentRegister3InfoBinding
 import com.gachon.garamgaebi2.viewModel.RegisterViewModel
 

@@ -17,8 +17,8 @@ import com.gachon.garamgaebi2.base.BaseActivity
 import com.gachon.garamgaebi2.databinding.ActivityLoginBinding
 import com.gachon.garamgaebi2.viewModel.LoginViewModel
 import com.gachon.garamgaebi2.R
-import com.gachon.garamgaebi2.base.CustomPasswordTransformation
-import com.gachon.garamgaebi2.base.GaramgaebiApplication
+import com.gachon.garamgaebi2.util.CustomPasswordTransformation
+import com.gachon.garamgaebi2.di.GaramgaebiApplication
 
 
 class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::inflate){

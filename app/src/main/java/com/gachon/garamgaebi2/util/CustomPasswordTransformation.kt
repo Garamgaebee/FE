@@ -1,4 +1,4 @@
-package com.gachon.garamgaebi2.base
+package com.gachon.garamgaebi2.util
 
 import android.text.method.PasswordTransformationMethod
 import android.view.View

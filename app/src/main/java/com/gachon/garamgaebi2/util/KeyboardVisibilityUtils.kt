@@ -1,4 +1,4 @@
-package com.gachon.garamgaebi2.base
+package com.gachon.garamgaebi2.util
 
 import android.graphics.Rect
 import android.view.ViewTreeObserver

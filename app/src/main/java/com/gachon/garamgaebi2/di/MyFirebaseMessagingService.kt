@@ -1,4 +1,4 @@
-package com.gachon.garamgaebi2.base
+package com.gachon.garamgaebi2.di
 
 import android.app.NotificationChannel
 import android.app.NotificationManager

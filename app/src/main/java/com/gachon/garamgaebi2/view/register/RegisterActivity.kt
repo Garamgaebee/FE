@@ -11,8 +11,8 @@ import androidx.activity.viewModels
 import com.gachon.garamgaebi2.BR
 import com.gachon.garamgaebi2.R
 import com.gachon.garamgaebi2.base.BaseActivity
-import com.gachon.garamgaebi2.base.GaramgaebiApplication
-import com.gachon.garamgaebi2.base.TermsBottomDialogFragment
+import com.gachon.garamgaebi2.di.GaramgaebiApplication
+import com.gachon.garamgaebi2.util.TermsBottomDialogFragment
 import com.gachon.garamgaebi2.databinding.ActivityRegisterBinding
 import com.gachon.garamgaebi2.viewModel.RegisterViewModel
 

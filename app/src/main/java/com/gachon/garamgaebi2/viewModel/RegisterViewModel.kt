@@ -1,14 +1,11 @@
 package com.gachon.garamgaebi2.viewModel
 
-import android.graphics.Color
-import android.provider.Settings.System.getString
 import android.util.Log
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.gachon.garamgaebi2.R
-import com.gachon.garamgaebi2.base.GaramgaebiApplication.Companion.getApplication
+import com.gachon.garamgaebi2.di.GaramgaebiApplication.Companion.getApplication
 
 class RegisterViewModel : ViewModel(){
 

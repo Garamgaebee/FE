@@ -16,7 +16,7 @@
         android:minSdkVersion="33" />
 
     <application
-        android:name="com.gachon.garamgaebi2.base.GaramgaebiApplication"
+        android:name="com.gachon.garamgaebi2.di.GaramgaebiApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"

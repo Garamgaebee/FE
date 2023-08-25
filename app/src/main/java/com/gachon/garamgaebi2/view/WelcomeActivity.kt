@@ -1,25 +1,10 @@
 package com.gachon.garamgaebi2.view
 
 import android.content.Intent
-import android.graphics.drawable.AnimationDrawable
 import android.graphics.drawable.TransitionDrawable
-import android.os.Bundle
-import android.text.Editable
-import android.text.InputType
-import android.text.TextWatcher
-import android.util.Log
-import android.util.TypedValue
-import android.view.View
 import android.view.animation.AnimationUtils
-import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModelProvider
 import com.gachon.garamgaebi2.base.BaseActivity
-import com.gachon.garamgaebi2.databinding.ActivityLoginBinding
-import com.gachon.garamgaebi2.viewModel.LoginViewModel
-import com.gachon.garamgaebi2.BR
 import com.gachon.garamgaebi2.R
-import com.gachon.garamgaebi2.base.CustomPasswordTransformation
-import com.gachon.garamgaebi2.base.GaramgaebiApplication
 import com.gachon.garamgaebi2.databinding.ActivityWelcomeBinding
 import com.gachon.garamgaebi2.view.mainFeed.MainFeedActivity
 
