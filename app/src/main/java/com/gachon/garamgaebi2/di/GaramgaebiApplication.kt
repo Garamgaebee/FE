@@ -18,6 +18,7 @@ import androidx.datastore.preferences.core.*
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.MutableLiveData
 import com.gachon.garamgaebi2.util.DataStoreUtil
+import com.gachon.garamgaebi2.util.Utils.BASE_URL
 import kotlinx.coroutines.flow.first
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -26,9 +27,6 @@ import java.util.concurrent.TimeUnit
 
 // 앱이 실행될때 1번만 실행이 됩니다.
 class GaramgaebiApplication : Application() {
-    //val API_URL = "https://dev.garamgaebi.shop/"
-    // 서버 주소
-    val API_URL = "https://garamgaebi.shop/"
 
     companion object {
         private lateinit var appInstance: GaramgaebiApplication
@@ -114,7 +112,7 @@ class GaramgaebiApplication : Application() {
         // sRetrofit 이라는 전역변수에 API url, 인터셉터, Gson을 넣어주고 빌드해주는 코드
         // 이 전역변수로 http 요청을 서버로 보내면 됩니다.
         sRetrofit = Retrofit.Builder()
-            .baseUrl(API_URL)
+            .baseUrl(BASE_URL)
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()

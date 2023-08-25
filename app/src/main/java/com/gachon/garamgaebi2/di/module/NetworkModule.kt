@@ -1,6 +1,7 @@
 package com.gachon.garamgaebi2.di.module
 
 import com.gachon.garamgaebi2.di.AuthInterceptor
+import com.gachon.garamgaebi2.util.Utils.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -35,7 +36,7 @@ object NetworkModule {
     @Provides
     @Singleton
     @GaramgaebiLoginRetrofit
-    fun provideLoginRetrofit(gsonConverterFactory: GsonConverterFactory, @PureumLoginRetrofit client: OkHttpClient) : Retrofit =
+    fun provideLoginRetrofit(gsonConverterFactory: GsonConverterFactory, @GaramgaebiLoginRetrofit client: OkHttpClient) : Retrofit =
         Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(gsonConverterFactory)
@@ -44,7 +45,7 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    @PureumLoginRetrofit
+    @GaramgaebiLoginRetrofit
     fun provideLoginOkHttpClient(interceptor: HttpLoggingInterceptor): OkHttpClient =
         OkHttpClient.Builder()
             .addInterceptor(interceptor)
@@ -52,8 +53,8 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    @PureumRetrofit
-    fun provideRetrofit(gsonConverterFactory: GsonConverterFactory, @PureumRetrofit client: OkHttpClient) : Retrofit =
+    @GaramgaebiRetrofit
+    fun provideRetrofit(gsonConverterFactory: GsonConverterFactory, @GaramgaebiRetrofit client: OkHttpClient) : Retrofit =
         Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(gsonConverterFactory)
@@ -62,7 +63,7 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    @PureumRetrofit
+    @GaramgaebiRetrofit
     fun provideOkHttpClient(interceptor: HttpLoggingInterceptor, authInterceptor: AuthInterceptor): OkHttpClient =
         OkHttpClient.Builder()
             .addInterceptor(interceptor)
