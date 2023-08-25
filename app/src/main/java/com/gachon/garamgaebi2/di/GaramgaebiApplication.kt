@@ -17,6 +17,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.*
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.MutableLiveData
+import com.gachon.garamgaebi2.util.DataStoreUtil
 import kotlinx.coroutines.flow.first
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -34,8 +35,9 @@ class GaramgaebiApplication : Application() {
         fun getApplication() = appInstance
 
         lateinit var sSharedPreferences: SharedPreferences
-        lateinit var myDataStore: DataStore<Preferences>
-        val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "my_data_store")
+        lateinit var dsManager: DataStoreUtil
+
+
         val gameOut : MutableLiveData<Boolean> = MutableLiveData(false)
         const val testEmail = "garamgaebiMaster2"
         const val testPW = "000000"
@@ -64,47 +66,6 @@ class GaramgaebiApplication : Application() {
         // Retrofit 인스턴스, 앱 실행시 한번만 생성하여 사용합니다.
         lateinit var sRetrofit: Retrofit
     }
-    suspend fun saveStringToDataStore(key: String, value: String) {
-        val stringKey = stringPreferencesKey(key) // String 타입 저장 키값
-        dataStore.edit { preferences ->
-            preferences[stringKey] = value
-        }
-    }
-    suspend fun saveIntToDataStore(key: String, value: Int) {
-        val intKey = intPreferencesKey(key) // String 타입 저장 키값
-        dataStore.edit { preferences ->
-            preferences[intKey] = value
-        }
-    }
-
-    suspend fun saveBooleanToDataStore(key: String, value: Boolean) {
-        val booleanKey = booleanPreferencesKey(key) // String 타입 저장 키값
-        dataStore.edit { preferences ->
-            preferences[booleanKey] = value
-        }
-    }
-    suspend fun loadStringData(key: String): String? {
-        val stringKey = stringPreferencesKey(key) // String 타입 저장 키값
-        val preferences = dataStore.data.first()
-        return preferences[stringKey]
-    }
-
-    suspend fun loadIntData(key: String): Int? {
-        val intKey = intPreferencesKey(key) // String 타입 저장 키값
-        val preferences = dataStore.data.first()
-        return preferences[intKey]
-    }
-    suspend fun loadBooleanData(key: String): Boolean? {
-        val booleanKey = booleanPreferencesKey(key) // String 타입 저장 키값
-        val preferences = dataStore.data.first()
-        return preferences[booleanKey]
-    }
-
-    suspend fun clearDataStore() {
-        dataStore.edit { preferences ->
-            preferences.clear()
-        }
-    }
     // 앱이 처음 생성되는 순간, SP를 새로 만들어주고, 레트로핏 인스턴스를 생성합니다.
     override fun onCreate() {
         super.onCreate()
@@ -116,10 +77,10 @@ class GaramgaebiApplication : Application() {
         //KakaoSdk.init(this, "${BuildConfig.KAKAO_API_KEY}")
         // 레트로핏 인스턴스 생성
         initRetrofitInstance()
-        settingScreenPortrait()
-        val dataStore = applicationContext.dataStore
 
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        dsManager = DataStoreUtil(applicationContext)
+        settingScreenPortrait()
+
 
     }
     private fun settingScreenPortrait() {
