@@ -4,7 +4,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.mainFeed.MainFeedActivity">
     <data>
-
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -55,7 +54,8 @@
             app:layout_constraintTop_toBottomOf="@id/appbar_layout">
         </com.google.android.material.tabs.TabLayout>
         <View
-            android:background="@drawable/activity_main_feed_tab_border"
+            android:id="@+id/tab_layout_bottom_border"
+            android:background="@drawable/activity_main_feed_tab_border_transition"
             android:layout_width="match_parent"
             android:layout_height="2dp"
             app:layout_constraintBottom_toBottomOf="@id/activity_main_feed_tl"/>
