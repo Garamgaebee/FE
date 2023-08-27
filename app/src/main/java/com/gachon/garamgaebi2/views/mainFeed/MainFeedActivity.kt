@@ -2,6 +2,7 @@ package com.gachon.garamgaebi2.view.mainFeed
 
 import android.os.Bundle
 import android.view.View
+import androidx.viewpager2.widget.ViewPager2
 import com.gachon.garamgaebi2.R
 import com.gachon.garamgaebi2.adapter.mainFeed.MainFeedVPAdapter
 import com.gachon.garamgaebi2.base.BaseActivity
