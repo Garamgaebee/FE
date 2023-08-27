@@ -1,4 +1,4 @@
-package com.gachon.garamgaebi2.view.register
+package com.gachon.garamgaebi2.views.register
 
 import android.animation.ValueAnimator
 import android.content.ContentValues.TAG

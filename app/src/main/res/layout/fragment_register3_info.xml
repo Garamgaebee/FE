@@ -14,7 +14,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.register.Register3InfoFragment"
+        tools:context=".views.register.Register3InfoFragment"
         android:paddingTop="20dp"
         android:gravity="center_horizontal"
         android:orientation="vertical"

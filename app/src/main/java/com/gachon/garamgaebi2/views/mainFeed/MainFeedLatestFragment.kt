@@ -1,4 +1,4 @@
-package com.gachon.garamgaebi2.view.mainFeed
+package com.gachon.garamgaebi2.views.mainFeed
 
 import android.os.Bundle
 import android.view.View

@@ -1,4 +1,4 @@
-package com.gachon.garamgaebi2.view
+package com.gachon.garamgaebi2.views
 
 import android.content.Intent
 import android.os.Build
@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import com.gachon.garamgaebi2.base.BaseActivity
 import com.gachon.garamgaebi2.databinding.ActivityMainBinding
-import com.gachon.garamgaebi2.view.login.LoginActivity
-import com.gachon.garamgaebi2.view.register.RegisterActivity
+import com.gachon.garamgaebi2.views.login.LoginActivity
+import com.gachon.garamgaebi2.views.register.RegisterActivity
 
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate){
 

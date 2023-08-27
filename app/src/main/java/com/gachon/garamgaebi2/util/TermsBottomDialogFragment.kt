@@ -14,7 +14,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.gachon.garamgaebi2.BR
 import com.gachon.garamgaebi2.databinding.FragmentTermsBottomDialogBinding
-import com.gachon.garamgaebi2.view.WelcomeActivity
+import com.gachon.garamgaebi2.views.WelcomeActivity
 import com.gachon.garamgaebi2.viewModel.RegisterViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
