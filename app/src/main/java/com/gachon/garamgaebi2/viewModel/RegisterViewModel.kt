@@ -1,7 +1,10 @@
 package com.gachon.garamgaebi2.viewModel
 
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.gachon.garamgaebi2.R
@@ -14,7 +17,7 @@ class RegisterViewModel : ViewModel(){
     val pwSideText = MutableLiveData<String>("")
 
     val email = MutableLiveData<String>("")
-    val emailIsValid = MutableLiveData<Boolean>(false)
+    private val _emailIsValid = MutableLiveData<Boolean>()
 
     val codeIsValid = MutableLiveData<Boolean>(false)
 
@@ -43,11 +46,10 @@ class RegisterViewModel : ViewModel(){
         ((isStudent.value == true && majorIsValid.value == true)
                 || (isGraduate.value == true && companyIsValid.value == true && majorIsValid.value == true)))
 
-    val registerIsValid = MutableLiveData<Boolean>(false)
 
     val btnOn = MutableLiveData<Boolean>(false)
 
-    val registerBtnColor = MutableLiveData<Int>(ContextCompat.getColor(getApplication(), R.color.light_gray))
+    val emailIsValid : LiveData<Boolean> = _emailIsValid
 
     fun isStudentClicked() {
         isStudent.value = !isStudent.value!!
@@ -72,6 +74,10 @@ class RegisterViewModel : ViewModel(){
     var minute = 0
     var second = 0
 
+
+
+
+    // 가입 동의
 
     val isTermsAllChecked = MutableLiveData<Boolean>(false)
     val isTerms1Checked = MutableLiveData<Boolean>(false)
@@ -111,5 +117,10 @@ class RegisterViewModel : ViewModel(){
         }
         isTermsAllChecked.value = isTerms1Checked.value == true && isTerms2Checked.value == true && isTerms3Checked.value == true
     }
+
+    fun onEmailTextChanged(s: CharSequence, start: Int, before: Int, count: Int){
+        _emailIsValid.value = s.isNotEmpty()
+    }
+
 
 }

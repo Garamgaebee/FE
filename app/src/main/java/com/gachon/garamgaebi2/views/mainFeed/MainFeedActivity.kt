@@ -1,9 +1,11 @@
 package com.gachon.garamgaebi2.views.mainFeed
 
+import android.graphics.drawable.TransitionDrawable
 import android.os.Bundle
 import com.gachon.garamgaebi2.adapter.mainFeed.MainFeedVPAdapter
 import com.gachon.garamgaebi2.base.BaseActivity
 import com.gachon.garamgaebi2.databinding.ActivityMainFeedBinding
+import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
 class MainFeedActivity : BaseActivity<ActivityMainFeedBinding>(ActivityMainFeedBinding::inflate) {
@@ -33,6 +35,19 @@ class MainFeedActivity : BaseActivity<ActivityMainFeedBinding>(ActivityMainFeedB
             hamburgerMenuIv.setOnClickListener {
 
             }
+            activityMainFeedTl.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+                override fun onTabSelected(tab: TabLayout.Tab) {
+                    val transitionDrawable = binding.tabLayoutBottomBorder.background as TransitionDrawable
+                    when (tab.position) {
+                        0 -> transitionDrawable.startTransition(300)
+                        1 -> transitionDrawable.reverseTransition(300)
+                    }
+                }
+
+                override fun onTabUnselected(tab: TabLayout.Tab) {}
+
+                override fun onTabReselected(tab: TabLayout.Tab) {}
+            })
         }
     }
     private fun initViewPager() {
