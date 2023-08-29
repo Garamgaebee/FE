@@ -46,6 +46,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="48dp"
+            app:onTextChanged="@{viewModel::onNicknameTextChanged}"
             />
         <include
             android:id="@+id/pw_textfield"
@@ -54,6 +55,8 @@
             app:inputContent="@={viewModel.pw}"
             app:inputValid="@{viewModel.pwIsValid}"
             app:inputError="@{@string/pw_register_error}"
+            app:onTextChanged="@{viewModel::onPwTextChanged}"
+
             />
         <include
             android:id="@+id/pwCheck_textfield"
@@ -62,6 +65,7 @@
             app:inputContent="@={viewModel.pwCheck}"
             app:inputValid="@{viewModel.pwCheckIsValid}"
             app:inputError="@{@string/pw_check_error}"
+            app:onTextChanged="@{viewModel::onPwCheckTextChanged}"
             />
 
 

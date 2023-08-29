@@ -60,48 +60,6 @@ class Register1EmailFragment  : BaseBindingFragment<FragmentRegister1EmailBindin
 
     override fun initListener(){
         val emailLayout = binding.emailTextfield
-
-//        binding.emailTextfield.input.addTextChangedListener(object : TextWatcher {
-//            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-//            }
-//            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-//                emailLayout.border2.visibility = View.VISIBLE
-//
-//                if(s.toString().isNotEmpty()) {
-//                    viewModel.emailIsValid.value = true
-//                    Log.d("email", "email is valid")
-//                }
-//                if(s.toString().isEmpty()) {
-//                    viewModel.emailIsValid.value = false
-//                }
-//                // 중복
-//                if (s.toString() == "gararara"){
-//                    emailLayout.checkTv.visibility = View.VISIBLE
-//                    viewModel.emailIsValid.value = false
-//                }
-//
-//                if(viewModel.emailIsValid.value == true) {
-//                    emailLayout.border.setBackgroundColor(
-//                        ContextCompat.getColor(
-//                            GaramgaebiApplication.getApplication(), R.color.main_blue))
-//                    emailLayout.border2.setBackgroundColor(
-//                        ContextCompat.getColor(
-//                            GaramgaebiApplication.getApplication(), R.color.main_blue))
-//                    emailLayout.checkTv.visibility = View.INVISIBLE
-//                }else{
-//                    emailLayout.border.setBackgroundColor(
-//                        ContextCompat.getColor(
-//                            GaramgaebiApplication.getApplication(), R.color.red))
-//                    emailLayout.border2.setBackgroundColor(
-//                        ContextCompat.getColor(
-//                            GaramgaebiApplication.getApplication(), R.color.red))
-//                }
-//            }
-//
-//            override fun afterTextChanged(p0: Editable?) {
-//            }
-//        })
-
         emailLayout.input.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
             if(!hasFocus){
                 emailLayout.border2.visibility = View.INVISIBLE
