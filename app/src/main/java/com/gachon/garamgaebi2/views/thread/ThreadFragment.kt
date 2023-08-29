@@ -1,10 +1,9 @@
-package com.gachon.garamgaebi2.view.thread
+package com.gachon.garamgaebi2.views.thread
 
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gachon.garamgaebi2.R
-import com.gachon.garamgaebi2.adapter.mainFeed.MainFeedRVAdapter
 import com.gachon.garamgaebi2.adapter.thread.ThreadRVAdapter
 import com.gachon.garamgaebi2.base.BaseBindingFragment
 import com.gachon.garamgaebi2.databinding.FragmentThreadBinding

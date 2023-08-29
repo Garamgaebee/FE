@@ -11,7 +11,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.register.Register1EmailFragment"
+    tools:context=".views.register.Register1EmailFragment"
     android:orientation="vertical"
     android:background="@color/white"
     android:clickable="true"
@@ -75,6 +75,7 @@
         app:inputValid="@{viewModel.emailIsValid}"
         app:inputError="@{@string/id_error}"
         app:sideText="@{@string/gc_email}"
+        app:onTextChanged="@{viewModel::onEmailTextChanged}"
         />
 
 </LinearLayout>

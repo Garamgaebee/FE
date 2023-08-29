@@ -1,4 +1,4 @@
-package com.gachon.garamgaebi2.view.login
+package com.gachon.garamgaebi2.views.login
 
 import android.content.ContentValues
 import android.os.Build

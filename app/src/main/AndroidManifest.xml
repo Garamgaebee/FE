@@ -27,32 +27,30 @@
 
         tools:targetApi="33">
         <activity
-            android:name=".view.thread.ThreadActivity"
+            android:name=".views.thread.ThreadActivity"
             android:exported="false" >
         </activity>
         <activity
-            android:name=".view.mainFeed.MainFeedActivity"
-            android:exported="true" >
+            android:name=".views.mainFeed.MainFeedActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.register.RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.login.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.WelcomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.MainActivity"
+            android:exported="true">
             <intent-filter>
 
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".view.register.RegisterActivity"
-            android:exported="false" />
-        <activity
-            android:name=".view.login.LoginActivity"
-            android:exported="false" />
-        <activity
-            android:name=".view.WelcomeActivity"
-            android:exported="false" />
-        <activity
-            android:name=".view.MainActivity"
-            android:exported="true">
 
 
         </activity>

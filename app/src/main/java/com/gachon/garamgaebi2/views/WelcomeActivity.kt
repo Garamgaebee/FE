@@ -1,4 +1,4 @@
-package com.gachon.garamgaebi2.view
+package com.gachon.garamgaebi2.views
 
 import android.content.Intent
 import android.graphics.drawable.TransitionDrawable
@@ -6,7 +6,7 @@ import android.view.animation.AnimationUtils
 import com.gachon.garamgaebi2.base.BaseActivity
 import com.gachon.garamgaebi2.R
 import com.gachon.garamgaebi2.databinding.ActivityWelcomeBinding
-import com.gachon.garamgaebi2.view.mainFeed.MainFeedActivity
+import com.gachon.garamgaebi2.views.mainFeed.MainFeedActivity
 
 
 class WelcomeActivity : BaseActivity<ActivityWelcomeBinding>(ActivityWelcomeBinding::inflate){

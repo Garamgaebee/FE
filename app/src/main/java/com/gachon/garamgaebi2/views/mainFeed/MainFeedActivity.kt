@@ -1,4 +1,4 @@
-package com.gachon.garamgaebi2.view.mainFeed
+package com.gachon.garamgaebi2.views.mainFeed
 
 import android.graphics.drawable.TransitionDrawable
 import android.os.Bundle
