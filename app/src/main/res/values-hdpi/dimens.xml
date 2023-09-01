@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="main_feed_toolbar_height">66dp</dimen>
+    <dimen name="toolbar_margin_horizontal">12dp</dimen>
+    <dimen name="toolbar_height">66dp</dimen>
+
     <dimen name="main_feed_tablayout_height">47dp</dimen>
     <dimen name="main_feed_posting_floating_height">80dp</dimen>
 
@@ -17,4 +19,19 @@
 
     <dimen name="bottom_dialog_button_margin_horizontal">16dp</dimen>
 
+    <dimen name="write_post_choose_profile_margin_horizontal">43dp</dimen>
+    <dimen name="write_post_choose_profile_height">43dp</dimen>
+    <dimen name="write_post_list_btn_margin_end">43dp</dimen>
+    <dimen name="write_post_list_btn_selected_margin_end">43dp</dimen>
+    <dimen name="write_post_profile_list_margin_horizontal">43dp</dimen>
+    <dimen name="write_post_personal_profile_margin_start">43dp</dimen>
+    <dimen name="write_post_selected_profile_margin_horizontal">13dp</dimen>
+    <dimen name="write_post_et_margin_end">29dp</dimen>
+    <dimen name="write_post_et_deco_margin_start">38dp</dimen>
+    <dimen name="write_post_et_cnt_margin_end">37dp</dimen>
+    <dimen name="write_post_et_cnt_margin_top">70dp</dimen>
+    <dimen name="write_post_iv_size">80dp</dimen>
+    <dimen name="write_post_iv_margin_top">40dp</dimen>
+    <dimen name="write_post_iv_margin_horizontal">31dp</dimen>
+    <dimen name="write_post_iv_margin_horizontal_between_iv">10dp</dimen>
 </resources>

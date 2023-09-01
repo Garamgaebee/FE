@@ -61,7 +61,8 @@
             android:textSize="14sp"
             android:fontFamily="@font/spoqa_han_sans_neo_bold"
             app:layout_constraintStart_toEndOf="@+id/profile_cl"
-            app:layout_constraintTop_toTopOf="@+id/profile_cl" />
+            app:layout_constraintTop_toTopOf="@+id/profile_cl"
+            app:layout_constraintBottom_toTopOf="@id/department_tv"/>
 
         <TextView
             android:id="@+id/department_tv"
@@ -71,6 +72,7 @@
             android:text="재학또는졸업 학과"
             android:textColor="@color/heavy_gray"
             android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@id/study_tv"
             app:layout_constraintStart_toStartOf="@+id/nickname_tv"
             app:layout_constraintTop_toBottomOf="@+id/nickname_tv" />
 
@@ -83,7 +85,8 @@
             android:textColor="@color/heavy_gray"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="@+id/nickname_tv"
-            app:layout_constraintTop_toBottomOf="@+id/department_tv" />
+            app:layout_constraintTop_toBottomOf="@+id/department_tv"
+            app:layout_constraintBottom_toBottomOf="@id/profile_cl"/>
 
         <TextView
             android:id="@+id/member_tv"
