@@ -4,7 +4,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.gachon.garamgaebi2.viewModel.RegisterViewModel" />
+            type="com.gachon.garamgaebi2.viewModel.CommunityProfileViewModel" />
     </data>
 
 <LinearLayout
@@ -81,7 +81,7 @@
                 android:id="@+id/close_btn"
                 layout="@layout/component_bottom_btn"
                 app:text="@{@string/close}"
-                app:on="@{viewModel.btnOn}"
+                app:on="@{true}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 >
