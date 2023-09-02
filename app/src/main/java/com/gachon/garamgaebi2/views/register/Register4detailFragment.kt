@@ -18,6 +18,12 @@ import com.gachon.garamgaebi2.viewModel.RegisterViewModel
 class Register4detailFragment  : BaseBindingFragment<FragmentRegister4DetailBinding>(R.layout.fragment_register4_detail) {
 
     private val viewModel: RegisterViewModel by activityViewModels()
+
+    override fun onResume() {
+        GaramgaebiApplication.registerProcess = 4
+        viewModel.registerProcess.value = 4
+        super.onResume()
+    }
     override fun initView(){
         binding.setVariable(BR.viewModel,viewModel)
         binding.viewModel = viewModel
