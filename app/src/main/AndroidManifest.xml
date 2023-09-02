@@ -16,7 +16,7 @@
         android:minSdkVersion="33" />
 
     <application
-        android:name="com.gachon.garamgaebi2.base.GaramgaebiApplication"
+        android:name="com.gachon.garamgaebi2.di.GaramgaebiApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -27,31 +27,31 @@
 
         tools:targetApi="33">
         <activity
-            android:name=".view.thread.ThreadActivity"
+            android:name=".views.thread.ThreadActivity"
             android:exported="false" >
         </activity>
         <activity
-            android:name=".view.mainFeed.MainFeedActivity"
-            android:exported="false" />
-
-        <activity
-            android:name=".view.register.RegisterActivity"
+            android:name=".views.mainFeed.MainFeedActivity"
             android:exported="false" />
         <activity
-            android:name=".view.login.LoginActivity"
+            android:name=".views.register.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".view.WelcomeActivity"
+            android:name=".views.login.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".view.MainActivity"
+            android:name=".views.WelcomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.MainActivity"
             android:exported="true">
             <intent-filter>
 
-              <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
 
         </activity>
     </application>

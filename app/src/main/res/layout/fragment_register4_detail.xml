@@ -17,7 +17,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.Register4DetailFragment"
+        tools:context=".views.Register4DetailFragment"
         android:paddingTop="20dp"
         android:gravity="center_horizontal"
         android:orientation="vertical"
@@ -88,6 +88,7 @@
             app:inputValid="@{viewModel.majorIsValid}"
             app:inputError="@{@string/major_error}"
             app:sideText="@{`search`}"
+            app:onTextChanged="@{viewModel::onMajorTextChanged}"
             />
         <include
             android:id="@+id/company_textfield"
@@ -97,6 +98,7 @@
             app:inputValid="@{viewModel.companyIsValid}"
             app:inputError="@{@string/company_error}"
             android:visibility="@{viewModel.isGraduate ? View.VISIBLE : View.GONE}"
+            app:onTextChanged="@{viewModel::onCompanyTextChanged}"
             />
 
 

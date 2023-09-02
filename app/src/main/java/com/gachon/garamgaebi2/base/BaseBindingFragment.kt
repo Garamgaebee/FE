@@ -1,7 +1,5 @@
 package com.gachon.garamgaebi2.base
 
-import android.net.ConnectivityManager
-import android.net.Network
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +10,7 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import com.gachon.garamgaebi2.util.KeyboardVisibilityUtils
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 
 abstract class BaseBindingFragment<T: ViewDataBinding>(@LayoutRes private val layoutId: Int): Fragment() {
