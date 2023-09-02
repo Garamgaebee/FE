@@ -85,7 +85,7 @@
                     android:inputType="text"
                     android:maxLength="6"
                     style="@style/NoUnderlineEditText"
-                    android:layout_marginVertical="14dp"
+                    android:paddingVertical="14dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
