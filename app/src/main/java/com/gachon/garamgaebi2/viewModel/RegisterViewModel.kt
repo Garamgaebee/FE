@@ -25,6 +25,7 @@ class RegisterViewModel : ViewModel(){
     val email = MutableLiveData<String>("")
     private val _emailIsValid = MutableLiveData<Boolean>()
 
+    val code = MutableLiveData<String>()
     private val _codeIsValid = MutableLiveData<Boolean>()
 
     val nickName = MutableLiveData<String>("")
@@ -49,6 +50,7 @@ class RegisterViewModel : ViewModel(){
     private val _companyIsValid = MutableLiveData<Boolean>()
 
     val btnOn = MutableLiveData<Boolean>(false)
+    val registerProcess = MutableLiveData<Int>(1)
 
     val emailIsValid : LiveData<Boolean> = _emailIsValid
     val pwIsValid : LiveData<Boolean> = _pwIsValid
@@ -68,6 +70,7 @@ class RegisterViewModel : ViewModel(){
     val detailIsValid : LiveData<Boolean> = _detailIsValid
 
 
+    val authTimerStarted = MutableLiveData<Boolean>(false)
     fun isStudentClicked() {
         isStudent.value = !isStudent.value!!
 
@@ -191,7 +194,7 @@ class RegisterViewModel : ViewModel(){
         timerJob = viewModelScope.launch(Dispatchers.Main) {
             var remainingTimeInSeconds = totalTimeInSeconds
 
-            while (remainingTimeInSeconds >= 0) {
+            while (remainingTimeInSeconds >= 0 && !authTimerStarted.value!!) {
                 // 남은 시간을 분과 초로 변환하여 TextView에 업데이트합니다.
                 val minutes = remainingTimeInSeconds / 60
                 val seconds = remainingTimeInSeconds % 60

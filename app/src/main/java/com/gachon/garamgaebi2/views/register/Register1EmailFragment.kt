@@ -16,6 +16,12 @@ import com.gachon.garamgaebi2.viewModel.RegisterViewModel
 
 class Register1EmailFragment  : BaseBindingFragment<FragmentRegister1EmailBinding>(R.layout.fragment_register1_email) {
     private val viewModel: RegisterViewModel by activityViewModels()
+
+    override fun onResume() {
+        GaramgaebiApplication.registerProcess = 1
+        viewModel.registerProcess.value = 1
+        super.onResume()
+    }
     override fun initView(){
         binding.setVariable(BR.viewModel,viewModel)
         binding.viewModel = viewModel
@@ -36,6 +42,7 @@ class Register1EmailFragment  : BaseBindingFragment<FragmentRegister1EmailBindin
 
         initObserver()
     }
+
     private fun initObserver(){
         viewModel.emailIsValid.observe(viewLifecycleOwner){
             if(it == true){
