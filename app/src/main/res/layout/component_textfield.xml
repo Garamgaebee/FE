@@ -63,7 +63,7 @@
             android:singleLine="true"
             android:ellipsize="end"
             style="@style/NoUnderlineEditText"
-            android:layout_marginVertical="14dp"
+            android:paddingVertical="14dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/extra"
             app:layout_constraintTop_toTopOf="parent"

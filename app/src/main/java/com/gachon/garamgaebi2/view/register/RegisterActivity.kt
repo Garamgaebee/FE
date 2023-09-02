@@ -123,18 +123,21 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(ActivityRegisterB
             }
         }
     }
+    private fun backBtnOnPressed(){
+        //전 스택의 프래그먼트로 돌아가기
+        if(GaramgaebiApplication.registerProcess == 1) {
+            finish()
+        }
+        supportFragmentManager.popBackStack()
+        if(GaramgaebiApplication.registerProcess != 2){
+            Log.d("RegisterActivity", "currentStep: $currentStep ${viewModel.emailIsValid.value} ${viewModel.codeIsValid.value} ${viewModel.infoIsValid.value} ${viewModel.detailIsValid.value}")
+            backProgressBar(currentStep, maxStep)
+            currentStep--
+        }
+    }
     private fun initListener(){
         binding.backBtn.setOnClickListener {
-            //전 스택의 프래그먼트로 돌아가기
-            if(GaramgaebiApplication.registerProcess == 1) {
-                finish()
-            }
-            supportFragmentManager.popBackStack()
-            if(GaramgaebiApplication.registerProcess != 2){
-                backProgressBar(currentStep, maxStep)
-            }
-
-
+            backBtnOnPressed()
         }
         binding.registerProcessBtn.nextBtn.setOnClickListener {
             changeFragment()
@@ -225,6 +228,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(ActivityRegisterB
         override fun handleOnBackPressed() {
             // 뒤로 버튼 이벤트 처리
             Log.e(TAG, "뒤로가기 클릭")
+            backBtnOnPressed()
         }
     }
 
