@@ -1,25 +1,23 @@
 package com.gachon.garamgaebi2.views
 
+import android.annotation.SuppressLint
 import android.content.DialogInterface
-import android.content.Intent
-import android.graphics.Typeface
 import android.os.Bundle
-import android.text.Spannable
-import android.text.SpannableStringBuilder
-import android.text.style.StyleSpan
-import android.util.TypedValue
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.gachon.garamgaebi2.BR
 import com.gachon.garamgaebi2.R
 import com.gachon.garamgaebi2.databinding.FragmentCommunityProfileManagerMenuBottomDialogBinding
+import com.gachon.garamgaebi2.viewModel.CommunityProfileViewModel
 import com.gachon.garamgaebi2.viewModel.RegisterViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class CommunityProfileManagerMenuBottomDialogFragment () :
+class CommunityProfileManagerMenuBottomDialogFragment() :
     BottomSheetDialogFragment() {
     lateinit var binding: FragmentCommunityProfileManagerMenuBottomDialogBinding
 
@@ -28,19 +26,25 @@ class CommunityProfileManagerMenuBottomDialogFragment () :
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_community_profile_manager_menu_bottom_dialog, container, false)
+        binding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_community_profile_manager_menu_bottom_dialog,
+            container,
+            false
+        )
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val viewModel = ViewModelProvider(this)[RegisterViewModel::class.java]
-        binding.setVariable(BR.viewModel,viewModel)
+        val viewModel = ViewModelProvider(this)[CommunityProfileViewModel::class.java]
+        binding.setVariable(BR.viewModel, viewModel)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
 
         binding.closeBtn.nextBtn.setOnClickListener {
-           // val intent = Intent(activity, WelcomeActivity::class.java)
+            // val intent = Intent(activity, WelcomeActivity::class.java)
             //requireActivity().startActivity(intent)
             dismiss()
         }
@@ -48,29 +52,42 @@ class CommunityProfileManagerMenuBottomDialogFragment () :
 
     }
 
-    private fun initListener(){
-        with(binding){
-            profileEditTv.setOnClickListener {
-                // 프로필 편집 이동 로직
+    @SuppressLint("ClickableViewAccessibility")
+    private fun initListener() {
+        with(binding) {
+            // 프로필 편집 이동 로직
+            onClickedItem(profileEditTv)
 
-                dismiss()
-            }
-            postNoticeTv.setOnClickListener {
-                // 공지사항 작성 이동 로직
+            // 공지사항 작성 이동 로직
+            onClickedItem(postNoticeTv)
 
-                dismiss()
-            }
-            manageMemberTv.setOnClickListener {
-                // 멤버 관리 이동 로직
+            // 멤버 관리 이동 로직
+            onClickedItem(manageMemberTv)
 
-                dismiss()
-            }
-            shareCommunityTv.setOnClickListener {
-                // 커뮤니티 공유 이동 로직
-
-                dismiss()
-            }
+            // 커뮤니티 공유 이동 로직
+            onClickedItem(shareCommunityTv)
         }
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private fun onClickedItem(view: TextView) {
+        view.setOnTouchListener(View.OnTouchListener { v, event ->
+
+
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    view.setBackgroundColor(resources.getColor(R.color.main_blue))
+                    view.setTextColor(resources.getColor(R.color.white))
+                }
+
+                MotionEvent.ACTION_UP -> {
+                    view.setBackgroundColor(resources.getColor(R.color.white))
+                    view.setTextColor(resources.getColor(R.color.black))
+                    dismiss()
+                }
+            }
+            true
+        })
     }
 
     override fun dismiss() {
