@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.TypedValue
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -22,7 +23,6 @@ class WritePostActivity : BaseActivity<ActivityWritePostBinding>(ActivityWritePo
     // 갤러리에서 이미지 선택
     private lateinit var imagePickerLauncher: ActivityResultLauncher<Intent>
     private var currentSelectedImageView: ImageView? = null
-    private var isProfileListOpen: Boolean = false
     private var isProfileSelected: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -71,33 +71,43 @@ class WritePostActivity : BaseActivity<ActivityWritePostBinding>(ActivityWritePo
     }
 
     private fun initClickListener() {
+        val slideDownAnimation = AnimationUtils.loadAnimation(this, R.anim.slide_down)
+        val slideUpAnimation = AnimationUtils.loadAnimation(this, R.anim.slide_up)
         with(binding) {
             completeBtn.setOnClickListener {
                 finish()
             }
             // 프로필 리스트 열기
             openProfileListBtn.setOnClickListener {
-                if(isProfileListOpen) {
-                    profileListLayout.visibility = View.GONE
-                    openProfileListCl.visibility = View.VISIBLE
-                    if(isProfileSelected) {
-                        openProfileListTitleTv.visibility = View.GONE
-                        selectedProfileCl.visibility = View.VISIBLE
-                    }
-                    isProfileSelected = !isProfileSelected
-                } else {
-                    profileListLayout.visibility = View.VISIBLE
-                    openProfileListCl.visibility = View.GONE
+                openProfileListCl.visibility = View.GONE
 
-                    isProfileSelected = !isProfileSelected
+                profileListTopCl.visibility = View.VISIBLE
+                profileListCl.startAnimation(slideDownAnimation)
+                profileListCl.visibility = View.VISIBLE
+
+
+            }
+            // 프로필 리스트 닫기
+            profileListCloseBtn.setOnClickListener {
+                openProfileListCl.visibility = View.VISIBLE
+
+                profileListTopCl.visibility = View.GONE
+                profileListCl.startAnimation(slideUpAnimation)
+                profileListCl.visibility = View.GONE
+                if(isProfileSelected) {
+                    openProfileListTitleTv.visibility = View.GONE
+                    selectedProfileCl.visibility = View.VISIBLE
                 }
             }
             // 개인 프로필로 작성하기
             personalProfileTitleTv.setOnClickListener {
-                profileListLayout.visibility = View.GONE
+                profileListCl.startAnimation(slideUpAnimation)
+                profileListCl.visibility = View.GONE
                 openProfileListCl.visibility = View.VISIBLE
+                isProfileSelected = true
+                openProfileListTitleTv.visibility = View.GONE
+                selectedProfileCl.visibility = View.VISIBLE
             }
-
 
             descFirstIv.setOnClickListener {
                 pickImageFromGallery(descFirstIv)
