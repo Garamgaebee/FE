@@ -9,6 +9,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import coil.load
 import com.gachon.garamgaebi2.BR
 import com.gachon.garamgaebi2.R
 import com.gachon.garamgaebi2.base.BaseActivity
@@ -30,8 +31,11 @@ class CommunityProfileEditActivity : BaseActivity<ActivityCommunityProfileEditBi
         }
     }
     private val readImage = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+        Log.d("uri_check",uri.toString())
         viewModel.imageUri.value = uri
         viewModel.isLoadImage.value = true
+        binding.profileIv.load(uri)
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,6 +62,10 @@ class CommunityProfileEditActivity : BaseActivity<ActivityCommunityProfileEditBi
             hideKeyboard(view)
             false
         }
+
+        binding.nameInput.root.setBackgroundResource(R.drawable.community_profile_input_container_bottom_border)
+        binding.descriptionInput.root.setBackgroundResource(R.drawable.community_profile_input_container_bottom_border)
+
 
         observe()
         initListener()
@@ -94,8 +102,9 @@ class CommunityProfileEditActivity : BaseActivity<ActivityCommunityProfileEditBi
             }
 
             imageUri.observe(this@CommunityProfileEditActivity){
+                Log.d("uri_check",it.toString())
                 if(it != null && isLoadImage.value == true){
-                    binding.profileIv.setImageURI(it)
+                    binding.profileIv.load(it)
                 }
             }
         }
