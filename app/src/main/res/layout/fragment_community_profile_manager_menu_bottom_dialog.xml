@@ -81,6 +81,7 @@
                 android:textStyle="bold"
                 android:text="@{@string/manage_member}"
                 android:textColor="@color/black"
+                android:drawableRight="@drawable/ic_new_thing_circle"
                 android:gravity="center"
                 />
             <View
