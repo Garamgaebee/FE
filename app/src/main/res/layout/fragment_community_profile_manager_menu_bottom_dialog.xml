@@ -46,7 +46,8 @@
                 android:layout_height="66dp"
                 android:paddingVertical="23dp"
                 android:textSize="16sp"
-                android:textStyle="bold"
+                android:textStyle="normal"
+                android:fontFamily="@font/spoqa_han_sans_neo_medium"
                 android:text="@{@string/profile_edit}"
                 android:textColor="@color/black"
                 android:gravity="center"
@@ -62,7 +63,8 @@
                 android:layout_height="66dp"
                 android:paddingVertical="23dp"
                 android:textSize="16sp"
-                android:textStyle="bold"
+                android:textStyle="normal"
+                android:fontFamily="@font/spoqa_han_sans_neo_medium"
                 android:text="@{@string/post_notice}"
                 android:textColor="@color/black"
                 android:gravity="center"
@@ -72,18 +74,34 @@
                 android:layout_height="0.5dp"
                 android:background="@color/main_blue"
                 />
-            <TextView
-                android:id="@+id/manage_member_tv"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="66dp"
                 android:paddingVertical="23dp"
+                >
+            <TextView
+                android:id="@+id/manage_member_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:textStyle="bold"
+                android:textStyle="normal"
+                android:fontFamily="@font/spoqa_han_sans_neo_medium"
                 android:text="@{@string/manage_member}"
                 android:textColor="@color/black"
-                android:drawableRight="@drawable/ic_new_thing_circle"
-                android:gravity="center"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_new_thing_circle"
+                android:layout_marginStart="1dp"
+                app:layout_constraintStart_toEndOf="@id/manage_member_tv"
+                app:layout_constraintTop_toTopOf="@id/manage_member_tv"
+                />
+            </androidx.constraintlayout.widget.ConstraintLayout>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
@@ -95,7 +113,8 @@
                 android:layout_height="66dp"
                 android:paddingVertical="23dp"
                 android:textSize="16sp"
-                android:textStyle="bold"
+                android:textStyle="normal"
+                android:fontFamily="@font/spoqa_han_sans_neo_medium"
                 android:text="@{@string/share_community}"
                 android:textColor="@color/black"
                 android:gravity="center"
