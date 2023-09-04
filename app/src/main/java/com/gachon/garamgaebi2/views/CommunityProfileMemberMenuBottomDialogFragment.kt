@@ -22,6 +22,7 @@ import com.gachon.garamgaebi2.databinding.FragmentCommunityProfileManagerMenuBot
 import com.gachon.garamgaebi2.databinding.FragmentCommunityProfileMemberMenuBottomDialogBinding
 import com.gachon.garamgaebi2.viewModel.CommunityProfileViewModel
 import com.gachon.garamgaebi2.viewModel.RegisterViewModel
+import com.gachon.garamgaebi2.views.register.TermsBottomDialogFragment
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class CommunityProfileMemberMenuBottomDialogFragment () :
@@ -58,11 +59,14 @@ class CommunityProfileMemberMenuBottomDialogFragment () :
 
             onClickedItem(withdrawalTv)
             onClickedItem(shareCommunityTv)
-//            withdrawalTv.setOnClickListener {
-//                // 멤버 관리 이동 로직
-//
-//                dismiss()
-//            }
+            withdrawalTv.setOnClickListener {
+                // 탈퇴 이동 로직
+//                val communityProfileMemberWithdrawalBottomDialogFragment = CommunityProfileMemberWithdrawalBottomDialogFragment()
+//                communityProfileMemberWithdrawalBottomDialogFragment.show(supportFragmentManager, "communityProfileMemberWithdrawalBottomDialogFragment")
+
+
+
+            }
 //            shareCommunityTv.setOnClickListener {
 //                // 커뮤니티 공유 이동 로직
 //

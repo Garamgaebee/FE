@@ -18,6 +18,22 @@ import kotlinx.coroutines.launch
 
 class CommunityProfileViewModel : ViewModel(){
 
+    private val _goToWithdrawalBtnClicked = MutableLiveData<Boolean>(false)
+    val goToWithdrawalBtnClicked : LiveData<Boolean> = _goToWithdrawalBtnClicked
+
+
+    private val _withdrawalBtnClicked = MutableLiveData<Boolean>(false)
+    val withdrawalBtnClicked : LiveData<Boolean> = _withdrawalBtnClicked
+
+    fun onClickGoToWithdrawal(){
+        _goToWithdrawalBtnClicked.value = true
+    }
+
+    fun onClickWithdrawal(){
+        _withdrawalBtnClicked.value = true
+    }
+
+
 
 
 
