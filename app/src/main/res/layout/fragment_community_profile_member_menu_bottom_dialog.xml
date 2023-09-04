@@ -50,7 +50,7 @@
                 android:text="@{@string/withdrawal}"
                 android:textColor="@color/black"
                 android:gravity="center"
-                android:onClick="@{()->viewModel.onClickWithdrawal()}"
+                android:onClick="@{()->viewModel.onClickGoToWithdrawal()}"
                 />
             <View
                 android:layout_width="match_parent"
