@@ -1,4 +1,4 @@
-package com.gachon.garamgaebi2.util
+package com.gachon.garamgaebi2.views.register
 
 import android.content.DialogInterface
 import android.content.Intent

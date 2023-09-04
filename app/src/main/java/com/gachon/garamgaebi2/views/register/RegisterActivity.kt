@@ -12,7 +12,6 @@ import com.gachon.garamgaebi2.BR
 import com.gachon.garamgaebi2.R
 import com.gachon.garamgaebi2.base.BaseActivity
 import com.gachon.garamgaebi2.di.GaramgaebiApplication
-import com.gachon.garamgaebi2.util.TermsBottomDialogFragment
 import com.gachon.garamgaebi2.databinding.ActivityRegisterBinding
 import com.gachon.garamgaebi2.viewModel.RegisterViewModel
 
@@ -59,82 +58,109 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(ActivityRegisterB
     }
 
     private fun observe() {
-        // 첫 단계
-        viewModel.emailIsValid.observe(this) {
-            Log.d(
-                "RegisterActivity",
-                "currentStep: $currentStep ${viewModel.emailIsValid.value} ${viewModel.codeIsValid.value} ${viewModel.infoIsValid.value} ${viewModel.detailIsValid.value}"
-            )
 
-            if (it && GaramgaebiApplication.registerProcess == 1) {
-                binding.registerProcessBtn.nextBtn.apply {
-                    isClickable = true
+        viewModel.registerProcess.observe(this){
+            when(it){
+                1 -> {
+                    binding.registerProcessBtn.nextBtn.text= application.getString(R.string.next)
+                    // 첫 단계
+                    viewModel.emailIsValid.observe(this) {
+                        Log.d(
+                            "RegisterActivity",
+                            "currentStep: $currentStep ${viewModel.emailIsValid.value} ${viewModel.codeIsValid.value} ${viewModel.infoIsValid.value} ${viewModel.detailIsValid.value}"
+                        )
+
+                        if (it && viewModel.registerProcess.value == 1) {
+                            GaramgaebiApplication.registerProcess == 1
+                            binding.registerProcessBtn.nextBtn.apply {
+                                isClickable = true
+                            }
+                            viewModel.btnOn.value = true
+                        } else {
+                            binding.registerProcessBtn.nextBtn.apply {
+                                isClickable = false
+                            }
+                            viewModel.btnOn.value = false
+                        }
+                    }
                 }
-                viewModel.btnOn.value = true
-            } else {
-                binding.registerProcessBtn.nextBtn.apply {
-                    isClickable = false
+                2->{
+                    binding.registerProcessBtn.nextBtn.text= application.getString(R.string.authenticate)
+                    // 두 번째 단계
+                    viewModel.codeIsValid.observe(this) {
+                        if (it && viewModel.registerProcess.value == 2) {
+                            GaramgaebiApplication.registerProcess == 2
+                            binding.registerProcessBtn.nextBtn.apply {
+                                isClickable = true
+                            }
+                            viewModel.btnOn.value = true
+                        } else {
+                            binding.registerProcessBtn.nextBtn.apply {
+                                isClickable = false
+                            }
+                            viewModel.btnOn.value = false
+
+                        }
+                    }
                 }
-                viewModel.btnOn.value = false
+                3->{
+                    binding.registerProcessBtn.nextBtn.text= application.getString(R.string.next)
+                    // 세 번째 단계
+                    viewModel.infoIsValid.observe(this) {
+                        if (it && viewModel.registerProcess.value == 3) {
+                            GaramgaebiApplication.registerProcess == 3
+                            binding.registerProcessBtn.nextBtn.apply {
+                                isClickable = true
+                            }
+                            viewModel.btnOn.value = true
+                        } else {
+                            binding.registerProcessBtn.nextBtn.apply {
+                                isClickable = false
+                            }
+                            viewModel.btnOn.value = false
+
+                        }
+                    }
+                }
+                4 -> {
+                    binding.registerProcessBtn.nextBtn.text= application.getString(R.string.start)
+                    // 네 번째 단계
+                    viewModel.detailIsValid.observe(this) {
+                        if (it && viewModel.registerProcess.value == 4) {
+                            GaramgaebiApplication.registerProcess == 4
+                            binding.registerProcessBtn.nextBtn.apply {
+                                isClickable = true
+                            }
+                            viewModel.btnOn.value = true
+                        } else {
+                            binding.registerProcessBtn.nextBtn.apply {
+                                isClickable = false
+                            }
+                            viewModel.btnOn.value = false
+                        }
+                    }
+                }
+                else -> {
+                    binding.registerProcessBtn.nextBtn.text= application.getString(R.string.start)
+                }
             }
         }
-        // 두 번째 단계
-        viewModel.codeIsValid.observe(this) {
-            if (it && GaramgaebiApplication.registerProcess == 2) {
-                binding.registerProcessBtn.nextBtn.apply {
-                    isClickable = true
-                }
-                viewModel.btnOn.value = true
-            } else {
-                binding.registerProcessBtn.nextBtn.apply {
-                    isClickable = false
-                }
-                viewModel.btnOn.value = false
-
-            }
+    }
+    private fun backBtnOnPressed(){
+        //전 스택의 프래그먼트로 돌아가기
+        if(GaramgaebiApplication.registerProcess == 1) {
+            finish()
         }
-        // 세 번째 단계
-        viewModel.infoIsValid.observe(this) {
-            if (it && GaramgaebiApplication.registerProcess == 3) {
-                binding.registerProcessBtn.nextBtn.apply {
-                    isClickable = true
-                }
-                viewModel.btnOn.value = true
-            } else {
-                binding.registerProcessBtn.nextBtn.apply {
-                    isClickable = false
-                }
-                viewModel.btnOn.value = false
-
-            }
-        }
-        // 네 번째 단계
-        viewModel.detailIsValid.observe(this) {
-            if (it && GaramgaebiApplication.registerProcess == 4) {
-                binding.registerProcessBtn.nextBtn.apply {
-                    isClickable = true
-                }
-                viewModel.btnOn.value = true
-            } else {
-                binding.registerProcessBtn.nextBtn.apply {
-                    isClickable = false
-                }
-                viewModel.btnOn.value = false
-            }
+        supportFragmentManager.popBackStack()
+        if(GaramgaebiApplication.registerProcess != 2){
+            Log.d("RegisterActivity", "currentStep: $currentStep ${viewModel.emailIsValid.value} ${viewModel.codeIsValid.value} ${viewModel.infoIsValid.value} ${viewModel.detailIsValid.value}")
+            backProgressBar(currentStep, maxStep)
+            currentStep--
         }
     }
     private fun initListener(){
         binding.backBtn.setOnClickListener {
-            //전 스택의 프래그먼트로 돌아가기
-            if(GaramgaebiApplication.registerProcess == 1) {
-                finish()
-            }
-            supportFragmentManager.popBackStack()
-            if(GaramgaebiApplication.registerProcess != 2){
-                backProgressBar(currentStep, maxStep)
-            }
-
-
+            backBtnOnPressed()
         }
         binding.registerProcessBtn.nextBtn.setOnClickListener {
             changeFragment()
@@ -148,13 +174,12 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(ActivityRegisterB
                 // Register 2로 이동
                 supportFragmentManager.beginTransaction().
                 replace(binding.fragmentContainer.id, Register2AuthenticationFragment()).addToBackStack(null).commit()
-                binding.registerProcessBtn.nextBtn.text= application.getString(R.string.authenticate)
             }
             2->{
                 // Register 3로 이동
                 supportFragmentManager.beginTransaction().
                 replace(binding.fragmentContainer.id, Register3InfoFragment()).addToBackStack(null).commit()
-                binding.registerProcessBtn.nextBtn.text= application.getString(R.string.next)
+                viewModel.authTimerStarted.value = true
                 nextStep()
             }
             3->{
@@ -225,6 +250,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(ActivityRegisterB
         override fun handleOnBackPressed() {
             // 뒤로 버튼 이벤트 처리
             Log.e(TAG, "뒤로가기 클릭")
+            backBtnOnPressed()
         }
     }
 

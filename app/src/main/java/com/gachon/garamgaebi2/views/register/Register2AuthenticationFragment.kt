@@ -1,28 +1,28 @@
 package com.gachon.garamgaebi2.views.register
 
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.lifecycleScope
 import com.gachon.garamgaebi2.BR
 import com.gachon.garamgaebi2.R
 import com.gachon.garamgaebi2.base.BaseBindingFragment
 import com.gachon.garamgaebi2.di.GaramgaebiApplication
-import com.gachon.garamgaebi2.util.ResendBottomDialogFragment
 import com.gachon.garamgaebi2.databinding.FragmentRegister2AuthenticationBinding
 import com.gachon.garamgaebi2.viewModel.RegisterViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 
 class Register2AuthenticationFragment : BaseBindingFragment<FragmentRegister2AuthenticationBinding>(R.layout.fragment_register2_authentication) {
     private val viewModel: RegisterViewModel by activityViewModels()
+
+    override fun onResume() {
+        GaramgaebiApplication.registerProcess = 2
+        viewModel.registerProcess.value = 2
+        observe()
+        Log.d("D","Register2AuthenticationFragment onResume${viewModel.codeIsValid.value}")
+        super.onResume()
+    }
 
     override fun initView(){
         binding.setVariable(BR.viewModel,viewModel)
