@@ -242,7 +242,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/activity_write_post_profile_list_background"
                     android:layout_marginHorizontal="@dimen/write_post_choose_profile_margin_horizontal"
-                    android:visibility="gone">
+                    android:visibility="invisible">
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/profile_list_rv"
                         android:layout_width="match_parent"

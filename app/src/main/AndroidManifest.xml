@@ -13,6 +13,15 @@
         android:name="android.permission.POST_NOTIFICATIONS"
         android:minSdkVersion="33" />
 
+    <uses-permission
+        android:name="android.permission.PACKAGE_USAGE_STATS"
+        tools:ignore="ProtectedPermissions" /> <!-- 저장소 사용 권한 설정 -->
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO"/>
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO"/>
+
     <application
         android:name=".di.GaramgaebiApplication"
         android:allowBackup="true"
@@ -24,19 +33,17 @@
         android:theme="@style/Theme.Garamgaebi2"
         tools:targetApi="33">
         <activity
+            android:name=".views.communityProfile.CommunityProfileEditActivity"
+            android:exported="false" />
+        <activity
             android:name=".views.write.WritePostActivity"
             android:exported="false" />
         <activity
             android:name=".views.thread.ThreadActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".views.mainFeed.MainFeedActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".views.register.RegisterActivity"
@@ -50,6 +57,12 @@
         <activity
             android:name=".views.MainActivity"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
         </activity>
     </application>
 

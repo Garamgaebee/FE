@@ -1,10 +1,16 @@
 package com.gachon.garamgaebi2.views.write
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
+import android.animation.ValueAnimator
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.util.TypedValue
 import android.view.View
+import android.view.ViewGroup
+import android.view.ViewTreeObserver
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import androidx.activity.result.ActivityResultLauncher
@@ -23,7 +29,10 @@ class WritePostActivity : BaseActivity<ActivityWritePostBinding>(ActivityWritePo
     // 갤러리에서 이미지 선택
     private lateinit var imagePickerLauncher: ActivityResultLauncher<Intent>
     private var currentSelectedImageView: ImageView? = null
+    // 프로필 선택 여부
     private var isProfileSelected: Boolean = false
+    // 애니메이션 초기 높이값을 설정하기 위한 변수
+    var originalHeight: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,44 +80,52 @@ class WritePostActivity : BaseActivity<ActivityWritePostBinding>(ActivityWritePo
     }
 
     private fun initClickListener() {
-        val slideDownAnimation = AnimationUtils.loadAnimation(this, R.anim.slide_down)
-        val slideUpAnimation = AnimationUtils.loadAnimation(this, R.anim.slide_up)
         with(binding) {
             completeBtn.setOnClickListener {
                 finish()
             }
+            profileListCl.viewTreeObserver.addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {
+                override fun onPreDraw(): Boolean {
+                    profileListCl.viewTreeObserver.removeOnPreDrawListener(this)
+                    originalHeight = profileListCl.measuredHeight
+                    profileListCl.layoutParams.height = 0
+                    profileListCl.visibility = View.GONE
+                    return true
+                }
+            })
+
             // 프로필 리스트 열기
             openProfileListBtn.setOnClickListener {
                 openProfileListCl.visibility = View.GONE
-
                 profileListTopCl.visibility = View.VISIBLE
-                profileListCl.startAnimation(slideDownAnimation)
                 profileListCl.visibility = View.VISIBLE
 
-
+                val expandAnimator = ValueAnimator.ofInt(0, originalHeight)
+                expandAnimator.addUpdateListener { valueAnimator ->
+                    profileListCl.layoutParams.height = valueAnimator.animatedValue as Int
+                    profileListCl.requestLayout()
+                }
+                expandAnimator.duration = 300
+                expandAnimator.start()
             }
+
             // 프로필 리스트 닫기
             profileListCloseBtn.setOnClickListener {
-                openProfileListCl.visibility = View.VISIBLE
-
-                profileListTopCl.visibility = View.GONE
-                profileListCl.startAnimation(slideUpAnimation)
-                profileListCl.visibility = View.GONE
-                if(isProfileSelected) {
-                    openProfileListTitleTv.visibility = View.GONE
-                    selectedProfileCl.visibility = View.VISIBLE
+                collapseProfileList {
+                    if (isProfileSelected) {
+                        openProfileListTitleTv.visibility = View.GONE
+                        selectedProfileCl.visibility = View.VISIBLE
+                    }
                 }
             }
             // 개인 프로필로 작성하기
             personalProfileTitleTv.setOnClickListener {
-                profileListCl.startAnimation(slideUpAnimation)
-                profileListCl.visibility = View.GONE
-                openProfileListCl.visibility = View.VISIBLE
-                isProfileSelected = true
-                openProfileListTitleTv.visibility = View.GONE
-                selectedProfileCl.visibility = View.VISIBLE
+                collapseProfileList {
+                    isProfileSelected = true
+                    openProfileListTitleTv.visibility = View.GONE
+                    selectedProfileCl.visibility = View.VISIBLE
+                }
             }
-
             descFirstIv.setOnClickListener {
                 pickImageFromGallery(descFirstIv)
             }
@@ -134,5 +151,24 @@ class WritePostActivity : BaseActivity<ActivityWritePostBinding>(ActivityWritePo
     override fun onDestroy() {
         super.onDestroy()
         imagePickerLauncher.unregister()
+    }
+    private fun collapseProfileList(afterCollapse: () -> Unit) {
+        val collapseAnimator = ValueAnimator.ofInt(originalHeight, 0)
+        with(binding) {
+            collapseAnimator.addUpdateListener { valueAnimator ->
+                profileListCl.layoutParams.height = valueAnimator.animatedValue as Int
+                profileListCl.requestLayout()
+            }
+            collapseAnimator.addListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator) {
+                    profileListTopCl.visibility = View.GONE
+                    profileListCl.visibility = View.GONE
+                    openProfileListCl.visibility = View.VISIBLE
+                    afterCollapse()
+                }
+            })
+            collapseAnimator.duration = 300
+            collapseAnimator.start()
+        }
     }
 }
