@@ -1,10 +1,12 @@
 package com.gachon.garamgaebi2.views.mainFeed
 
+import android.content.Intent
 import android.graphics.drawable.TransitionDrawable
 import android.os.Bundle
 import com.gachon.garamgaebi2.adapter.mainFeed.MainFeedVPAdapter
 import com.gachon.garamgaebi2.base.BaseActivity
 import com.gachon.garamgaebi2.databinding.ActivityMainFeedBinding
+import com.gachon.garamgaebi2.views.write.WritePostActivity
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -12,7 +14,6 @@ class MainFeedActivity : BaseActivity<ActivityMainFeedBinding>(ActivityMainFeedB
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        initView()
         initToolbar()
         initListener()
         initViewPager()
@@ -27,7 +28,7 @@ class MainFeedActivity : BaseActivity<ActivityMainFeedBinding>(ActivityMainFeedB
     fun initListener() {
         with(binding) {
             icPostingCv.setOnClickListener {
-                //TODO 게시글 작성 페이지로 이동
+                startActivity(Intent(this@MainFeedActivity, WritePostActivity::class.java))
             }
             searchIv.setOnClickListener {
 

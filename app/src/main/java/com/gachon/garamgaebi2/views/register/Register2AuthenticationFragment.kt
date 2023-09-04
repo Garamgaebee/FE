@@ -16,6 +16,14 @@ import com.gachon.garamgaebi2.viewModel.RegisterViewModel
 class Register2AuthenticationFragment : BaseBindingFragment<FragmentRegister2AuthenticationBinding>(R.layout.fragment_register2_authentication) {
     private val viewModel: RegisterViewModel by activityViewModels()
 
+    override fun onResume() {
+        GaramgaebiApplication.registerProcess = 2
+        viewModel.registerProcess.value = 2
+        observe()
+        Log.d("D","Register2AuthenticationFragment onResume${viewModel.codeIsValid.value}")
+        super.onResume()
+    }
+
     override fun initView(){
         binding.setVariable(BR.viewModel,viewModel)
         binding.viewModel = viewModel
