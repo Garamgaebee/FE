@@ -37,8 +37,30 @@
                 android:layout_height="4dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="16dp"
-                android:layout_marginBottom="37dp"
+                android:layout_marginBottom="20dp"
                 android:background="@drawable/drag_handle" />
+
+            <TextView
+                android:id="@+id/withdrawal_description_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                android:text="@{@string/withdrawal_description}"
+                android:textColor="@color/heavy_gray"
+                android:gravity="center"
+                />
+            <TextView
+                android:id="@+id/withdrawal_content_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:text="@{@string/withdrawal_content}"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:layout_marginTop="16dp"
+                />
 
             <TextView
                 android:id="@+id/withdrawal_tv"
@@ -48,24 +70,7 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:text="@{@string/withdrawal}"
-                android:textColor="@color/black"
-                android:gravity="center"
-                android:onClick="@{()->viewModel.onClickWithdrawal()}"
-                />
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:background="@color/main_blue"
-                />
-            <TextView
-                android:id="@+id/share_community_tv"
-                android:layout_width="match_parent"
-                android:layout_height="66dp"
-                android:paddingVertical="23dp"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:text="@{@string/share_community}"
-                android:textColor="@color/black"
+                android:textColor="@color/red"
                 android:gravity="center"
                 />
 
