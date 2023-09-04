@@ -1,14 +1,8 @@
-package com.gachon.garamgaebi2.views
+package com.gachon.garamgaebi2.views.communityProfile
 
 import android.annotation.SuppressLint
 import android.content.DialogInterface
-import android.content.Intent
-import android.graphics.Typeface
 import android.os.Bundle
-import android.text.Spannable
-import android.text.SpannableStringBuilder
-import android.text.style.StyleSpan
-import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -19,34 +13,37 @@ import androidx.lifecycle.ViewModelProvider
 import com.gachon.garamgaebi2.BR
 import com.gachon.garamgaebi2.R
 import com.gachon.garamgaebi2.databinding.FragmentCommunityProfileManagerMenuBottomDialogBinding
-import com.gachon.garamgaebi2.databinding.FragmentCommunityProfileMemberMenuBottomDialogBinding
 import com.gachon.garamgaebi2.viewModel.CommunityProfileViewModel
-import com.gachon.garamgaebi2.viewModel.RegisterViewModel
-import com.gachon.garamgaebi2.views.register.TermsBottomDialogFragment
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class CommunityProfileMemberMenuBottomDialogFragment () :
+class CommunityProfileManagerMenuBottomDialogFragment() :
     BottomSheetDialogFragment() {
-    lateinit var binding: FragmentCommunityProfileMemberMenuBottomDialogBinding
+    lateinit var binding: FragmentCommunityProfileManagerMenuBottomDialogBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_community_profile_member_menu_bottom_dialog, container, false)
+        binding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_community_profile_manager_menu_bottom_dialog,
+            container,
+            false
+        )
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val viewModel = ViewModelProvider(this)[CommunityProfileViewModel::class.java]
-        binding.setVariable(BR.viewModel,viewModel)
+        binding.setVariable(BR.viewModel, viewModel)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
 
         binding.closeBtn.nextBtn.setOnClickListener {
-           // val intent = Intent(activity, WelcomeActivity::class.java)
+            // val intent = Intent(activity, WelcomeActivity::class.java)
             //requireActivity().startActivity(intent)
             dismiss()
         }
@@ -54,26 +51,23 @@ class CommunityProfileMemberMenuBottomDialogFragment () :
 
     }
 
-    private fun initListener(){
-        with(binding){
+    @SuppressLint("ClickableViewAccessibility")
+    private fun initListener() {
+        with(binding) {
+            // 프로필 편집 이동 로직
+            onClickedItem(profileEditTv)
 
-            onClickedItem(withdrawalTv)
+            // 공지사항 작성 이동 로직
+            onClickedItem(postNoticeTv)
+
+            // 멤버 관리 이동 로직
+            onClickedItem(manageMemberTv)
+
+            // 커뮤니티 공유 이동 로직
             onClickedItem(shareCommunityTv)
-            withdrawalTv.setOnClickListener {
-                // 탈퇴 이동 로직
-//                val communityProfileMemberWithdrawalBottomDialogFragment = CommunityProfileMemberWithdrawalBottomDialogFragment()
-//                communityProfileMemberWithdrawalBottomDialogFragment.show(supportFragmentManager, "communityProfileMemberWithdrawalBottomDialogFragment")
-
-
-
-            }
-//            shareCommunityTv.setOnClickListener {
-//                // 커뮤니티 공유 이동 로직
-//
-//                dismiss()
-//            }
         }
     }
+
     @SuppressLint("ClickableViewAccessibility")
     private fun onClickedItem(view: TextView) {
         view.setOnTouchListener(View.OnTouchListener { v, event ->
