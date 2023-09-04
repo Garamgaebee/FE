@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="inputName"
+            type="String" />
+        <variable
+            name="inputContent"
+            type="String" />
+        <variable
+            name="inputValid"
+            type="Boolean" />
+        <variable
+            name="inputError"
+            type="String" />
+        <variable
+            name="onTextChanged"
+            type="androidx.databinding.adapters.TextViewBindingAdapter.OnTextChanged" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingHorizontal="32dp"
+    android:paddingVertical="20dp">
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@{inputName}"
+        android:textSize="16sp"
+        android:textColor="@{inputValid == true ? @color/main_blue : @color/black}"
+        android:textAlignment="center"
+        android:fontFamily="@font/spoqa_han_sans_neo_bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/container_input"
+        />
+    <LinearLayout
+        android:id="@+id/container_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingStart="14dp"
+        app:layout_constraintTop_toBottomOf="@id/name"
+        android:gravity="center_vertical"
+        >
+        <EditText
+            android:id="@+id/input"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="@={inputContent}"
+            android:textColor="@color/heavy_gray"
+            android:textSize="18sp"
+            android:fontFamily="@font/spoqa_han_sans_neo_regular"
+            android:gravity="center_vertical"
+            android:inputType="text"
+            android:minHeight="21dp"
+            android:imeOptions="actionNext"
+            android:singleLine="true"
+            android:ellipsize="end"
+            style="@style/NoUnderlineEditText"
+            android:paddingVertical="14dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/extra"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_weight="1"
+            android:onTextChanged="@{onTextChanged}"
+            />
+    </LinearLayout>
+    <View
+        android:id="@+id/border"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@{inputValid == true ? @color/main_blue : @color/black}"
+        app:layout_constraintTop_toBottomOf="@id/container_input"
+        app:layout_constraintBottom_toTopOf="@id/border2"
+        />
+    <View
+        android:id="@+id/border2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@{inputValid == true ? @color/main_blue : @color/black}"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@id/border"
+        app:layout_constraintBottom_toTopOf="@id/check_tv"
+        />
+    <TextView
+        android:id="@+id/check_tv"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="7dp"
+        android:layout_marginHorizontal="17dp"
+        android:text="@{inputError}"
+        android:textSize="12sp"
+        android:fontFamily="@font/spoqa_han_sans_neo_medium"
+        android:textColor="@color/black"
+        android:gravity="center_vertical"
+        android:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@id/border2"
+        />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
