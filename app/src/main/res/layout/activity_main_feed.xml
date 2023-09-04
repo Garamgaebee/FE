@@ -24,7 +24,7 @@
                 android:id="@+id/toolbar"
                 android:layout_marginHorizontal="16dp"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/main_feed_toolbar_height"
+                android:layout_height="@dimen/toolbar_height"
                 app:contentInsetStart="0dp"
                 app:contentInsetEnd="0dp">
                 <ImageView
