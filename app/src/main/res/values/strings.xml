@@ -139,6 +139,14 @@
     <string name="community_profile_post_num">22건</string>
     <string name="community_profile_join">가입중</string>
     <string name="community_profile_join_request">가입 신청</string>
+
+
+    <string name="my_profile">내 프로필</string>
+    <string name="user_profile_description">자기 소개</string>
+    <string name="user_profile_community_description">대표 커뮤니티</string>
+    <string name="user_profile_no_community">현재 커뮤니티가 없습니다!</string>
+
+    <string name="user_profile_description_hint">소개는 80자 이하로 작성 할 수 있어요</string>
 </resources>
 
 

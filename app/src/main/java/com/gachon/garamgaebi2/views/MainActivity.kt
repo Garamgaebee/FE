@@ -14,6 +14,7 @@ import com.gachon.garamgaebi2.views.login.LoginActivity
 import com.gachon.garamgaebi2.views.mainFeed.MainFeedActivity
 import com.gachon.garamgaebi2.views.register.RegisterActivity
 import com.gachon.garamgaebi2.views.register.TermsBottomDialogFragment
+import com.gachon.garamgaebi2.views.userProfile.UserProfileEditActivity
 import com.gachon.garamgaebi2.views.write.WritePostActivity
 
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate){
@@ -67,8 +68,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
             startActivity(intent)
         }
         binding.welcome2Tv.setOnClickListener {
-            val intent = Intent(this, WritePostActivity::class.java)
-            startActivity(intent)        }
+//            val intent = Intent(this, WritePostActivity::class.java)
+//            startActivity(intent)
+            val intent = Intent(this, UserProfileEditActivity::class.java)
+            startActivity(intent)
+        }
     }
 
 }

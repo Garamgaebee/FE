@@ -57,6 +57,9 @@
         <activity android:name=".views.communityProfile.CommunityProfileActivity"
             android:exported="true">
         </activity>
+        <activity android:name=".views.userProfile.UserProfileEditActivity"
+            android:exported="true">
+        </activity>
         <activity
             android:name=".views.MainActivity"
             android:exported="true">
