@@ -321,7 +321,7 @@
                         android:textSize="14sp" />
                 </LinearLayout>
 
-                <LinearLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/write_post_iv_margin_horizontal"
@@ -337,39 +337,69 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/desc_second_iv"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/et_cnt_max_tv" />
-
+                        app:layout_constraintTop_toTopOf="parent" />
                     <ImageView
                         android:id="@+id/desc_second_iv"
                         android:layout_width="@dimen/write_post_iv_size"
                         android:layout_height="@dimen/write_post_iv_size"
                         android:layout_marginEnd="@dimen/write_post_iv_margin_horizontal_between_iv"
                         android:src="@color/thin_gray"
-                        app:layout_constraintBottom_toBottomOf="@+id/desc_first_iv"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/desc_third_iv"
                         app:layout_constraintStart_toEndOf="@+id/desc_first_iv"
-                        app:layout_constraintTop_toTopOf="@+id/desc_first_iv" />
-
+                        app:layout_constraintTop_toTopOf="parent" />
                     <ImageView
                         android:id="@+id/desc_third_iv"
                         android:layout_width="@dimen/write_post_iv_size"
                         android:layout_height="@dimen/write_post_iv_size"
                         android:layout_marginEnd="@dimen/write_post_iv_margin_horizontal_between_iv"
                         android:src="@color/thin_gray"
-                        app:layout_constraintBottom_toBottomOf="@+id/desc_first_iv"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/desc_fourth_iv"
                         app:layout_constraintStart_toEndOf="@+id/desc_second_iv"
-                        app:layout_constraintTop_toTopOf="@+id/desc_first_iv" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageView
                         android:id="@+id/desc_fourth_iv"
                         android:layout_width="@dimen/write_post_iv_size"
                         android:layout_height="@dimen/write_post_iv_size"
                         android:src="@color/thin_gray"
-                        app:layout_constraintBottom_toBottomOf="@+id/desc_first_iv"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/desc_first_iv" />
-                </LinearLayout>
+                        app:layout_constraintTop_toTopOf="parent" />
+                    <ImageView
+                        android:id="@+id/delete_first_iv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_delete_image"
+                        android:visibility="gone"
+                        app:layout_constraintTop_toTopOf="@id/desc_first_iv"
+                        app:layout_constraintEnd_toEndOf="@+id/desc_first_iv" />
+                    <ImageView
+                        android:id="@+id/delete_second_iv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_delete_image"
+                        android:visibility="gone"
+                        app:layout_constraintTop_toTopOf="@id/desc_second_iv"
+                        app:layout_constraintEnd_toEndOf="@+id/desc_second_iv" />
+                    <ImageView
+                        android:id="@+id/delete_third_iv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_delete_image"
+                        android:visibility="gone"
+                        app:layout_constraintTop_toTopOf="@id/delete_third_iv"
+                        app:layout_constraintEnd_toEndOf="@+id/desc_third_iv" />
+                    <ImageView
+                        android:id="@+id/delete_fourth_iv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_delete_image"
+                        android:visibility="gone"
+                        app:layout_constraintTop_toTopOf="@id/delete_fourth_iv"
+                        app:layout_constraintEnd_toEndOf="@+id/desc_fourth_iv" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
