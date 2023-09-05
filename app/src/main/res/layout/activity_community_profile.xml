@@ -3,6 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <data>
+        <variable
+            name="viewModel"
+            type="com.gachon.garamgaebi2.viewModel.CommunityProfileViewModel" />
 
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -10,25 +13,26 @@
         android:layout_height="match_parent"
         android:background="@color/white">
 
-        <androidx.appcompat.widget.Toolbar
+        <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/activity_community_profile_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="54dp"
+            android:layout_height="wrap_content"
             android:background="@color/white"
-            android:minHeight="?attr/actionBarSize"
-            app:layout_constraintTop_toTopOf="parent"
-            >
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:elevation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/back_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_back_arrow_48px"
-                android:layout_marginStart="16dp"
-                app:layout_constraintStart_toStartOf="parent" />
-
-
-        </androidx.appcompat.widget.Toolbar>
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/toolbar_height"
+                android:layout_marginHorizontal="@dimen/toolbar_margin_horizontal"
+                app:contentInsetEnd="0dp"
+                app:contentInsetStart="0dp">
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.AppBarLayout>
 
         <ScrollView
             android:layout_width="match_parent"
@@ -142,6 +146,7 @@
                 android:textColor="@color/heavy_gray"
                 android:textSize="20sp"
                 android:textStyle="bold"
+                android:onClick="@{()-> viewModel.onClickTypeChange()}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/profile_img_1" />

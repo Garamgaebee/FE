@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import com.gachon.garamgaebi2.BR
 import com.gachon.garamgaebi2.R
@@ -16,9 +17,10 @@ import com.gachon.garamgaebi2.databinding.FragmentCommunityProfileMemberMenuBott
 import com.gachon.garamgaebi2.viewModel.CommunityProfileViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class CommunityProfileMemberMenuBottomDialogFragment () :
+class CommunityProfileMemberMenuBottomDialogFragment (val itemClick : (Int) -> Unit) :
     BottomSheetDialogFragment() {
     lateinit var binding: FragmentCommunityProfileMemberMenuBottomDialogBinding
+    private val viewModel: CommunityProfileViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,7 +32,6 @@ class CommunityProfileMemberMenuBottomDialogFragment () :
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val viewModel = ViewModelProvider(this)[CommunityProfileViewModel::class.java]
         binding.setVariable(BR.viewModel,viewModel)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
@@ -48,8 +49,8 @@ class CommunityProfileMemberMenuBottomDialogFragment () :
     private fun initListener(){
         with(binding){
 
-            onClickedItem(withdrawalTv)
-            onClickedItem(shareCommunityTv)
+            onClickedItem(withdrawalTv, 0)
+            onClickedItem(shareCommunityTv, 1)
             withdrawalTv.setOnClickListener {
                 // 탈퇴 이동 로직
 //                val communityProfileMemberWithdrawalBottomDialogFragment = CommunityProfileMemberWithdrawalBottomDialogFragment()
@@ -66,7 +67,7 @@ class CommunityProfileMemberMenuBottomDialogFragment () :
         }
     }
     @SuppressLint("ClickableViewAccessibility")
-    private fun onClickedItem(view: TextView) {
+    private fun onClickedItem(view: TextView, itemClick : Int) {
         view.setOnTouchListener(View.OnTouchListener { v, event ->
 
 
@@ -80,6 +81,8 @@ class CommunityProfileMemberMenuBottomDialogFragment () :
                     view.setBackgroundColor(resources.getColor(R.color.white))
                     view.setTextColor(resources.getColor(R.color.black))
                     dismiss()
+                    itemClick(itemClick)
+
                 }
             }
             true

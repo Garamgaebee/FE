@@ -53,7 +53,7 @@
                     android:layout_gravity="end"
                     android:background="@android:color/transparent"
                     android:enabled="@{viewModel.completeIsValid}"
-                    android:src="@drawable/activity_write_post_complete_btn_selector" />
+                    android:src="@drawable/activity_top_bar_complete_btn_selector" />
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.AppBarLayout>
 

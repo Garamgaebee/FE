@@ -52,10 +52,26 @@ class CommunityProfileViewModel : ViewModel(){
     private val _linkInputClicked = MutableLiveData<Boolean>(false)
     val linkInputClicked : LiveData<Boolean> = _linkInputClicked
 
+    private val _isUserType = MutableLiveData<Int>(0)
+    val isUserType : LiveData<Int> = _isUserType
+
+    private val _goToCommunityProfileEditBtnClicked = MutableLiveData<Boolean>(false)
+    val goToCommunityProfileEditBtnClicked : LiveData<Boolean> = _goToCommunityProfileEditBtnClicked
 
     // 사진 업로드
     val imageUri = MutableLiveData<Uri>()
     val isLoadImage = MutableLiveData<Boolean>(false)
+
+    fun onClickTypeChange(){
+        _isUserType.value = isUserType.value!! + 1
+
+        _isUserType.value = isUserType.value!! % 3
+    }
+
+    fun onClickGoToCommunityProfileEdit(){
+        _goToCommunityProfileEditBtnClicked.value = true
+        Log.d("goToCommunityProfileEditBtnClicked",goToCommunityProfileEditBtnClicked.value.toString())
+    }
 
 
     fun onClickGoToWithdrawal(){

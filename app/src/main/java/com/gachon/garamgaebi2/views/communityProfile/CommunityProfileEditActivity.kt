@@ -51,7 +51,13 @@ class CommunityProfileEditActivity : BaseActivity<ActivityCommunityProfileEditBi
             }
         )
     }
-
+    private fun initToolbar() {
+        with(binding.toolbar) {
+            logo = null
+            navigationIcon = context.getDrawable(R.drawable.ic_back_arrow)
+            setNavigationOnClickListener { finish() }
+        }
+    }
     override fun initView() {
         binding.setVariable(BR.viewModel,viewModel)
         binding.viewModel = viewModel
@@ -69,6 +75,7 @@ class CommunityProfileEditActivity : BaseActivity<ActivityCommunityProfileEditBi
 
         observe()
         initListener()
+        initToolbar()
 
     }
 
@@ -111,10 +118,8 @@ class CommunityProfileEditActivity : BaseActivity<ActivityCommunityProfileEditBi
     }
 
     private fun initListener(){
-        binding.backBtn.setOnClickListener {
-            finish()
-        }
-        binding.checkIv.setOnClickListener {
+
+        binding.completeBtn.setOnClickListener {
             // 편집 완료
             finish()
         }
