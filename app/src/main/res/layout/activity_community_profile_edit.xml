@@ -119,6 +119,20 @@
             android:onClick="@{()-> viewModel.onClickLinkInput()}"
             />
 
+        <Button
+            android:id="@+id/next_btn"
+            android:layout_width="match_parent"
+            android:layout_height="53dp"
+            android:background="@drawable/round_btn_red"
+            android:layout_marginHorizontal="@dimen/main_register_button_margin_horizontal"
+            android:fontFamily="@font/spoqa_han_sans_neo_bold"
+            android:text="@string/close_community"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:textSize="17sp"
+            android:layout_marginBottom="100dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -21,6 +21,8 @@
     <color name="main_green">#68FFC2</color>
     <color name="dark_back">#B2000000</color>
 
+    <color name="icon_heart">#E74B5C</color>
+
     <!--메인 피드-->
     <color name="more_image_count_background">#4D000000</color>
 
