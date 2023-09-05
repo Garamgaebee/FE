@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import com.gachon.garamgaebi2.BR
 import com.gachon.garamgaebi2.R
@@ -16,6 +17,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class CommunityProfileMemberWithdrawalBottomDialogFragment() :
     BottomSheetDialogFragment() {
+    private val viewModel: CommunityProfileViewModel by activityViewModels()
+
     lateinit var binding: FragmentCommunityProfileMemberWithdrawalBottomDialogBinding
 
     override fun onCreateView(
@@ -34,7 +37,6 @@ class CommunityProfileMemberWithdrawalBottomDialogFragment() :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val viewModel = ViewModelProvider(this)[CommunityProfileViewModel::class.java]
         binding.setVariable(BR.viewModel, viewModel)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this

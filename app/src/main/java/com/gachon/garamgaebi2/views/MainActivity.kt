@@ -7,12 +7,14 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import com.gachon.garamgaebi2.base.BaseActivity
 import com.gachon.garamgaebi2.databinding.ActivityMainBinding
+import com.gachon.garamgaebi2.views.communityProfile.CommunityProfileActivity
 import com.gachon.garamgaebi2.views.communityProfile.CommunityProfileEditActivity
 import com.gachon.garamgaebi2.views.communityProfile.CommunityProfileManagerMenuBottomDialogFragment
 import com.gachon.garamgaebi2.views.login.LoginActivity
 import com.gachon.garamgaebi2.views.mainFeed.MainFeedActivity
 import com.gachon.garamgaebi2.views.register.RegisterActivity
 import com.gachon.garamgaebi2.views.register.TermsBottomDialogFragment
+import com.gachon.garamgaebi2.views.write.WritePostActivity
 
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate){
 
@@ -61,14 +63,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
             startActivity(intent)
         }
         binding.welcome1Tv.setOnClickListener {
-            val intent = Intent(this, CommunityProfileEditActivity::class.java)
+            val intent = Intent(this, CommunityProfileActivity::class.java)
             startActivity(intent)
         }
         binding.welcome2Tv.setOnClickListener {
-            val communityProfileManagerMenuBottomDialogFragment = CommunityProfileManagerMenuBottomDialogFragment()
-            communityProfileManagerMenuBottomDialogFragment.show(supportFragmentManager, "communityProfileManagerMenuBottomDialogFragment")
-
-        }
+            val intent = Intent(this, WritePostActivity::class.java)
+            startActivity(intent)        }
     }
 
 }
