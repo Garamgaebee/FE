@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter
 import android.animation.ValueAnimator
 import android.app.Activity
 import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.TypedValue
 import android.view.View
@@ -17,10 +18,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.gachon.garamgaebi2.R
 import com.gachon.garamgaebi2.adapter.mainFeed.MainFeedRVAdapter
 import com.gachon.garamgaebi2.base.BaseActivity
-import com.gachon.garamgaebi2.databinding.ActivityWritePostBinding
+import com.gachon.garamgaebi2.databinding.ActivityWriteAnswerPostBinding
 import com.gachon.garamgaebi2.viewModel.WriteViewModel
 
-class WritePostActivity : BaseActivity<ActivityWritePostBinding>(ActivityWritePostBinding::inflate) {
+class WriteAnswerPostActivity : BaseActivity<ActivityWriteAnswerPostBinding>(ActivityWriteAnswerPostBinding::inflate) {
     private val viewModel by viewModels<WriteViewModel>()
 
     // 프로필 선택 여부
@@ -85,13 +86,13 @@ class WritePostActivity : BaseActivity<ActivityWritePostBinding>(ActivityWritePo
     }
     private fun initRecycler() {
         binding.profileListRv.apply {
-            layoutManager = LinearLayoutManager(this@WritePostActivity, LinearLayoutManager.VERTICAL, false)
+            layoutManager = LinearLayoutManager(this@WriteAnswerPostActivity, LinearLayoutManager.VERTICAL, false)
             addItemDecoration(
                 WritePostRVItemDecoration(
-                TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP, 21f,
-                resources.displayMetrics
-            ).toInt())
+                    TypedValue.applyDimension(
+                        TypedValue.COMPLEX_UNIT_DIP, 21f,
+                        resources.displayMetrics
+                    ).toInt())
             )
             adapter = MainFeedRVAdapter(listOf("ㅇㅇ"))
         }
@@ -145,33 +146,33 @@ class WritePostActivity : BaseActivity<ActivityWritePostBinding>(ActivityWritePo
                 }
             }
             // 이미지 업로드
-            descFirstIv.setOnClickListener {
-                pickImageFromGallery(descFirstIv)
+            writeAnswerPostDescFirstIv.setOnClickListener {
+                pickImageFromGallery(writeAnswerPostDescFirstIv)
             }
-            descSecondIv.setOnClickListener {
-                pickImageFromGallery(descSecondIv)
+            writeAnswerPostDescSecondIv.setOnClickListener {
+                pickImageFromGallery(writeAnswerPostDescSecondIv)
             }
-            descThirdIv.setOnClickListener {
-                pickImageFromGallery(descThirdIv)
+            writeAnswerPostDescThirdIv.setOnClickListener {
+                pickImageFromGallery(writeAnswerPostDescThirdIv)
             }
-            descFourthIv.setOnClickListener {
-                pickImageFromGallery(descFourthIv)
+            writeAnswerPostDescFourthIv.setOnClickListener {
+                pickImageFromGallery(writeAnswerPostDescFourthIv)
             }
 
             // 이미지 삭제
-            deleteFirstIv.setOnClickListener { resetImage(descFirstIv) }
-            deleteSecondIv.setOnClickListener { resetImage(descSecondIv) }
-            deleteThirdIv.setOnClickListener { resetImage(descThirdIv) }
-            deleteFourthIv.setOnClickListener { resetImage(descFourthIv) }
+            writeAnswerPostDeleteFirstIv.setOnClickListener { resetImage(writeAnswerPostDeleteFirstIv) }
+            writeAnswerPostDeleteSecondIv.setOnClickListener { resetImage(writeAnswerPostDeleteSecondIv) }
+            writeAnswerPostDeleteThirdIv.setOnClickListener { resetImage(writeAnswerPostDeleteThirdIv) }
+            writeAnswerPostDeleteFourthIv.setOnClickListener { resetImage(writeAnswerPostDeleteFourthIv) }
         }
     }
 
     private fun pickImageFromGallery(targetImageView: ImageView) {
         val index = when (targetImageView) {
-            binding.descFirstIv -> 0
-            binding.descSecondIv -> 1
-            binding.descThirdIv -> 2
-            binding.descFourthIv -> 3
+            binding.writeAnswerPostDescFirstIv -> 0
+            binding.writeAnswerPostDescSecondIv -> 1
+            binding.writeAnswerPostDescThirdIv -> 2
+            binding.writeAnswerPostDescFourthIv -> 3
             else -> return  // 올바르지 않은 ImageView가 주어진 경우 함수를 종료합니다.
         }
 
@@ -209,8 +210,16 @@ class WritePostActivity : BaseActivity<ActivityWritePostBinding>(ActivityWritePo
     }
 
     private fun updateImageViewState() {
-        val imageViews = listOf(binding.descFirstIv, binding.descSecondIv, binding.descThirdIv, binding.descFourthIv)
-        val deleteImageViews = listOf(binding.deleteFirstIv, binding.deleteSecondIv, binding.deleteThirdIv, binding.deleteFourthIv)
+        val imageViews = listOf(
+            binding.writeAnswerPostDescFirstIv,
+            binding.writeAnswerPostDescSecondIv,
+            binding.writeAnswerPostDescThirdIv,
+            binding.writeAnswerPostDescFourthIv)
+        val deleteImageViews = listOf(
+            binding.writeAnswerPostDeleteFirstIv,
+            binding.writeAnswerPostDeleteSecondIv,
+            binding.writeAnswerPostDeleteThirdIv,
+            binding.writeAnswerPostDeleteFourthIv)
 
         for (i in imageViews.indices) {
             when (imageViewsState[i]) {
@@ -230,7 +239,11 @@ class WritePostActivity : BaseActivity<ActivityWritePostBinding>(ActivityWritePo
     }
 
     private fun resetImage(targetImageView: ImageView) {
-        val imageViews = listOf(binding.descFirstIv, binding.descSecondIv, binding.descThirdIv, binding.descFourthIv)
+        val imageViews = listOf(
+            binding.writeAnswerPostDescFirstIv,
+            binding.writeAnswerPostDescSecondIv,
+            binding.writeAnswerPostDescThirdIv,
+            binding.writeAnswerPostDescFourthIv)
 
         val index = imageViews.indexOf(targetImageView)
         if (index != -1) {
