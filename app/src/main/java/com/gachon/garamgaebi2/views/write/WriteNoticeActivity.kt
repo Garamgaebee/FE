@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter
 import android.animation.ValueAnimator
 import android.app.Activity
 import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.TypedValue
 import android.view.View
@@ -17,16 +18,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.gachon.garamgaebi2.R
 import com.gachon.garamgaebi2.adapter.mainFeed.MainFeedRVAdapter
 import com.gachon.garamgaebi2.base.BaseActivity
-import com.gachon.garamgaebi2.databinding.ActivityWritePostBinding
+import com.gachon.garamgaebi2.databinding.ActivityWriteNoticeBinding
 import com.gachon.garamgaebi2.viewModel.WriteViewModel
 
-class WritePostActivity : BaseActivity<ActivityWritePostBinding>(ActivityWritePostBinding::inflate) {
+class WriteNoticeActivity : BaseActivity<ActivityWriteNoticeBinding>(ActivityWriteNoticeBinding::inflate) {
     private val viewModel by viewModels<WriteViewModel>()
-
-    // 프로필 선택 여부
-    private var isProfileSelected: Boolean = false
-    // 애니메이션 초기 높이값을 설정하기 위한 변수
-    var originalHeight: Int = 0
     // 갤러리에서 이미지 선택
     private lateinit var imagePickerLauncher: ActivityResultLauncher<Intent>
     // 이미지뷰 상태 관리 변수
@@ -83,95 +79,40 @@ class WritePostActivity : BaseActivity<ActivityWritePostBinding>(ActivityWritePo
             }
         }
     }
-    private fun initRecycler() {
-        binding.profileListRv.apply {
-            layoutManager = LinearLayoutManager(this@WritePostActivity, LinearLayoutManager.VERTICAL, false)
-            addItemDecoration(
-                WritePostRVItemDecoration(
-                TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP, 21f,
-                resources.displayMetrics
-            ).toInt())
-            )
-            adapter = MainFeedRVAdapter(listOf("ㅇㅇ"))
-        }
-    }
 
     private fun initClickListener() {
         with(binding) {
             completeBtn.setOnClickListener {
                 finish()
             }
-            profileListCl.viewTreeObserver.addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {
-                override fun onPreDraw(): Boolean {
-                    profileListCl.viewTreeObserver.removeOnPreDrawListener(this)
-                    originalHeight = profileListCl.measuredHeight
-                    profileListCl.layoutParams.height = 0
-                    profileListCl.visibility = View.GONE
-                    return true
-                }
-            })
-
-            // 프로필 리스트 열기
-            openProfileListBtn.setOnClickListener {
-                openProfileListCl.visibility = View.GONE
-                profileListTopCl.visibility = View.VISIBLE
-                profileListCl.visibility = View.VISIBLE
-
-                val expandAnimator = ValueAnimator.ofInt(0, originalHeight)
-                expandAnimator.addUpdateListener { valueAnimator ->
-                    profileListCl.layoutParams.height = valueAnimator.animatedValue as Int
-                    profileListCl.requestLayout()
-                }
-                expandAnimator.duration = 300
-                expandAnimator.start()
-            }
-
-            // 프로필 리스트 닫기
-            profileListCloseBtn.setOnClickListener {
-                collapseProfileList {
-                    if (isProfileSelected) {
-                        openProfileListTitleTv.visibility = View.GONE
-                        selectedProfileCl.visibility = View.VISIBLE
-                    }
-                }
-            }
-            // 개인 프로필로 작성하기
-            personalProfileTitleTv.setOnClickListener {
-                collapseProfileList {
-                    isProfileSelected = true
-                    openProfileListTitleTv.visibility = View.GONE
-                    selectedProfileCl.visibility = View.VISIBLE
-                }
-            }
             // 이미지 업로드
-            descFirstIv.setOnClickListener {
-                pickImageFromGallery(descFirstIv)
+            writeNoticeDescFirstIv.setOnClickListener {
+                pickImageFromGallery(writeNoticeDescFirstIv)
             }
-            descSecondIv.setOnClickListener {
-                pickImageFromGallery(descSecondIv)
+            writeNoticeDescSecondIv.setOnClickListener {
+                pickImageFromGallery(writeNoticeDescSecondIv)
             }
-            descThirdIv.setOnClickListener {
-                pickImageFromGallery(descThirdIv)
+            writeNoticeDescThirdIv.setOnClickListener {
+                pickImageFromGallery(writeNoticeDescThirdIv)
             }
-            descFourthIv.setOnClickListener {
-                pickImageFromGallery(descFourthIv)
+            writeNoticeDescFourthIv.setOnClickListener {
+                pickImageFromGallery(writeNoticeDescFourthIv)
             }
 
             // 이미지 삭제
-            deleteFirstIv.setOnClickListener { resetImage(descFirstIv) }
-            deleteSecondIv.setOnClickListener { resetImage(descSecondIv) }
-            deleteThirdIv.setOnClickListener { resetImage(descThirdIv) }
-            deleteFourthIv.setOnClickListener { resetImage(descFourthIv) }
+            writeNoticeDeleteFirstIv.setOnClickListener { resetImage(writeNoticeDeleteFirstIv) }
+            writeNoticeDeleteSecondIv.setOnClickListener { resetImage(writeNoticeDeleteSecondIv) }
+            writeNoticeDeleteThirdIv.setOnClickListener { resetImage(writeNoticeDeleteThirdIv) }
+            writeNoticeDeleteFourthIv.setOnClickListener { resetImage(writeNoticeDeleteFourthIv) }
         }
     }
 
     private fun pickImageFromGallery(targetImageView: ImageView) {
         val index = when (targetImageView) {
-            binding.descFirstIv -> 0
-            binding.descSecondIv -> 1
-            binding.descThirdIv -> 2
-            binding.descFourthIv -> 3
+            binding.writeNoticeDescFirstIv -> 0
+            binding.writeNoticeDescSecondIv -> 1
+            binding.writeNoticeDescThirdIv -> 2
+            binding.writeNoticeDescFourthIv -> 3
             else -> return  // 올바르지 않은 ImageView가 주어진 경우 함수를 종료합니다.
         }
 
@@ -188,29 +129,18 @@ class WritePostActivity : BaseActivity<ActivityWritePostBinding>(ActivityWritePo
         super.onDestroy()
         imagePickerLauncher.unregister()
     }
-    private fun collapseProfileList(afterCollapse: () -> Unit) {
-        val collapseAnimator = ValueAnimator.ofInt(originalHeight, 0)
-        with(binding) {
-            collapseAnimator.addUpdateListener { valueAnimator ->
-                profileListCl.layoutParams.height = valueAnimator.animatedValue as Int
-                profileListCl.requestLayout()
-            }
-            collapseAnimator.addListener(object : AnimatorListenerAdapter() {
-                override fun onAnimationEnd(animation: Animator) {
-                    profileListTopCl.visibility = View.GONE
-                    profileListCl.visibility = View.GONE
-                    openProfileListCl.visibility = View.VISIBLE
-                    afterCollapse()
-                }
-            })
-            collapseAnimator.duration = 300
-            collapseAnimator.start()
-        }
-    }
 
     private fun updateImageViewState() {
-        val imageViews = listOf(binding.descFirstIv, binding.descSecondIv, binding.descThirdIv, binding.descFourthIv)
-        val deleteImageViews = listOf(binding.deleteFirstIv, binding.deleteSecondIv, binding.deleteThirdIv, binding.deleteFourthIv)
+        val imageViews = listOf(
+            binding.writeNoticeDescFirstIv,
+            binding.writeNoticeDescSecondIv,
+            binding.writeNoticeDescThirdIv,
+            binding.writeNoticeDescFourthIv)
+        val deleteImageViews = listOf(
+            binding.writeNoticeDeleteFirstIv,
+            binding.writeNoticeDeleteSecondIv,
+            binding.writeNoticeDeleteThirdIv,
+            binding.writeNoticeDeleteFourthIv)
 
         for (i in imageViews.indices) {
             when (imageViewsState[i]) {
@@ -230,7 +160,11 @@ class WritePostActivity : BaseActivity<ActivityWritePostBinding>(ActivityWritePo
     }
 
     private fun resetImage(targetImageView: ImageView) {
-        val imageViews = listOf(binding.descFirstIv, binding.descSecondIv, binding.descThirdIv, binding.descFourthIv)
+        val imageViews = listOf(
+            binding.writeNoticeDescFirstIv,
+            binding.writeNoticeDescSecondIv,
+            binding.writeNoticeDescThirdIv,
+            binding.writeNoticeDescFourthIv)
 
         val index = imageViews.indexOf(targetImageView)
         if (index != -1) {
