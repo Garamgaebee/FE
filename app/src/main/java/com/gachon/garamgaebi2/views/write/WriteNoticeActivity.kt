@@ -1,22 +1,13 @@
 package com.gachon.garamgaebi2.views.write
 
-import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
-import android.animation.ValueAnimator
 import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.util.TypedValue
 import android.view.View
-import android.view.ViewTreeObserver
 import android.widget.ImageView
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.gachon.garamgaebi2.R
-import com.gachon.garamgaebi2.adapter.mainFeed.MainFeedRVAdapter
 import com.gachon.garamgaebi2.base.BaseActivity
 import com.gachon.garamgaebi2.databinding.ActivityWriteNoticeBinding
 import com.gachon.garamgaebi2.viewModel.WriteViewModel
@@ -32,12 +23,20 @@ class WriteNoticeActivity : BaseActivity<ActivityWriteNoticeBinding>(ActivityWri
     )
     private var currentSelectedImageView: ImageView? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        initToolbar()
-        initObserve()
-        initClickListener()
-    }
+    private val imageViews = listOf(
+        binding.writeNoticeDescFirstIv,
+        binding.writeNoticeDescSecondIv,
+        binding.writeNoticeDescThirdIv,
+        binding.writeNoticeDescFourthIv
+    )
+    private val deleteImageViews = listOf(
+        binding.writeNoticeDeleteFirstIv,
+        binding.writeNoticeDeleteSecondIv,
+        binding.writeNoticeDeleteThirdIv,
+        binding.writeNoticeDeleteFourthIv
+    )
+    private val imageViewPairs = imageViews.zip(deleteImageViews)
+
     override fun initView() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
@@ -64,6 +63,9 @@ class WriteNoticeActivity : BaseActivity<ActivityWriteNoticeBinding>(ActivityWri
                 }
             }
         }
+        initToolbar()
+        initObserve()
+        initClickListener()
     }
     private fun initToolbar() {
         with(binding.toolbar) {
@@ -85,25 +87,11 @@ class WriteNoticeActivity : BaseActivity<ActivityWriteNoticeBinding>(ActivityWri
             completeBtn.setOnClickListener {
                 finish()
             }
-            // 이미지 업로드
-            writeNoticeDescFirstIv.setOnClickListener {
-                pickImageFromGallery(writeNoticeDescFirstIv)
+            // 이미지 업로드 및 삭제
+            imageViewPairs.forEachIndexed { _, (imageView, deleteView) ->
+                imageView.setOnClickListener { pickImageFromGallery(imageView) }
+                deleteView.setOnClickListener { resetImage(imageView) }
             }
-            writeNoticeDescSecondIv.setOnClickListener {
-                pickImageFromGallery(writeNoticeDescSecondIv)
-            }
-            writeNoticeDescThirdIv.setOnClickListener {
-                pickImageFromGallery(writeNoticeDescThirdIv)
-            }
-            writeNoticeDescFourthIv.setOnClickListener {
-                pickImageFromGallery(writeNoticeDescFourthIv)
-            }
-
-            // 이미지 삭제
-            writeNoticeDeleteFirstIv.setOnClickListener { resetImage(writeNoticeDeleteFirstIv) }
-            writeNoticeDeleteSecondIv.setOnClickListener { resetImage(writeNoticeDeleteSecondIv) }
-            writeNoticeDeleteThirdIv.setOnClickListener { resetImage(writeNoticeDeleteThirdIv) }
-            writeNoticeDeleteFourthIv.setOnClickListener { resetImage(writeNoticeDeleteFourthIv) }
         }
     }
 
@@ -131,49 +119,32 @@ class WriteNoticeActivity : BaseActivity<ActivityWriteNoticeBinding>(ActivityWri
     }
 
     private fun updateImageViewState() {
-        val imageViews = listOf(
-            binding.writeNoticeDescFirstIv,
-            binding.writeNoticeDescSecondIv,
-            binding.writeNoticeDescThirdIv,
-            binding.writeNoticeDescFourthIv)
-        val deleteImageViews = listOf(
-            binding.writeNoticeDeleteFirstIv,
-            binding.writeNoticeDeleteSecondIv,
-            binding.writeNoticeDeleteThirdIv,
-            binding.writeNoticeDeleteFourthIv)
-
-        for (i in imageViews.indices) {
-            when (imageViewsState[i]) {
+        imageViewPairs.forEachIndexed { index, (imageView, deleteView) ->
+            when (imageViewsState[index]) {
                 ImageViewState.EMPTY -> {
-                    imageViews[i].setImageResource(R.color.thin_gray)
-                    deleteImageViews[i].visibility = View.GONE
+                    imageView.setImageResource(R.color.thin_gray)
+                    deleteView.visibility = View.GONE
                 }
                 ImageViewState.ADD -> {
-                    imageViews[i].setImageResource(R.drawable.activity_write_post_add_image_default)
-                    deleteImageViews[i].visibility = View.GONE
+                    imageView.setImageResource(R.drawable.activity_write_post_add_image_default)
+                    deleteView.visibility = View.GONE
                 }
                 ImageViewState.FILLED -> {
-                    deleteImageViews[i].visibility = View.VISIBLE
+                    deleteView.visibility = View.VISIBLE
                 }
             }
         }
     }
 
     private fun resetImage(targetImageView: ImageView) {
-        val imageViews = listOf(
-            binding.writeNoticeDescFirstIv,
-            binding.writeNoticeDescSecondIv,
-            binding.writeNoticeDescThirdIv,
-            binding.writeNoticeDescFourthIv)
-
-        val index = imageViews.indexOf(targetImageView)
+        val index = getImageViewIndex(targetImageView)
         if (index != -1) {
             for (i in index until imageViewsState.size - 1) {
                 imageViews[i].setImageDrawable(imageViews[i + 1].drawable)
                 imageViewsState[i] = imageViewsState[i + 1]
             }
             // 마지막 이미지 초기화
-            imageViews[imageViewsState.size - 1].setImageResource(R.color.thin_gray)  // 또는 초기 이미지로 설정
+            imageViews.last().setImageResource(R.color.thin_gray)
             imageViewsState[imageViewsState.size - 1] = ImageViewState.EMPTY
 
             // 모든 이미지뷰의 상태를 확인하고 마지막 채워진 이미지 다음을 ADD 상태로 설정
@@ -185,5 +156,9 @@ class WriteNoticeActivity : BaseActivity<ActivityWriteNoticeBinding>(ActivityWri
             }
             updateImageViewState()
         }
+    }
+
+    private fun getImageViewIndex(targetImageView: ImageView): Int {
+        return imageViews.indexOf(targetImageView)
     }
 }
