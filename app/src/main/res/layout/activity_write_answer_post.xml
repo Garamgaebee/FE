@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".views.write.WritePostActivity">
+    tools:context=".views.write.WriteAnswerPostActivity">
 
     <data>
 
@@ -42,7 +42,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:fontFamily="@font/spoqa_han_sans_neo_medium"
-                    android:text="@string/write_post_title"
+                    android:text="@string/write_answer_post_title"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
@@ -275,7 +275,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/write_post_et_deco_margin_start"
                         android:layout_marginTop="24dp"
-                        android:src="@drawable/ic_activity_write_post_et_deco" />
+                        android:src="@drawable/ic_activity_write_answer_post_et_deco" />
                     <EditText
                         android:id="@+id/desc_et"
                         android:layout_width="match_parent"
@@ -329,38 +329,38 @@
                     android:layout_marginBottom="30dp"
                     android:orientation="horizontal">
                     <ImageView
-                        android:id="@+id/write_post_desc_first_iv"
+                        android:id="@+id/write_answer_post_desc_first_iv"
                         android:layout_width="@dimen/write_post_iv_size"
                         android:layout_height="@dimen/write_post_iv_size"
                         android:layout_marginEnd="@dimen/write_post_iv_margin_horizontal_between_iv"
                         android:src="@drawable/activity_write_post_add_image_default"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/write_post_desc_second_iv"
+                        app:layout_constraintEnd_toStartOf="@id/write_answer_post_desc_second_iv"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
                     <ImageView
-                        android:id="@+id/write_post_desc_second_iv"
+                        android:id="@+id/write_answer_post_desc_second_iv"
                         android:layout_width="@dimen/write_post_iv_size"
                         android:layout_height="@dimen/write_post_iv_size"
                         android:layout_marginEnd="@dimen/write_post_iv_margin_horizontal_between_iv"
                         android:src="@color/thin_gray"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/write_post_desc_third_iv"
-                        app:layout_constraintStart_toEndOf="@+id/write_post_desc_first_iv"
+                        app:layout_constraintEnd_toStartOf="@id/write_answer_post_desc_third_iv"
+                        app:layout_constraintStart_toEndOf="@+id/write_answer_post_desc_first_iv"
                         app:layout_constraintTop_toTopOf="parent" />
                     <ImageView
-                        android:id="@+id/write_post_desc_third_iv"
+                        android:id="@+id/write_answer_post_desc_third_iv"
                         android:layout_width="@dimen/write_post_iv_size"
                         android:layout_height="@dimen/write_post_iv_size"
                         android:layout_marginEnd="@dimen/write_post_iv_margin_horizontal_between_iv"
                         android:src="@color/thin_gray"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/write_post_desc_fourth_iv"
-                        app:layout_constraintStart_toEndOf="@+id/write_post_desc_second_iv"
+                        app:layout_constraintEnd_toStartOf="@id/write_answer_post_desc_fourth_iv"
+                        app:layout_constraintStart_toEndOf="@+id/write_answer_post_desc_second_iv"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageView
-                        android:id="@+id/write_post_desc_fourth_iv"
+                        android:id="@+id/write_answer_post_desc_fourth_iv"
                         android:layout_width="@dimen/write_post_iv_size"
                         android:layout_height="@dimen/write_post_iv_size"
                         android:src="@color/thin_gray"
@@ -368,37 +368,37 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
                     <ImageView
-                        android:id="@+id/write_post_delete_first_iv"
+                        android:id="@+id/write_answer_post_delete_first_iv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_delete_image"
                         android:visibility="gone"
-                        app:layout_constraintTop_toTopOf="@id/write_post_desc_first_iv"
-                        app:layout_constraintEnd_toEndOf="@+id/write_post_desc_first_iv" />
+                        app:layout_constraintTop_toTopOf="@id/write_answer_post_desc_first_iv"
+                        app:layout_constraintEnd_toEndOf="@+id/write_answer_post_desc_first_iv" />
                     <ImageView
-                        android:id="@+id/write_post_delete_second_iv"
+                        android:id="@+id/write_answer_post_delete_second_iv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_delete_image"
                         android:visibility="gone"
-                        app:layout_constraintTop_toTopOf="@id/write_post_desc_second_iv"
-                        app:layout_constraintEnd_toEndOf="@+id/write_post_desc_second_iv" />
+                        app:layout_constraintTop_toTopOf="@id/write_answer_post_desc_second_iv"
+                        app:layout_constraintEnd_toEndOf="@+id/write_answer_post_desc_second_iv" />
                     <ImageView
-                        android:id="@+id/write_post_delete_third_iv"
+                        android:id="@+id/write_answer_post_delete_third_iv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_delete_image"
                         android:visibility="gone"
-                        app:layout_constraintTop_toTopOf="@id/write_post_delete_third_iv"
-                        app:layout_constraintEnd_toEndOf="@+id/write_post_desc_third_iv" />
+                        app:layout_constraintTop_toTopOf="@id/write_answer_post_delete_third_iv"
+                        app:layout_constraintEnd_toEndOf="@+id/write_answer_post_desc_third_iv" />
                     <ImageView
-                        android:id="@+id/write_post_delete_fourth_iv"
+                        android:id="@+id/write_answer_post_delete_fourth_iv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_delete_image"
                         android:visibility="gone"
-                        app:layout_constraintTop_toTopOf="@id/write_post_delete_fourth_iv"
-                        app:layout_constraintEnd_toEndOf="@+id/write_post_desc_fourth_iv" />
+                        app:layout_constraintTop_toTopOf="@id/write_answer_post_delete_fourth_iv"
+                        app:layout_constraintEnd_toEndOf="@+id/write_answer_post_desc_fourth_iv" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
         </ScrollView>
