@@ -5,8 +5,6 @@ import android.animation.AnimatorListenerAdapter
 import android.animation.ValueAnimator
 import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.util.TypedValue
 import android.view.View
 import android.view.ViewTreeObserver
@@ -37,12 +35,20 @@ class WriteAnswerPostActivity : BaseActivity<ActivityWriteAnswerPostBinding>(Act
     )
     private var currentSelectedImageView: ImageView? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        initToolbar()
-        initObserve()
-        initClickListener()
-    }
+    private val imageViews = listOf(
+        binding.writeAnswerPostDescFirstIv,
+        binding.writeAnswerPostDescSecondIv,
+        binding.writeAnswerPostDescThirdIv,
+        binding.writeAnswerPostDescFourthIv
+    )
+    private val deleteImageViews = listOf(
+        binding.writeAnswerPostDeleteFirstIv,
+        binding.writeAnswerPostDeleteSecondIv,
+        binding.writeAnswerPostDeleteThirdIv,
+        binding.writeAnswerPostDeleteFourthIv
+    )
+    private val imageViewPairs = imageViews.zip(deleteImageViews)
+    
     override fun initView() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
@@ -69,6 +75,9 @@ class WriteAnswerPostActivity : BaseActivity<ActivityWriteAnswerPostBinding>(Act
                 }
             }
         }
+        initToolbar()
+        initObserve()
+        initClickListener()
     }
     private fun initToolbar() {
         with(binding.toolbar) {
@@ -145,25 +154,11 @@ class WriteAnswerPostActivity : BaseActivity<ActivityWriteAnswerPostBinding>(Act
                     selectedProfileCl.visibility = View.VISIBLE
                 }
             }
-            // 이미지 업로드
-            writeAnswerPostDescFirstIv.setOnClickListener {
-                pickImageFromGallery(writeAnswerPostDescFirstIv)
+            // 이미지 업로드 및 삭제
+            imageViewPairs.forEachIndexed { _, (imageView, deleteView) ->
+                imageView.setOnClickListener { pickImageFromGallery(imageView) }
+                deleteView.setOnClickListener { resetImage(imageView) }
             }
-            writeAnswerPostDescSecondIv.setOnClickListener {
-                pickImageFromGallery(writeAnswerPostDescSecondIv)
-            }
-            writeAnswerPostDescThirdIv.setOnClickListener {
-                pickImageFromGallery(writeAnswerPostDescThirdIv)
-            }
-            writeAnswerPostDescFourthIv.setOnClickListener {
-                pickImageFromGallery(writeAnswerPostDescFourthIv)
-            }
-
-            // 이미지 삭제
-            writeAnswerPostDeleteFirstIv.setOnClickListener { resetImage(writeAnswerPostDeleteFirstIv) }
-            writeAnswerPostDeleteSecondIv.setOnClickListener { resetImage(writeAnswerPostDeleteSecondIv) }
-            writeAnswerPostDeleteThirdIv.setOnClickListener { resetImage(writeAnswerPostDeleteThirdIv) }
-            writeAnswerPostDeleteFourthIv.setOnClickListener { resetImage(writeAnswerPostDeleteFourthIv) }
         }
     }
 
@@ -210,49 +205,32 @@ class WriteAnswerPostActivity : BaseActivity<ActivityWriteAnswerPostBinding>(Act
     }
 
     private fun updateImageViewState() {
-        val imageViews = listOf(
-            binding.writeAnswerPostDescFirstIv,
-            binding.writeAnswerPostDescSecondIv,
-            binding.writeAnswerPostDescThirdIv,
-            binding.writeAnswerPostDescFourthIv)
-        val deleteImageViews = listOf(
-            binding.writeAnswerPostDeleteFirstIv,
-            binding.writeAnswerPostDeleteSecondIv,
-            binding.writeAnswerPostDeleteThirdIv,
-            binding.writeAnswerPostDeleteFourthIv)
-
-        for (i in imageViews.indices) {
-            when (imageViewsState[i]) {
+        imageViewPairs.forEachIndexed { index, (imageView, deleteView) ->
+            when (imageViewsState[index]) {
                 ImageViewState.EMPTY -> {
-                    imageViews[i].setImageResource(R.color.thin_gray)
-                    deleteImageViews[i].visibility = View.GONE
+                    imageView.setImageResource(R.color.thin_gray)
+                    deleteView.visibility = View.GONE
                 }
                 ImageViewState.ADD -> {
-                    imageViews[i].setImageResource(R.drawable.activity_write_post_add_image_default)
-                    deleteImageViews[i].visibility = View.GONE
+                    imageView.setImageResource(R.drawable.activity_write_post_add_image_default)
+                    deleteView.visibility = View.GONE
                 }
                 ImageViewState.FILLED -> {
-                    deleteImageViews[i].visibility = View.VISIBLE
+                    deleteView.visibility = View.VISIBLE
                 }
             }
         }
     }
 
     private fun resetImage(targetImageView: ImageView) {
-        val imageViews = listOf(
-            binding.writeAnswerPostDescFirstIv,
-            binding.writeAnswerPostDescSecondIv,
-            binding.writeAnswerPostDescThirdIv,
-            binding.writeAnswerPostDescFourthIv)
-
-        val index = imageViews.indexOf(targetImageView)
+        val index = getImageViewIndex(targetImageView)
         if (index != -1) {
             for (i in index until imageViewsState.size - 1) {
                 imageViews[i].setImageDrawable(imageViews[i + 1].drawable)
                 imageViewsState[i] = imageViewsState[i + 1]
             }
             // 마지막 이미지 초기화
-            imageViews[imageViewsState.size - 1].setImageResource(R.color.thin_gray)  // 또는 초기 이미지로 설정
+            imageViews.last().setImageResource(R.color.thin_gray)
             imageViewsState[imageViewsState.size - 1] = ImageViewState.EMPTY
 
             // 모든 이미지뷰의 상태를 확인하고 마지막 채워진 이미지 다음을 ADD 상태로 설정
@@ -264,5 +242,9 @@ class WriteAnswerPostActivity : BaseActivity<ActivityWriteAnswerPostBinding>(Act
             }
             updateImageViewState()
         }
+    }
+
+    private fun getImageViewIndex(targetImageView: ImageView): Int {
+        return imageViews.indexOf(targetImageView)
     }
 }
