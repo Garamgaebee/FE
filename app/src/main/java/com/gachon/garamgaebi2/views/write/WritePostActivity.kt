@@ -15,6 +15,7 @@ import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gachon.garamgaebi2.R
 import com.gachon.garamgaebi2.adapter.mainFeed.MainFeedRVAdapter
+import com.gachon.garamgaebi2.adapter.write.ProfileSelectRVAdapter
 import com.gachon.garamgaebi2.base.BaseActivity
 import com.gachon.garamgaebi2.databinding.ActivityWritePostBinding
 import com.gachon.garamgaebi2.viewModel.WriteViewModel
@@ -34,19 +35,9 @@ class WritePostActivity : BaseActivity<ActivityWritePostBinding>(ActivityWritePo
     )
     private var currentSelectedImageView: ImageView? = null
 
-    private val imageViews = listOf(
-        binding.writePostDescFirstIv,
-        binding.writePostDescSecondIv,
-        binding.writePostDescThirdIv,
-        binding.writePostDescFourthIv
-    )
-    private val deleteImageViews = listOf(
-        binding.writePostDeleteFirstIv,
-        binding.writePostDeleteSecondIv,
-        binding.writePostDeleteThirdIv,
-        binding.writePostDeleteFourthIv
-    )
-    private val imageViewPairs = imageViews.zip(deleteImageViews)
+    private lateinit var imageViews : List<ImageView>
+    private lateinit var deleteImageViews : List<ImageView>
+    private lateinit var imageViewPairs : List<Pair<ImageView, ImageView>>
 
     override fun initView() {
         binding.viewModel = viewModel
@@ -75,9 +66,24 @@ class WritePostActivity : BaseActivity<ActivityWritePostBinding>(ActivityWritePo
             }
         }
 
+        imageViews = listOf(
+            binding.writePostDescFirstIv,
+            binding.writePostDescSecondIv,
+            binding.writePostDescThirdIv,
+            binding.writePostDescFourthIv
+        )
+        deleteImageViews = listOf(
+            binding.writePostDeleteFirstIv,
+            binding.writePostDeleteSecondIv,
+            binding.writePostDeleteThirdIv,
+            binding.writePostDeleteFourthIv
+        )
+        imageViewPairs = imageViews.zip(deleteImageViews)
+
         initToolbar()
         initObserve()
         initClickListener()
+        initRecycler()
     }
     private fun initToolbar() {
         with(binding.toolbar) {
@@ -103,7 +109,7 @@ class WritePostActivity : BaseActivity<ActivityWritePostBinding>(ActivityWritePo
                 resources.displayMetrics
             ).toInt())
             )
-            adapter = MainFeedRVAdapter(listOf("ㅇㅇ"))
+            adapter = ProfileSelectRVAdapter(listOf("no_image", "one_image", "second_image", "more_image"))
         }
     }
 

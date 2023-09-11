@@ -248,7 +248,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="24dp"
-                        tools:listitem="@layout/item_activity_write_post_profile"
+                        tools:listitem="@layout/item_profile_select"
                         android:layout_marginHorizontal="@dimen/write_post_profile_list_margin_horizontal"
                         app:layout_constraintTop_toTopOf="parent"/>
 
