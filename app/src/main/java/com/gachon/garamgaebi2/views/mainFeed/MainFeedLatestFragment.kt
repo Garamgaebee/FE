@@ -26,7 +26,10 @@ class MainFeedLatestFragment : BaseBindingFragment<FragmentMainFeedLatestBinding
     private fun initRecyclerView() {
         binding.fragmentMainFeedLatestRv.apply {
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-            adapter = MainFeedRVAdapter(listOf("ㅇㅇ"))
+            adapter = MainFeedRVAdapter(listOf("no_image", "one_image", "second_image", "more_image"))
+            addItemDecoration(MainFeedRVItemDecoration(
+                0.5 * context.resources.displayMetrics.density,
+                resources.getColor(R.color.light_gray, null)))
         }
     }
 }

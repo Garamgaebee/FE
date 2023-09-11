@@ -20,22 +20,26 @@ class MainFeedRVAdapter(
         const val MORE_IMAGE = 3
     }
 
-    inner class NoImageViewHolder(private val noImageBinding: ItemFragmentMainFeedNoImageBinding) : RecyclerView.ViewHolder(noImageBinding.root) {
+    inner class NoImageViewHolder(private val noImageBinding: ItemFragmentMainFeedNoImageBinding)
+        : RecyclerView.ViewHolder(noImageBinding.root) {
         fun bind(item : String) {
         }
     }
 
-    inner class OneImageViewHolder(private val oneImageBinding: ItemFragmentMainFeedOneImageBinding) : RecyclerView.ViewHolder(oneImageBinding.root) {
+    inner class OneImageViewHolder(private val oneImageBinding: ItemFragmentMainFeedOneImageBinding)
+        : RecyclerView.ViewHolder(oneImageBinding.root) {
         fun bind(item : String) {
         }
     }
 
-    inner class SecondImageViewHolder(private val twoImageBinding: ItemFragmentMainFeedTwoImageBinding) : RecyclerView.ViewHolder(twoImageBinding.root) {
+    inner class SecondImageViewHolder(private val twoImageBinding: ItemFragmentMainFeedTwoImageBinding)
+        : RecyclerView.ViewHolder(twoImageBinding.root) {
         fun bind(item : String) {
         }
     }
 
-    inner class MoreImageViewHolder(private val moreImageBinding: ItemFragmentMainFeedMoreImageBinding) : RecyclerView.ViewHolder(moreImageBinding.root) {
+    inner class MoreImageViewHolder(private val moreImageBinding: ItemFragmentMainFeedMoreImageBinding)
+        : RecyclerView.ViewHolder(moreImageBinding.root) {
         fun bind(item : String) {
         }
     }
@@ -64,8 +68,7 @@ class MainFeedRVAdapter(
     }
 
     override fun getItemViewType(position: Int): Int {
-        val item = items[position]
-        return when (item) {
+        return when (items[position]) {
             "no_image" -> NO_IMAGE
             "one_image" -> ONE_IMAGE
             "second_image" -> SECOND_IMAGE
