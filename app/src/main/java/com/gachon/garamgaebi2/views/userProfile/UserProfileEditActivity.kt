@@ -1,17 +1,24 @@
 package com.gachon.garamgaebi2.views.userProfile
 
 import android.Manifest
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
+import android.animation.ValueAnimator
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.util.TypedValue
 import android.view.View
+import android.view.ViewTreeObserver
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
 import com.gachon.garamgaebi2.BR
 import com.gachon.garamgaebi2.R
+import com.gachon.garamgaebi2.adapter.write.ProfileSelectRVAdapter
 import com.gachon.garamgaebi2.base.BaseActivity
 import com.gachon.garamgaebi2.databinding.ActivityCommunityProfileEditBinding
 import com.gachon.garamgaebi2.databinding.ActivityUserProfileEditBinding
@@ -19,6 +26,8 @@ import com.gachon.garamgaebi2.util.KeyboardVisibilityUtils
 import com.gachon.garamgaebi2.viewModel.CommunityProfileViewModel
 import com.gachon.garamgaebi2.viewModel.RegisterViewModel
 import com.gachon.garamgaebi2.viewModel.UserProfileViewModel
+import com.gachon.garamgaebi2.views.write.WritePostActivity
+import com.gachon.garamgaebi2.views.write.WritePostRVItemDecoration
 
 class UserProfileEditActivity : BaseActivity<ActivityUserProfileEditBinding>(ActivityUserProfileEditBinding::inflate){
     private val viewModel by viewModels<UserProfileViewModel>()
@@ -39,6 +48,11 @@ class UserProfileEditActivity : BaseActivity<ActivityUserProfileEditBinding>(Act
         binding.profileIv.load(uri)
 
     }
+
+    // 애니메이션 초기 높이값을 설정하기 위한 변수
+    var originalHeight: Int = 0
+    // 프로필 선택 여부
+    private var isProfileSelected: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -81,7 +95,7 @@ class UserProfileEditActivity : BaseActivity<ActivityUserProfileEditBinding>(Act
         observe()
         initListener()
         initToolbar()
-
+        initRecycler()
     }
 
     private fun observe(){
@@ -128,7 +142,6 @@ class UserProfileEditActivity : BaseActivity<ActivityUserProfileEditBinding>(Act
     }
 
     private fun initListener(){
-
         binding.completeBtn.setOnClickListener {
             // 편집 완료
             finish()
@@ -166,6 +179,82 @@ class UserProfileEditActivity : BaseActivity<ActivityUserProfileEditBinding>(Act
                 linkLayout.border2.visibility = View.VISIBLE
                 viewModel.onClickMajorInput()
             }
+        }
+        with(binding) {
+            profileListCl.viewTreeObserver.addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {
+                override fun onPreDraw(): Boolean {
+                    profileListCl.viewTreeObserver.removeOnPreDrawListener(this)
+                    originalHeight = profileListCl.measuredHeight
+                    profileListCl.layoutParams.height = 0
+                    profileListCl.visibility = View.GONE
+                    return true
+                }
+            })
+
+            // 프로필 리스트 열기
+            openProfileListBtn.setOnClickListener {
+                openProfileListCl.visibility = View.GONE
+                profileListTopCl.visibility = View.VISIBLE
+                profileListCl.visibility = View.VISIBLE
+
+                val expandAnimator = ValueAnimator.ofInt(0, originalHeight)
+                expandAnimator.addUpdateListener { valueAnimator ->
+                    profileListCl.layoutParams.height = valueAnimator.animatedValue as Int
+                    profileListCl.requestLayout()
+                }
+                expandAnimator.duration = 300
+                expandAnimator.start()
+            }
+
+            // 프로필 리스트 닫기
+            profileListCloseBtn.setOnClickListener {
+                collapseProfileList {
+                    if (isProfileSelected) {
+                        selectedProfileCl.visibility = View.VISIBLE
+                    }
+                }
+            }
+            // 대표 커뮤니티 등록하지 않기
+            noSelectProfileTitleTv.setOnClickListener {
+                collapseProfileList {
+                    isProfileSelected = true
+                    selectedProfileCl.visibility = View.VISIBLE
+                }
+            }
+
+        }
+    }
+    private fun collapseProfileList(afterCollapse: () -> Unit) {
+        val collapseAnimator = ValueAnimator.ofInt(originalHeight, 0)
+        with(binding) {
+            collapseAnimator.addUpdateListener { valueAnimator ->
+                profileListCl.layoutParams.height = valueAnimator.animatedValue as Int
+                profileListCl.requestLayout()
+            }
+            collapseAnimator.addListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator) {
+                    profileListTopCl.visibility = View.GONE
+                    profileListCl.visibility = View.GONE
+                    openProfileListCl.visibility = View.VISIBLE
+                    afterCollapse()
+                }
+            })
+            collapseAnimator.duration = 300
+            collapseAnimator.start()
+        }
+    }
+
+    private fun initRecycler() {
+        binding.profileListRv.apply {
+            layoutManager = LinearLayoutManager(this@UserProfileEditActivity, LinearLayoutManager.VERTICAL, false)
+            addItemDecoration(
+                WritePostRVItemDecoration(
+                    TypedValue.applyDimension(
+                        TypedValue.COMPLEX_UNIT_DIP, 21f,
+                        resources.displayMetrics
+                    ).toInt())
+            )
+            adapter = ProfileSelectRVAdapter(listOf("1", "2", "3", "4"))
         }
     }
 

@@ -22,7 +22,7 @@
     <dimen name="write_post_choose_profile_margin_horizontal">43dp</dimen>
     <dimen name="write_post_choose_profile_height">43dp</dimen>
     <dimen name="write_post_list_btn_margin_end">43dp</dimen>
-    <dimen name="write_post_list_btn_selected_margin_end">43dp</dimen>
+    <dimen name="write_post_list_btn_selected_margin_end">13.5dp</dimen>
     <dimen name="write_post_profile_list_margin_horizontal">43dp</dimen>
     <dimen name="write_post_personal_profile_margin_start">43dp</dimen>
     <dimen name="write_post_selected_profile_margin_horizontal">13dp</dimen>

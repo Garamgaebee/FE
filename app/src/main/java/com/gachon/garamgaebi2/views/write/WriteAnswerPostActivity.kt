@@ -35,19 +35,11 @@ class WriteAnswerPostActivity : BaseActivity<ActivityWriteAnswerPostBinding>(Act
     )
     private var currentSelectedImageView: ImageView? = null
 
-    private val imageViews = listOf(
-        binding.writeAnswerPostDescFirstIv,
-        binding.writeAnswerPostDescSecondIv,
-        binding.writeAnswerPostDescThirdIv,
-        binding.writeAnswerPostDescFourthIv
-    )
-    private val deleteImageViews = listOf(
-        binding.writeAnswerPostDeleteFirstIv,
-        binding.writeAnswerPostDeleteSecondIv,
-        binding.writeAnswerPostDeleteThirdIv,
-        binding.writeAnswerPostDeleteFourthIv
-    )
-    private val imageViewPairs = imageViews.zip(deleteImageViews)
+    private lateinit var imageViews : List<ImageView>
+    private lateinit var deleteImageViews : List<ImageView>
+    private lateinit var imageViewPairs : List<Pair<ImageView, ImageView>>
+
+
     
     override fun initView() {
         binding.viewModel = viewModel
@@ -75,9 +67,24 @@ class WriteAnswerPostActivity : BaseActivity<ActivityWriteAnswerPostBinding>(Act
                 }
             }
         }
+        imageViews = listOf(
+            binding.writeAnswerPostDescFirstIv,
+            binding.writeAnswerPostDescSecondIv,
+            binding.writeAnswerPostDescThirdIv,
+            binding.writeAnswerPostDescFourthIv
+        )
+        deleteImageViews = listOf(
+            binding.writeAnswerPostDeleteFirstIv,
+            binding.writeAnswerPostDeleteSecondIv,
+            binding.writeAnswerPostDeleteThirdIv,
+            binding.writeAnswerPostDeleteFourthIv
+        )
+        imageViewPairs = imageViews.zip(deleteImageViews)
+
         initToolbar()
         initObserve()
         initClickListener()
+        initRecycler()
     }
     private fun initToolbar() {
         with(binding.toolbar) {
@@ -103,7 +110,7 @@ class WriteAnswerPostActivity : BaseActivity<ActivityWriteAnswerPostBinding>(Act
                         resources.displayMetrics
                     ).toInt())
             )
-            adapter = MainFeedRVAdapter(listOf("ㅇㅇ"))
+            adapter = MainFeedRVAdapter(listOf("1","2","3","4"))
         }
     }
 

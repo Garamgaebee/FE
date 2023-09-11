@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+
     <data>
+
         <variable
             name="viewModel"
             type="com.gachon.garamgaebi2.viewModel.UserProfileViewModel" />
-        <import type="android.view.View"/>
+
+        <import type="android.view.View" />
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:clickable="true"
         android:focusableInTouchMode="true"
-    tools:context=".views.userProfile.UserProfileEditActivity">
+        tools:context=".views.userProfile.UserProfileEditActivity">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appbar_layout"
@@ -54,128 +58,326 @@
                     android:src="@drawable/activity_top_bar_complete_btn_selector" />
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.AppBarLayout>
-        
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profile_iv"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:background="@drawable/background_circle_iv"
-            android:src="@drawable/background_circle_iv"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/appbar_layout"
-            android:layout_marginTop="29dp"
-            android:scaleType="centerCrop"
-            />
 
-        <include
-            android:id="@+id/name_input"
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            layout="@layout/component_community_profile_textfield"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/profile_iv"
-            app:layout_constraintBottom_toTopOf="@+id/community_input"
-            android:layout_marginTop="15dp"
-            android:background="@color/common_google_signin_btn_text_light"
-            app:inputName="@{@string/community_name}"
-            app:inputContent="@={viewModel.name}"
-            app:inputValid="@{viewModel.nameIsValid}"
-            app:inputError="@{@string/community_name_hint}"
-            app:onTextChanged="@{viewModel::onNameTextChanged}"
-            android:onClick="@{()-> viewModel.onClickNameInput()}"
-            />
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/community_input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="32dp"
-            android:paddingVertical="20dp"
-            android:background="@drawable/activity_community_profile_bottom"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/name_input"
-            app:layout_constraintBottom_toTopOf="@id/description_input"
-            >
-            <TextView
-                android:id="@+id/name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/user_profile_community_description"
-                android:textSize="16sp"
-                android:textColor="@{viewModel.communityInfoIsValid == true ? @color/main_blue : @color/black}"
-                android:textAlignment="center"
-                android:fontFamily="@font/spoqa_han_sans_neo_bold"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/container_input"
-                />
-            <LinearLayout
-                android:id="@+id/container_input"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/appbar_layout">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingStart="14dp"
-                app:layout_constraintTop_toBottomOf="@id/name"
-                android:gravity="center_vertical"
-                >
-            <TextView
-                android:id="@+id/check_tv"
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="7dp"
-                android:layout_marginHorizontal="17dp"
-                android:text="@string/user_profile_no_community"
-                android:textSize="15sp"
-                android:fontFamily="@font/spoqa_han_sans_neo_bold"
-                android:textColor="@color/light_gray"
-                android:gravity="center"
-                android:visibility="@{viewModel.communityInfoIsValid == true ? View.GONE : View.VISIBLE}"
-                app:layout_constraintTop_toBottomOf="@id/border2"
-                />
-            </LinearLayout>
+                android:layout_height="wrap_content">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profile_iv"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_marginTop="29dp"
+                    android:background="@drawable/background_circle_iv"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/background_circle_iv"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <include
+                    android:id="@+id/name_input"
+                    layout="@layout/component_community_profile_textfield"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/common_google_signin_btn_text_light"
+                    android:onClick="@{()-> viewModel.onClickNameInput()}"
+                    app:inputContent="@={viewModel.name}"
+                    app:inputError="@{@string/community_name_hint}"
+                    app:inputName="@{@string/community_name}"
+                    app:inputValid="@{viewModel.nameIsValid}"
+                    app:layout_constraintBottom_toTopOf="@+id/community_input"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/profile_iv"
+                    app:onTextChanged="@{viewModel::onNameTextChanged}" />
+
+                <LinearLayout
+                    android:id="@+id/community_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/activity_community_profile_bottom"
+                    android:orientation="vertical"
+                    android:paddingVertical="20dp"
+                    app:layout_constraintBottom_toTopOf="@id/description_input"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/name_input">
+
+                    <TextView
+                        android:id="@+id/name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:fontFamily="@font/spoqa_han_sans_neo_bold"
+                        android:text="@string/user_profile_community_description"
+                        android:textAlignment="center"
+                        android:textColor="@{viewModel.communityInfoIsValid == true ? @color/main_blue : @color/black}"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <LinearLayout
+                        android:id="@+id/container_input"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        app:layout_constraintTop_toBottomOf="@id/name">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/open_profile_list_cl"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/write_post_choose_profile_margin_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:background="@drawable/activity_write_post_profile_open_background"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <ImageButton
+                                android:id="@+id/open_profile_list_btn"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/write_post_list_btn_selected_margin_end"
+                                android:background="@android:color/transparent"
+                                android:src="@drawable/ic_down_arrow"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/selected_profile_cl"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginVertical="14.5dp"
+                                android:layout_marginStart="@dimen/write_post_selected_profile_margin_horizontal"
+                                android:visibility="visible"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:id="@+id/selected_profile_image_cl"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent">
+
+                                    <androidx.cardview.widget.CardView
+                                        android:id="@+id/personal_profile_cv"
+                                        android:layout_width="48dp"
+                                        android:layout_height="48dp"
+                                        app:cardCornerRadius="30dp"
+                                        app:cardElevation="0dp"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent">
+
+                                        <ImageView
+                                            android:id="@+id/select_profile_iv"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:src="@color/black" />
+                                    </androidx.cardview.widget.CardView>
+
+                                    <androidx.cardview.widget.CardView
+                                        android:id="@+id/community_profile_cv"
+                                        android:layout_width="48dp"
+                                        android:layout_height="48dp"
+                                        android:layout_marginStart="32dp"
+                                        app:cardCornerRadius="30dp"
+                                        app:cardElevation="-1dp"
+                                        app:layout_constraintStart_toStartOf="@id/personal_profile_cv"
+                                        app:layout_constraintTop_toTopOf="@id/personal_profile_cv">
+
+                                        <ImageView
+                                            android:id="@+id/community_profile_iv"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:src="@color/light_gray" />
+                                    </androidx.cardview.widget.CardView>
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                                <TextView
+                                    android:id="@+id/selected_profile_nickname_tv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="12dp"
+                                    android:fontFamily="@font/spoqa_han_sans_neo_bold"
+                                    android:text="이름은열자이내로작성"
+                                    android:textColor="@color/heavy_gray"
+                                    android:textSize="12sp"
+                                    app:layout_constraintBottom_toTopOf="@id/selected_profile_department_tv"
+                                    app:layout_constraintStart_toEndOf="@+id/selected_profile_image_cl"
+                                    app:layout_constraintTop_toTopOf="@+id/selected_profile_image_cl" />
+
+                                <TextView
+                                    android:id="@+id/selected_profile_department_tv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/spoqa_han_sans_neo_regular"
+                                    android:text="재학또는졸업 학과"
+                                    android:textColor="@color/heavy_gray"
+                                    android:textSize="10sp"
+                                    app:layout_constraintBottom_toTopOf="@id/selected_profile_study_tv"
+                                    app:layout_constraintStart_toStartOf="@+id/selected_profile_nickname_tv"
+                                    app:layout_constraintTop_toBottomOf="@+id/selected_profile_nickname_tv" />
+
+                                <TextView
+                                    android:id="@+id/selected_profile_study_tv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/spoqa_han_sans_neo_medium"
+                                    android:text="스터디이름 스터디"
+                                    android:textColor="@color/heavy_gray"
+                                    android:textSize="10sp"
+                                    app:layout_constraintBottom_toBottomOf="@id/selected_profile_image_cl"
+                                    app:layout_constraintStart_toStartOf="@+id/selected_profile_nickname_tv"
+                                    app:layout_constraintTop_toBottomOf="@+id/selected_profile_department_tv" />
+
+                                <TextView
+                                    android:id="@+id/selected_profile_member_tv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="7dp"
+                                    android:fontFamily="@font/spoqa_han_sans_neo_medium"
+                                    android:text="@string/member"
+                                    android:textColor="@color/light_gray"
+                                    android:textSize="10sp"
+                                    app:layout_constraintBottom_toBottomOf="@+id/selected_profile_study_tv"
+                                    app:layout_constraintStart_toEndOf="@+id/selected_profile_study_tv"
+                                    app:layout_constraintTop_toTopOf="@id/selected_profile_study_tv" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/profile_list_top_cl"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/write_post_choose_profile_margin_horizontal"
+                            android:layout_marginTop="17dp"
+                            android:background="@drawable/activity_write_post_profile_list_top_background"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:id="@+id/profile_list_title_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/write_post_choose_profile_margin_horizontal"
+                                android:layout_marginTop="18dp"
+                                android:layout_marginBottom="12dp"
+                                android:fontFamily="@font/spoqa_han_sans_neo_medium"
+                                android:text="@string/write_post_choose_profile"
+                                android:textColor="@color/black"
+                                android:textSize="14sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <ImageButton
+                                android:id="@+id/profile_list_close_btn"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="16dp"
+                                android:layout_marginEnd="@dimen/write_post_list_btn_margin_end"
+                                android:layout_marginBottom="10dp"
+                                android:background="@android:color/transparent"
+                                android:src="@drawable/ic_up_arrow"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/profile_list_cl"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/write_post_choose_profile_margin_horizontal"
+                            android:background="@drawable/activity_write_post_profile_list_background"
+                            android:visibility="invisible">
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/profile_list_rv"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="@dimen/write_post_profile_list_margin_horizontal"
+                                android:layout_marginTop="24dp"
+                                app:layout_constraintTop_toTopOf="parent"
+                                tools:listitem="@layout/item_profile_select" />
+
+                            <TextView
+                                android:id="@+id/no_select_profile_title_tv"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="@dimen/write_post_choose_profile_margin_horizontal"
+                                android:background="@drawable/activity_write_post_personal_profile_border"
+                                android:fontFamily="@font/spoqa_han_sans_neo_medium"
+                                android:paddingVertical="21dp"
+                                android:text="@string/user_profile_no_select"
+                                android:textColor="@color/black"
+                                android:textSize="12sp"
+                                app:layout_constraintTop_toBottomOf="@id/profile_list_rv" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <TextView
+                            android:id="@+id/check_tv"
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
+                            android:layout_marginHorizontal="17dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="7dp"
+                            android:fontFamily="@font/spoqa_han_sans_neo_bold"
+                            android:gravity="center"
+                            android:text="@string/user_profile_no_community"
+                            android:textColor="@color/light_gray"
+                            android:textSize="15sp"
+                            android:visibility="@{viewModel.communityInfoIsValid == true ? View.GONE : View.VISIBLE}"
+                            app:layout_constraintTop_toBottomOf="@id/border2" />
+                    </LinearLayout>
 
 
+                </LinearLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-        <include
-            android:id="@+id/description_input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            layout="@layout/component_community_profile_textfield"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/name_input"
-            app:layout_constraintBottom_toTopOf="@+id/major_input"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/community_profile_input_container_bottom_border"
-            app:inputName="@{@string/user_profile_description}"
-            app:inputContent="@={viewModel.description}"
-            app:inputValid="@{viewModel.descriptionIsValid}"
-            app:inputError="@{@string/user_profile_description_hint}"
-            app:onTextChanged="@{viewModel::onDescriptionTextChanged}"
-            android:onClick="@{()-> viewModel.onClickDescriptionInput()}"
-            />
+                <include
+                    android:id="@+id/description_input"
+                    layout="@layout/component_community_profile_textfield"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/community_profile_input_container_bottom_border"
+                    android:onClick="@{()-> viewModel.onClickDescriptionInput()}"
+                    app:inputContent="@={viewModel.description}"
+                    app:inputError="@{@string/user_profile_description_hint}"
+                    app:inputName="@{@string/user_profile_description}"
+                    app:inputValid="@{viewModel.descriptionIsValid}"
+                    app:layout_constraintBottom_toTopOf="@+id/major_input"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/name_input"
+                    app:onTextChanged="@{viewModel::onDescriptionTextChanged}" />
 
-        <include
-            android:id="@+id/major_input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            layout="@layout/component_community_profile_textfield"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/description_input"
-            app:inputName="@{@string/major}"
-            app:inputContent="@={viewModel.major}"
-            app:inputValid="@{viewModel.majorIsValid}"
-            app:inputError="@{``}"
-            app:onTextChanged="@{viewModel::onMajorTextChanged}"
-            android:onClick="@{()-> viewModel.onClickMajorInput()}"
-            />
-
+                <include
+                    android:id="@+id/major_input"
+                    layout="@layout/component_community_profile_textfield"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{()-> viewModel.onClickMajorInput()}"
+                    app:inputContent="@={viewModel.major}"
+                    app:inputError="@{``}"
+                    app:inputName="@{@string/major}"
+                    app:inputValid="@{viewModel.majorIsValid}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/description_input"
+                    app:onTextChanged="@{viewModel::onMajorTextChanged}" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

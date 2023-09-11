@@ -23,19 +23,9 @@ class WriteNoticeActivity : BaseActivity<ActivityWriteNoticeBinding>(ActivityWri
     )
     private var currentSelectedImageView: ImageView? = null
 
-    private val imageViews = listOf(
-        binding.writeNoticeDescFirstIv,
-        binding.writeNoticeDescSecondIv,
-        binding.writeNoticeDescThirdIv,
-        binding.writeNoticeDescFourthIv
-    )
-    private val deleteImageViews = listOf(
-        binding.writeNoticeDeleteFirstIv,
-        binding.writeNoticeDeleteSecondIv,
-        binding.writeNoticeDeleteThirdIv,
-        binding.writeNoticeDeleteFourthIv
-    )
-    private val imageViewPairs = imageViews.zip(deleteImageViews)
+    private lateinit var imageViews : List<ImageView>
+    private lateinit var deleteImageViews : List<ImageView>
+    private lateinit var imageViewPairs : List<Pair<ImageView, ImageView>>
 
     override fun initView() {
         binding.viewModel = viewModel
@@ -63,6 +53,19 @@ class WriteNoticeActivity : BaseActivity<ActivityWriteNoticeBinding>(ActivityWri
                 }
             }
         }
+        imageViews = listOf(
+            binding.writeNoticeDescFirstIv,
+            binding.writeNoticeDescSecondIv,
+            binding.writeNoticeDescThirdIv,
+            binding.writeNoticeDescFourthIv
+        )
+        deleteImageViews = listOf(
+            binding.writeNoticeDeleteFirstIv,
+            binding.writeNoticeDeleteSecondIv,
+            binding.writeNoticeDeleteThirdIv,
+            binding.writeNoticeDeleteFourthIv
+        )
+        imageViews.zip(deleteImageViews)
         initToolbar()
         initObserve()
         initClickListener()

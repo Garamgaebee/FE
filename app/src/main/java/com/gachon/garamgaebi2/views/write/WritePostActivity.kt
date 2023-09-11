@@ -109,7 +109,7 @@ class WritePostActivity : BaseActivity<ActivityWritePostBinding>(ActivityWritePo
                 resources.displayMetrics
             ).toInt())
             )
-            adapter = ProfileSelectRVAdapter(listOf("no_image", "one_image", "second_image", "more_image"))
+            adapter = ProfileSelectRVAdapter(listOf("1", "2", "3", "4"))
         }
     }
 
