@@ -34,4 +34,7 @@
     <dimen name="write_post_iv_margin_top">40dp</dimen>
     <dimen name="write_post_iv_margin_horizontal">31dp</dimen>
     <dimen name="write_post_iv_margin_horizontal_between_iv">10dp</dimen>
+
+    <dimen name="manage_member_scrollview_margin_start">34dp</dimen>
+    <dimen name="manage_member_rv_margin_end">16dp</dimen>
 </resources>

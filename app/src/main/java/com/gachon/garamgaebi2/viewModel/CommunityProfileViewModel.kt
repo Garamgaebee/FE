@@ -58,9 +58,15 @@ class CommunityProfileViewModel : ViewModel(){
     private val _goToCommunityProfileEditBtnClicked = MutableLiveData<Boolean>(false)
     val goToCommunityProfileEditBtnClicked : LiveData<Boolean> = _goToCommunityProfileEditBtnClicked
 
+    // 회원 관리
+    private val _isManageComplete = MutableLiveData<Boolean>(false)
+    val isManageComplete : LiveData<Boolean> = _isManageComplete
+
+
     // 사진 업로드
     val imageUri = MutableLiveData<Uri>()
     val isLoadImage = MutableLiveData<Boolean>(false)
+
 
     fun onClickTypeChange(){
         _isUserType.value = isUserType.value!! + 1
@@ -117,7 +123,6 @@ class CommunityProfileViewModel : ViewModel(){
         _allInputIsValid.value = _nameIsValid.value == true && _descriptionIsValid.value == true && _linkIsValid.value == true
 
     }
-
 
 
 
