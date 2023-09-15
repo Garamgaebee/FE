@@ -2,6 +2,7 @@ package com.gachon.garamgaebi2.views.communityProfile
 
 import android.annotation.SuppressLint
 import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MotionEvent
@@ -75,12 +76,13 @@ class CommunityProfileManagerMenuBottomDialogFragment(val itemClick: (Int) -> Un
     @SuppressLint("ClickableViewAccessibility")
     private fun onClickedItem(view: TextView, itemClick: Int) {
         view.setOnTouchListener(View.OnTouchListener { v, event ->
-
-
             when (event.action) {
                 MotionEvent.ACTION_DOWN -> {
                     view.setBackgroundColor(resources.getColor(R.color.main_blue))
                     view.setTextColor(resources.getColor(R.color.white))
+                    if(itemClick == 2) {
+                        startActivity(Intent(requireContext(), ManageMemberActivity::class.java))
+                    }
                 }
 
                 MotionEvent.ACTION_UP -> {
