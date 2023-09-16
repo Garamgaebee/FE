@@ -11,14 +11,10 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
 class MainFeedActivity : BaseActivity<ActivityMainFeedBinding>(ActivityMainFeedBinding::inflate) {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun initView() {
         initToolbar()
         initListener()
         initViewPager()
-    }
-    override fun initView() {
     }
     private fun initToolbar() {
         with(binding.toolbar) {

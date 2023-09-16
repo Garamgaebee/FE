@@ -58,9 +58,22 @@ class CommunityProfileViewModel : ViewModel(){
     private val _goToCommunityProfileEditBtnClicked = MutableLiveData<Boolean>(false)
     val goToCommunityProfileEditBtnClicked : LiveData<Boolean> = _goToCommunityProfileEditBtnClicked
 
+    // 회원 관리
+    private val _isManageComplete = MutableLiveData<Boolean>(false)
+    val isManageComplete : LiveData<Boolean> = _isManageComplete
+
+    private val selectionStateMap: MutableMap<Int, Boolean> = mutableMapOf()
+    init {
+        //item.size
+        for(i in 0 until 4 ) {
+            selectionStateMap[i] = false
+        }
+    }
+
     // 사진 업로드
     val imageUri = MutableLiveData<Uri>()
     val isLoadImage = MutableLiveData<Boolean>(false)
+
 
     fun onClickTypeChange(){
         _isUserType.value = isUserType.value!! + 1
@@ -118,9 +131,11 @@ class CommunityProfileViewModel : ViewModel(){
 
     }
 
-
-
-
-
-
+    fun onRadioButtonSelected(position: Int, isRadioSelected: Boolean) {
+        selectionStateMap[position] = isRadioSelected
+        checkAllSelected()
+    }
+    private fun checkAllSelected() {
+        _isManageComplete.value = selectionStateMap.values.all { it }
+    }
 }
