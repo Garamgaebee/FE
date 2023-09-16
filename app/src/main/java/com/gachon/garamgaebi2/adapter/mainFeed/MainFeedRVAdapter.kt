@@ -1,5 +1,8 @@
 package com.gachon.garamgaebi2.adapter.mainFeed
 
+import android.content.Context
+import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -7,9 +10,11 @@ import com.gachon.garamgaebi2.databinding.ItemFragmentMainFeedMoreImageBinding
 import com.gachon.garamgaebi2.databinding.ItemFragmentMainFeedNoImageBinding
 import com.gachon.garamgaebi2.databinding.ItemFragmentMainFeedOneImageBinding
 import com.gachon.garamgaebi2.databinding.ItemFragmentMainFeedTwoImageBinding
+import com.gachon.garamgaebi2.views.thread.ThreadActivity
+import kotlinx.coroutines.withContext
 
 class MainFeedRVAdapter(
-    private val items: List<String>
+    private val items: List<String>, val activityContext : Context
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     // Item types
@@ -64,6 +69,12 @@ class MainFeedRVAdapter(
             is SecondImageViewHolder -> holder.bind(item)
             is MoreImageViewHolder -> holder.bind(item)
             else -> throw IllegalArgumentException("Unknown view holder")
+
+        }
+        holder.itemView.setOnClickListener {
+            val intent = Intent( activityContext,ThreadActivity::class.java)
+            activityContext.startActivity(intent)
+
         }
     }
 

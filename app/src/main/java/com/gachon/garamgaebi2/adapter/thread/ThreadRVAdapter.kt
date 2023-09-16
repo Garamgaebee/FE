@@ -1,5 +1,6 @@
 package com.gachon.garamgaebi2.adapter.thread
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -10,8 +11,9 @@ import com.gachon.garamgaebi2.databinding.ItemFragmentThreadAnswerTextBinding
 import com.gachon.garamgaebi2.databinding.ItemFragmentThreadMainImagesBinding
 import com.gachon.garamgaebi2.databinding.ItemFragmentThreadMainOneImageBinding
 import com.gachon.garamgaebi2.databinding.ItemFragmentThreadMainTextBinding
+import com.gachon.garamgaebi2.generated.callback.OnClickListener
 
-class ThreadRVAdapter (private val dataList : List<String> ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ThreadRVAdapter (context: Context, private val dataList : List<String>, private val postClickListener: PostClickListener ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
         private const val VIEW_TYPE_MAIN_TEXT = 0
@@ -22,39 +24,69 @@ class ThreadRVAdapter (private val dataList : List<String> ) : RecyclerView.Adap
         private const val VIEW_TYPE_ANSWER_IMGS = 5
     }
 
-    inner class MainTextViewHolder(private val binding : ItemFragmentThreadMainTextBinding):
+    inner class MainTextViewHolder(
+        private val binding : ItemFragmentThreadMainTextBinding,
+        private val onClickListener: PostClickListener):
     RecyclerView.ViewHolder(binding.root){
-        fun bind(data: String){
+        fun bind(data: String, index: Int){
+            binding.itemIndex = index
+
+            binding.clickListener = onClickListener
 
         }
     }
-    inner class MainOneImgViewHolder(private val binding : ItemFragmentThreadMainOneImageBinding):
+    inner class MainOneImgViewHolder(
+        private val binding : ItemFragmentThreadMainOneImageBinding,
+        private val onClickListener: PostClickListener):
         RecyclerView.ViewHolder(binding.root){
-        fun bind(data: String){
+        fun bind(data: String, index: Int){
+            binding.itemIndex = index
+
+            binding.clickListener = onClickListener
 
         }
     }
-    inner class MainImgsViewHolder(private val binding : ItemFragmentThreadMainImagesBinding):
+    inner class MainImgsViewHolder(
+        private val binding : ItemFragmentThreadMainImagesBinding,
+        private val onClickListener: PostClickListener):
         RecyclerView.ViewHolder(binding.root){
-        fun bind(data: String){
+        fun bind(data: String, index: Int){
+            binding.itemIndex = index
+
+            binding.clickListener = onClickListener
 
         }
     }
-    inner class AnswerTextViewHolder(private val binding : ItemFragmentThreadAnswerTextBinding):
+    inner class AnswerTextViewHolder(
+        private val binding : ItemFragmentThreadAnswerTextBinding,
+        private val onClickListener: PostClickListener):
         RecyclerView.ViewHolder(binding.root){
-        fun bind(data: String){
+        fun bind(data: String, index: Int){
+            binding.itemIndex = index
+
+            binding.clickListener = onClickListener
 
         }
     }
-    inner class AnswerOneImgViewHolder(private val binding : ItemFragmentThreadAnswerOneImageBinding):
+    inner class AnswerOneImgViewHolder(
+        private val binding : ItemFragmentThreadAnswerOneImageBinding,
+        private val onClickListener: PostClickListener):
         RecyclerView.ViewHolder(binding.root){
-        fun bind(data: String){
+        fun bind(data: String, index: Int){
+            binding.itemIndex = index
+
+            binding.clickListener = onClickListener
 
         }
     }
-    inner class AnswerImgsViewHolder(private val binding : ItemFragmentThreadAnswerImagesBinding):
+    inner class AnswerImgsViewHolder(
+        private val binding : ItemFragmentThreadAnswerImagesBinding,
+        private val onClickListener: PostClickListener):
         RecyclerView.ViewHolder(binding.root){
-        fun bind(data: String){
+        fun bind(data: String, index: Int){
+            binding.itemIndex = index
+
+            binding.clickListener = onClickListener
 
         }
     }
@@ -65,27 +97,27 @@ class ThreadRVAdapter (private val dataList : List<String> ) : RecyclerView.Adap
         return when (viewType) {
             VIEW_TYPE_MAIN_TEXT -> {
                 val binding = ItemFragmentThreadMainTextBinding.inflate(inflater, parent, false)
-                MainTextViewHolder(binding)
+                MainTextViewHolder(binding, postClickListener)
             }
             VIEW_TYPE_MAIN_ONE_IMG -> {
                 val binding = ItemFragmentThreadMainOneImageBinding.inflate(inflater, parent, false)
-                MainOneImgViewHolder(binding)
+                MainOneImgViewHolder(binding, postClickListener)
             }
             VIEW_TYPE_MAIN_IMGS -> {
                 val binding = ItemFragmentThreadMainImagesBinding.inflate(inflater, parent, false)
-                MainImgsViewHolder(binding)
+                MainImgsViewHolder(binding, postClickListener)
             }
             VIEW_TYPE_ANSWER_TEXT -> {
                 val binding = ItemFragmentThreadAnswerTextBinding.inflate(inflater, parent, false)
-                AnswerTextViewHolder(binding)
+                AnswerTextViewHolder(binding, postClickListener)
             }
             VIEW_TYPE_ANSWER_ONE_IMG -> {
                 val binding = ItemFragmentThreadAnswerOneImageBinding.inflate(inflater, parent, false)
-                AnswerOneImgViewHolder(binding)
+                AnswerOneImgViewHolder(binding, postClickListener)
             }
             VIEW_TYPE_ANSWER_IMGS -> {
                 val binding = ItemFragmentThreadAnswerImagesBinding.inflate(inflater, parent, false)
-                AnswerImgsViewHolder(binding)
+                AnswerImgsViewHolder(binding, postClickListener)
             }
             else -> throw IllegalArgumentException("Invalid viewType")
         }
@@ -94,12 +126,12 @@ class ThreadRVAdapter (private val dataList : List<String> ) : RecyclerView.Adap
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val data = dataList[position]
         when (holder) {
-            is MainTextViewHolder -> holder.bind(data)
-            is MainOneImgViewHolder -> holder.bind(data)
-            is MainImgsViewHolder -> holder.bind(data)
-            is AnswerTextViewHolder -> holder.bind(data)
-            is AnswerOneImgViewHolder -> holder.bind(data)
-            is AnswerImgsViewHolder -> holder.bind(data)
+            is MainTextViewHolder -> holder.bind(data, position)
+            is MainOneImgViewHolder -> holder.bind(data, position)
+            is MainImgsViewHolder -> holder.bind(data, position)
+            is AnswerTextViewHolder -> holder.bind(data, position)
+            is AnswerOneImgViewHolder -> holder.bind(data, position)
+            is AnswerImgsViewHolder -> holder.bind(data, position)
         }
     }
 
@@ -120,5 +152,8 @@ class ThreadRVAdapter (private val dataList : List<String> ) : RecyclerView.Adap
 
     override fun getItemCount(): Int = dataList.size
 
+    class PostClickListener(val clickListener: (int: Int) -> Unit) {
+        fun onClick(int: Int) = clickListener(int)
+    }
 
 }

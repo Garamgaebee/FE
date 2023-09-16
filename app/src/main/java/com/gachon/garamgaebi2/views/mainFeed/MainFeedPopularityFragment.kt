@@ -26,7 +26,7 @@ class MainFeedPopularityFragment : BaseBindingFragment<FragmentMainFeedPopularit
     private fun initRecyclerView() {
         binding.fragmentMainFeedPopularityRv.apply {
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-            adapter = MainFeedRVAdapter(listOf("no_image", "one_image", "second_image", "more_image"))
+            adapter = MainFeedRVAdapter(listOf("no_image", "one_image", "second_image", "more_image"),requireActivity())
             addItemDecoration(MainFeedRVItemDecoration(
                 0.5 * context.resources.displayMetrics.density,
                 resources.getColor(R.color.light_gray, null)))
