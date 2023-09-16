@@ -78,17 +78,17 @@ class CommunityProfileManagerMenuBottomDialogFragment(val itemClick: (Int) -> Un
         view.setOnTouchListener(View.OnTouchListener { v, event ->
             when (event.action) {
                 MotionEvent.ACTION_DOWN -> {
-                    view.setBackgroundColor(resources.getColor(R.color.main_blue))
-                    view.setTextColor(resources.getColor(R.color.white))
-                    if(itemClick == 2) {
-                        startActivity(Intent(requireContext(), ManageMemberActivity::class.java))
-                    }
+                    view.setBackgroundColor(resources.getColor(R.color.main_blue, null))
+                    view.setTextColor(resources.getColor(R.color.white, null))
                 }
 
                 MotionEvent.ACTION_UP -> {
                     view.setBackgroundColor(resources.getColor(R.color.white))
                     view.setTextColor(resources.getColor(R.color.black))
                     dismiss()
+                    if(itemClick == 2) {
+                        startActivity(Intent(requireContext(), ManageMemberActivity::class.java))
+                    }
                     itemClick(itemClick)
                 }
             }

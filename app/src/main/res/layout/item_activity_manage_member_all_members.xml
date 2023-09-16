@@ -61,5 +61,38 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/manage_member_export_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/spoqa_han_sans_neo_bold"
+            android:background="@drawable/round_btn_red"
+            android:paddingVertical="6dp"
+            android:paddingHorizontal="19dp"
+            android:text="@string/manage_member_item_export"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:layout_marginEnd="16dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/manage_member_add_leader_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/spoqa_han_sans_neo_bold"
+            android:background="@drawable/round_btn_blue"
+            android:paddingVertical="6dp"
+            android:paddingHorizontal="19dp"
+            android:text="@string/manage_member_item_add_leader"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:layout_marginEnd="16dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

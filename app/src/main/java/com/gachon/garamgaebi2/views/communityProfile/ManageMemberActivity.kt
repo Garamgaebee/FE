@@ -17,6 +17,7 @@ class ManageMemberActivity : BaseActivity<ActivityManageMemberBinding>(ActivityM
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
         initRecyclerView()
+        initListener()
     }
     private fun initToolbar() {
         with(binding.toolbar) {
@@ -32,7 +33,14 @@ class ManageMemberActivity : BaseActivity<ActivityManageMemberBinding>(ActivityM
         }
         binding.activityManageMemberAllRv.apply {
             layoutManager = LinearLayoutManager(this@ManageMemberActivity, LinearLayoutManager.VERTICAL, false)
-            adapter = ManageMemberAllRVAdapter(listOf("1", "2", "3", "4","5","6","7","8","9","10"))
+            adapter = ManageMemberAllRVAdapter(listOf("1", "2", "3", "4","5","6","7","8","9","10")) { dialog ->
+                dialog.show(supportFragmentManager, dialog.tag)
+            }
+        }
+    }
+    private fun initListener() {
+        binding.completeBtn.setOnClickListener {
+            finish()
         }
     }
 }
