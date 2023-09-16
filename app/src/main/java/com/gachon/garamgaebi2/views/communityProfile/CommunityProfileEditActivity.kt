@@ -62,9 +62,9 @@ class CommunityProfileEditActivity : BaseActivity<ActivityCommunityProfileEditBi
         binding.setVariable(BR.viewModel,viewModel)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
-        binding.root.isFocusableInTouchMode = true
-        binding.root.isClickable = true
-        binding.root.setOnTouchListener { view, motionEvent ->
+        binding.svRoot.isFocusableInTouchMode = true
+        binding.svRoot.isClickable = true
+        binding.svRoot.setOnTouchListener { view, motionEvent ->
             hideKeyboard(view)
             false
         }
@@ -86,6 +86,7 @@ class CommunityProfileEditActivity : BaseActivity<ActivityCommunityProfileEditBi
                     binding.nameInput.input.requestFocus()
                     binding.descriptionInput.root.visibility = View.GONE
                     binding.referenceLinkInput.root.visibility = View.GONE
+                    binding.nextBtn.visibility = View.GONE
                     showKeyboard(binding.root)
                 }
             }
@@ -95,6 +96,7 @@ class CommunityProfileEditActivity : BaseActivity<ActivityCommunityProfileEditBi
                     binding.descriptionInput.input.requestFocus()
                     binding.nameInput.root.visibility = View.GONE
                     binding.referenceLinkInput.root.visibility = View.GONE
+                    binding.nextBtn.visibility = View.GONE
                     showKeyboard(binding.root)
                 }
             }
@@ -104,6 +106,7 @@ class CommunityProfileEditActivity : BaseActivity<ActivityCommunityProfileEditBi
                     binding.referenceLinkInput.input.requestFocus()
                     binding.descriptionInput.root.visibility = View.GONE
                     binding.nameInput.root.visibility = View.GONE
+                    binding.nextBtn.visibility = View.GONE
                     showKeyboard(binding.root)
                 }
             }
@@ -163,6 +166,13 @@ class CommunityProfileEditActivity : BaseActivity<ActivityCommunityProfileEditBi
         val inputMethodManager =
             getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+        binding.descriptionInput.input.clearFocus()
+        binding.referenceLinkInput.input.clearFocus()
+        binding.nameInput.input.clearFocus()
+        binding.referenceLinkInput.root.visibility = View.VISIBLE
+        binding.nameInput.root.visibility = View.VISIBLE
+        binding.descriptionInput.root.visibility = View.VISIBLE
+        binding.nextBtn.visibility = View.VISIBLE
     }
 
     private fun showKeyboard(view: View) {

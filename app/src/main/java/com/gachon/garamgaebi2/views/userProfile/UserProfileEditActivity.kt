@@ -80,9 +80,9 @@ class UserProfileEditActivity : BaseActivity<ActivityUserProfileEditBinding>(Act
         binding.setVariable(BR.viewModel,viewModel)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
-        binding.root.isFocusableInTouchMode = true
-        binding.root.isClickable = true
-        binding.root.setOnTouchListener { view, motionEvent ->
+        binding.svRoot.isFocusableInTouchMode = true
+        binding.svRoot.isClickable = true
+        binding.svRoot.setOnTouchListener { view, motionEvent ->
             hideKeyboard(view)
             false
         }
@@ -262,6 +262,13 @@ class UserProfileEditActivity : BaseActivity<ActivityUserProfileEditBinding>(Act
         val inputMethodManager =
             getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+        binding.descriptionInput.input.clearFocus()
+        binding.nameInput.input.clearFocus()
+        binding.majorInput.input.clearFocus()
+        binding.nameInput.root.visibility = View.VISIBLE
+        binding.descriptionInput.root.visibility = View.VISIBLE
+        binding.majorInput.root.visibility = View.VISIBLE
+        binding.communityInput.visibility = View.VISIBLE
     }
 
     private fun showKeyboard(view: View) {

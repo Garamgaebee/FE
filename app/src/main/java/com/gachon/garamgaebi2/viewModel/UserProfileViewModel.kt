@@ -90,20 +90,20 @@ class UserProfileViewModel : ViewModel(){
 
     fun onNameTextChanged(s: CharSequence, start: Int, before: Int, count: Int){
         _nameIsValid.value = s.isNotEmpty() && count <= 28
-        _allInputIsValid.value = _nameIsValid.value == true && _descriptionIsValid.value == true && _majorIsValid.value == true
+        _allInputIsValid.value = _nameIsValid.value == true || _descriptionIsValid.value == true || _majorIsValid.value == true
 
     }
 
     fun onDescriptionTextChanged(s: CharSequence, start: Int, before: Int, count: Int){
         _descriptionIsValid.value = s.isNotEmpty() && count <= 80
-        _allInputIsValid.value = _nameIsValid.value == true && _descriptionIsValid.value == true && _majorIsValid.value == true
+        _allInputIsValid.value = _nameIsValid.value == true || _descriptionIsValid.value == true || _majorIsValid.value == true
 
     }
 
 
     fun onMajorTextChanged(s: CharSequence, start: Int, before: Int, count: Int){
         _majorIsValid.value = s.isNotEmpty()
-        _allInputIsValid.value = _nameIsValid.value == true && _descriptionIsValid.value == true && _majorIsValid.value == true
+        _allInputIsValid.value = _nameIsValid.value == true || _descriptionIsValid.value == true || _majorIsValid.value == true
 
     }
 
