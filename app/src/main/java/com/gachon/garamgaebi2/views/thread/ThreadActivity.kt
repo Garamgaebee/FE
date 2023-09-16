@@ -8,6 +8,12 @@ class ThreadActivity : BaseActivity<ActivityThreadBinding>(ActivityThreadBinding
 
     override fun initView() {
         supportFragmentManager.beginTransaction().replace(R.id.fragment_frame, ThreadFragment()).commit()
+        initListener()
+
+    }
+
+    private fun initListener(){
+
     }
 
 

@@ -8,11 +8,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.gachon.garamgaebi2.R
 import com.gachon.garamgaebi2.adapter.communityProfile.CommunityLeaderRVAdapter
 import com.gachon.garamgaebi2.adapter.communityProfile.CommunityPostRVAdapter
-import com.gachon.garamgaebi2.adapter.thread.ThreadRVAdapter
 import com.gachon.garamgaebi2.base.BaseActivity
 import com.gachon.garamgaebi2.databinding.ActivityCommunityProfileBinding
 import com.gachon.garamgaebi2.viewModel.CommunityProfileViewModel
-import com.gachon.garamgaebi2.views.write.WritePostActivity
 
 class CommunityProfileActivity : BaseActivity<ActivityCommunityProfileBinding>(ActivityCommunityProfileBinding::inflate) {
     private val viewModel by viewModels<CommunityProfileViewModel>()
@@ -72,11 +70,25 @@ class CommunityProfileActivity : BaseActivity<ActivityCommunityProfileBinding>(A
                 val dialog = CommunityProfileMemberMenuBottomDialogFragment(){
                     when(it) {
                         0 -> {
-                            val intent = Intent(
-                                this@CommunityProfileActivity,
-                                WritePostActivity::class.java
-                            )
-                            startActivity(intent)
+
+                            val dialog2 = CommunityProfileMemberWithdrawalBottomDialogFragment() {
+                                when(it){
+                                    0->{
+
+                                    }
+                                    1->{
+
+                                    }
+                                }
+                            }
+                            dialog2.show(supportFragmentManager, dialog2.tag)
+
+
+//                            val intent = Intent(
+//                                this@CommunityProfileActivity,
+//                                WritePostActivity::class.java
+//                            )
+//                            startActivity(intent)
                         }
 
                         1 -> {

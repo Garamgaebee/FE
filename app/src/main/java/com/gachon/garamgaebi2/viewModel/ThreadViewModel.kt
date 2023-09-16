@@ -17,7 +17,14 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class CommunityProfileViewModel : ViewModel(){
+class ThreadViewModel : ViewModel(){
+
+    private val _clickedItem = MutableLiveData<Int>()
+    val clickedItem: LiveData<Int> get() = _clickedItem
+
+    fun onItemClicked(item: Int) {
+        _clickedItem.postValue(item)
+    }
 
     private val _goToWithdrawalBtnClicked = MutableLiveData<Boolean>(false)
     val goToWithdrawalBtnClicked : LiveData<Boolean> = _goToWithdrawalBtnClicked

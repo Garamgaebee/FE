@@ -110,7 +110,7 @@ class WriteAnswerPostActivity : BaseActivity<ActivityWriteAnswerPostBinding>(Act
                         resources.displayMetrics
                     ).toInt())
             )
-            adapter = MainFeedRVAdapter(listOf("1","2","3","4"))
+            adapter = MainFeedRVAdapter(listOf("1","2","3","4"), this@WriteAnswerPostActivity)
         }
     }
 

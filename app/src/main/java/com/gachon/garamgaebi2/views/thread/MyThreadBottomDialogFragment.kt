@@ -1,4 +1,4 @@
-package com.gachon.garamgaebi2.views.communityProfile
+package com.gachon.garamgaebi2.views.thread
 
 import android.annotation.SuppressLint
 import android.content.DialogInterface
@@ -10,17 +10,20 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import com.gachon.garamgaebi2.BR
 import com.gachon.garamgaebi2.R
 import com.gachon.garamgaebi2.databinding.FragmentCommunityProfileMemberWithdrawalBottomDialogBinding
+import com.gachon.garamgaebi2.databinding.FragmentMyThreadBottomDialogBinding
 import com.gachon.garamgaebi2.viewModel.CommunityProfileViewModel
+import com.gachon.garamgaebi2.viewModel.ThreadViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class CommunityProfileMemberWithdrawalBottomDialogFragment(val itemClick: (Int) -> Unit) :
+class MyThreadBottomDialogFragment(val itemClick : (Int) -> Unit) :
     BottomSheetDialogFragment() {
-    private val viewModel: CommunityProfileViewModel by activityViewModels()
+    private val viewModel: ThreadViewModel by activityViewModels()
 
-    lateinit var binding: FragmentCommunityProfileMemberWithdrawalBottomDialogBinding
+    lateinit var binding: FragmentMyThreadBottomDialogBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,7 +32,7 @@ class CommunityProfileMemberWithdrawalBottomDialogFragment(val itemClick: (Int) 
     ): View? {
         binding = DataBindingUtil.inflate(
             inflater,
-            R.layout.fragment_community_profile_member_withdrawal_bottom_dialog,
+            R.layout.fragment_my_thread_bottom_dialog,
             container,
             false
         )
@@ -43,12 +46,14 @@ class CommunityProfileMemberWithdrawalBottomDialogFragment(val itemClick: (Int) 
         binding.lifecycleOwner = this
 
         with(binding) {
-            onClickedItem(withdrawalTv, 0)
-            closeBtn.nextBtn.setOnClickListener {
-                // val intent = Intent(activity, WelcomeActivity::class.java)
-                //requireActivity().startActivity(intent)
-                dismiss()
-            }
+            onClickedItem(removeTv, 0)
+            onClickedItem(shareCommunityTv, 1)
+        }
+
+        binding.closeBtn.nextBtn.setOnClickListener {
+            // val intent = Intent(activity, WelcomeActivity::class.java)
+            //requireActivity().startActivity(intent)
+            dismiss()
         }
         initListener()
 
