@@ -27,6 +27,11 @@
 
         <item name="bottomSheetDialogTheme">@style/CustomBottomSheetDialogTheme</item>
 
+
+        <!-- 상태바까지 view를 보여줄 수 있다-->
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+
+
     </style>
     <!-- Bottom sheet dialog Style -->
     <style name="CustomBottomSheetDialogTheme" parent="Theme.MaterialComponents.Light.BottomSheetDialog">

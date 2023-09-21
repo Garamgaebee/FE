@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id = "@+id/my_profile"
+        android:icon = "@drawable/ic_my_profile"
+        android:title = "@string/my_profile"
+        />
+    <item android:id = "@+id/my_community"
+        android:icon = "@drawable/ic_my_community"
+        android:title = "@string/my_community"
+        />
+    <item android:id = "@+id/all_community"
+        android:icon = "@drawable/ic_all_community"
+        android:title = "@string/all_community"
+        />
+    <item android:id = "@+id/make_community"
+        android:icon = "@drawable/ic_plus_circle"
+        android:title = "@string/make_community"
+        />
+    <item android:id = "@+id/setting"
+        android:icon = "@drawable/ic_settings"
+        android:title = "@string/setting"
+        />
+</menu>
