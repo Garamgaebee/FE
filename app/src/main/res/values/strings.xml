@@ -77,6 +77,12 @@
     <!--메인 피드-->
     <string name="member">회원</string>
 
+    <!-- 사이즈바 -->
+    <string name="all_community">전체 커뮤니티</string>
+    <string name="make_community">커뮤니티 만들기</string>
+    <string name="my_community">내 커뮤니티</string>
+    <string name="setting">환경설정</string>
+
     <!-- 게시물 스레드 -->
     <string name="thread_name">이름은열자이내로작성</string>
     <string name="thread_major">재학또는졸업 학과</string>

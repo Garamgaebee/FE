@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="name"
+            type="String" />
+        <variable
+            name="major"
+            type="String" />
+    </data>
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_drawer_layout"
+    tools:openDrawer="start"
+    android:fitsSystemWindows="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--fitsSystemWindows를 true로 지정할 경우
+    뷰가 차지할 수 있는 영역을 소프트키, 상태바를 제외한 영역까지 넓혀줍니다.-->
+
+
+    <include
+        android:id="@+id/main_content_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        layout="@layout/activity_main_feed"/>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigation_view"
+        android:orientation="vertical"
+        android:background="@drawable/basic_side_menu_layout"
+        android:layout_gravity = "left"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <View
+                android:id="@+id/drag_handle"
+                android:layout_width="32dp"
+                android:layout_height="4dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="22dp"
+                android:background="@drawable/drag_handle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/main_header"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/main_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/drag_handle"
+                android:paddingVertical="25dp"
+                android:paddingStart="25dp"
+                android:paddingEnd="20dp">
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profile_iv"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/background_circle_iv"
+                    android:src="@drawable/background_circle_iv"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/user_name_tv"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@id/profile_iv"
+                    android:layout_marginTop="29dp"
+                    android:scaleType="centerCrop"
+                    />
+                <TextView
+                    android:id="@+id/user_name_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/spoqa_han_sans_neo_bold"
+                    android:textSize="14px"
+                    android:textColor="@color/black"
+                    android:text="@{name}"
+                    app:layout_constraintStart_toEndOf="@id/profile_iv"
+                    app:layout_constraintTop_toTopOf="@id/profile_iv"
+                    app:layout_constraintBottom_toTopOf="@id/user_major_tv"
+                    />
+                <TextView
+                    android:id="@+id/user_major_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toEndOf="@id/profile_iv"
+                    app:layout_constraintBottom_toBottomOf="@id/profile_iv"
+                    app:layout_constraintTop_toBottomOf="@id/user_name_tv"
+                    android:fontFamily="@font/spoqa_han_sans_neo_regular"
+                    android:textSize="12px"
+                    android:textColor="@color/black"
+                    android:text="@{major}"
+                    />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/main_header"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:orientation="vertical"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="10dp">
+                <include
+                    android:id="@+id/my_profile_btn"
+                    layout="@layout/component_menu_button"
+                    app:menuName="@{@string/my_profile}"
+                    />
+                <include
+                    android:id="@+id/my_community_btn"
+                    layout="@layout/component_menu_button"
+                    app:menuName="@{@string/my_community}"
+                    />
+                <include
+                    android:id="@+id/all_community_btn"
+                    layout="@layout/component_menu_button"
+                    app:menuName="@{@string/all_community}"
+                    />
+                <include
+                    android:id="@+id/make_community_btn"
+                    layout="@layout/component_menu_button"
+                    app:menuName="@{@string/make_community}"
+                    />
+                <include
+                    android:id="@+id/settings_btn"
+                    layout="@layout/component_menu_button"
+                    app:menuName="@{@string/setting}"
+                    />
+
+            </LinearLayout>
+
+            <include
+                android:layout_width="77dp"
+                android:layout_height="42dp"
+                android:id="@+id/logout_btn"
+                layout="@layout/component_btn"
+                app:on = "@{true}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginVertical="40dp"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.navigation.NavigationView>
+</androidx.drawerlayout.widget.DrawerLayout>
+</layout>
