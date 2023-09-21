@@ -52,10 +52,39 @@ class CommunityProfileViewModel : ViewModel(){
     private val _linkInputClicked = MutableLiveData<Boolean>(false)
     val linkInputClicked : LiveData<Boolean> = _linkInputClicked
 
+    private val _isUserType = MutableLiveData<Int>(0)
+    val isUserType : LiveData<Int> = _isUserType
+
+    private val _goToCommunityProfileEditBtnClicked = MutableLiveData<Boolean>(false)
+    val goToCommunityProfileEditBtnClicked : LiveData<Boolean> = _goToCommunityProfileEditBtnClicked
+
+    // 회원 관리
+    private val _isManageComplete = MutableLiveData<Boolean>(false)
+    val isManageComplete : LiveData<Boolean> = _isManageComplete
+
+    private val selectionStateMap: MutableMap<Int, Boolean> = mutableMapOf()
+    init {
+        //item.size
+        for(i in 0 until 4 ) {
+            selectionStateMap[i] = false
+        }
+    }
 
     // 사진 업로드
     val imageUri = MutableLiveData<Uri>()
     val isLoadImage = MutableLiveData<Boolean>(false)
+
+
+    fun onClickTypeChange(){
+        _isUserType.value = isUserType.value!! + 1
+
+        _isUserType.value = isUserType.value!! % 3
+    }
+
+    fun onClickGoToCommunityProfileEdit(){
+        _goToCommunityProfileEditBtnClicked.value = true
+        Log.d("goToCommunityProfileEditBtnClicked",goToCommunityProfileEditBtnClicked.value.toString())
+    }
 
 
     fun onClickGoToWithdrawal(){
@@ -85,26 +114,28 @@ class CommunityProfileViewModel : ViewModel(){
 
     fun onNameTextChanged(s: CharSequence, start: Int, before: Int, count: Int){
         _nameIsValid.value = s.isNotEmpty() && count <= 28
-        _allInputIsValid.value = _nameIsValid.value == true && _descriptionIsValid.value == true && _linkIsValid.value == true
+        _allInputIsValid.value = _nameIsValid.value == true || _descriptionIsValid.value == true || _linkIsValid.value == true
 
     }
 
     fun onDescriptionTextChanged(s: CharSequence, start: Int, before: Int, count: Int){
         _descriptionIsValid.value = s.isNotEmpty() && count <= 80
-        _allInputIsValid.value = _nameIsValid.value == true && _descriptionIsValid.value == true && _linkIsValid.value == true
+        _allInputIsValid.value = _nameIsValid.value == true || _descriptionIsValid.value == true || _linkIsValid.value == true
 
     }
 
 
     fun onLinkTextChanged(s: CharSequence, start: Int, before: Int, count: Int){
         _linkIsValid.value = s.isNotEmpty()
-        _allInputIsValid.value = _nameIsValid.value == true && _descriptionIsValid.value == true && _linkIsValid.value == true
+        _allInputIsValid.value = _nameIsValid.value == true || _descriptionIsValid.value == true || _linkIsValid.value == true
 
     }
 
-
-
-
-
-
+    fun onRadioButtonSelected(position: Int, isRadioSelected: Boolean) {
+        selectionStateMap[position] = isRadioSelected
+        checkAllSelected()
+    }
+    private fun checkAllSelected() {
+        _isManageComplete.value = selectionStateMap.values.all { it }
+    }
 }

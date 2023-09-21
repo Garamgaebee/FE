@@ -1,5 +1,8 @@
 package com.gachon.garamgaebi2.adapter.mainFeed
 
+import android.content.Context
+import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -7,9 +10,11 @@ import com.gachon.garamgaebi2.databinding.ItemFragmentMainFeedMoreImageBinding
 import com.gachon.garamgaebi2.databinding.ItemFragmentMainFeedNoImageBinding
 import com.gachon.garamgaebi2.databinding.ItemFragmentMainFeedOneImageBinding
 import com.gachon.garamgaebi2.databinding.ItemFragmentMainFeedTwoImageBinding
+import com.gachon.garamgaebi2.views.thread.ThreadActivity
+import kotlinx.coroutines.withContext
 
 class MainFeedRVAdapter(
-    private val items: List<String>
+    private val items: List<String>, val activityContext : Context
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     // Item types
@@ -20,22 +25,26 @@ class MainFeedRVAdapter(
         const val MORE_IMAGE = 3
     }
 
-    inner class NoImageViewHolder(private val noImageBinding: ItemFragmentMainFeedNoImageBinding) : RecyclerView.ViewHolder(noImageBinding.root) {
+    inner class NoImageViewHolder(private val noImageBinding: ItemFragmentMainFeedNoImageBinding)
+        : RecyclerView.ViewHolder(noImageBinding.root) {
         fun bind(item : String) {
         }
     }
 
-    inner class OneImageViewHolder(private val oneImageBinding: ItemFragmentMainFeedOneImageBinding) : RecyclerView.ViewHolder(oneImageBinding.root) {
+    inner class OneImageViewHolder(private val oneImageBinding: ItemFragmentMainFeedOneImageBinding)
+        : RecyclerView.ViewHolder(oneImageBinding.root) {
         fun bind(item : String) {
         }
     }
 
-    inner class SecondImageViewHolder(private val twoImageBinding: ItemFragmentMainFeedTwoImageBinding) : RecyclerView.ViewHolder(twoImageBinding.root) {
+    inner class SecondImageViewHolder(private val twoImageBinding: ItemFragmentMainFeedTwoImageBinding)
+        : RecyclerView.ViewHolder(twoImageBinding.root) {
         fun bind(item : String) {
         }
     }
 
-    inner class MoreImageViewHolder(private val moreImageBinding: ItemFragmentMainFeedMoreImageBinding) : RecyclerView.ViewHolder(moreImageBinding.root) {
+    inner class MoreImageViewHolder(private val moreImageBinding: ItemFragmentMainFeedMoreImageBinding)
+        : RecyclerView.ViewHolder(moreImageBinding.root) {
         fun bind(item : String) {
         }
     }
@@ -60,12 +69,17 @@ class MainFeedRVAdapter(
             is SecondImageViewHolder -> holder.bind(item)
             is MoreImageViewHolder -> holder.bind(item)
             else -> throw IllegalArgumentException("Unknown view holder")
+
+        }
+        holder.itemView.setOnClickListener {
+            val intent = Intent( activityContext,ThreadActivity::class.java)
+            activityContext.startActivity(intent)
+
         }
     }
 
     override fun getItemViewType(position: Int): Int {
-        val item = items[position]
-        return when (item) {
+        return when (items[position]) {
             "no_image" -> NO_IMAGE
             "one_image" -> ONE_IMAGE
             "second_image" -> SECOND_IMAGE

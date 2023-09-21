@@ -49,17 +49,15 @@
         <EditText
             android:id="@+id/input"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:text="@={inputContent}"
             android:textColor="@color/heavy_gray"
             android:textSize="18sp"
             android:fontFamily="@font/spoqa_han_sans_neo_regular"
-            android:gravity="center_vertical"
-            android:inputType="text"
+            android:gravity="start|top"
             android:minHeight="21dp"
             android:imeOptions="actionNext"
-            android:singleLine="true"
-            android:ellipsize="end"
+            android:inputType="textMultiLine"
             style="@style/NoUnderlineEditText"
             android:paddingVertical="14dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -67,6 +65,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_weight="1"
+            android:scrollHorizontally="false"
             android:onTextChanged="@{onTextChanged}"
             />
     </LinearLayout>

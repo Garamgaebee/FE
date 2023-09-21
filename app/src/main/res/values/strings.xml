@@ -95,6 +95,11 @@
     <string name="thread_day">2023.12.25 18:02</string>
     <string name="thread_answer">답변 게시물 작성하기</string>
 
+    <string name="thread_remove">삭제 하기</string>
+    <string name="thread_remove_description">정말 게시물을 삭제하시겠어요?</string>
+    <string name="thread_report">신고 하기</string>
+
+
     <!-- 게시글 작성 -->
     <string name="write_post_title">게시글 작성</string>
     <string name="write_post_choose_profile">프로필 선택</string>
@@ -103,6 +108,10 @@
     <string name="write_post_et_hint">여기에 게시물을 작성하세요.</string>
     <string name="long_test">ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</string>
     <string name="short_test">mmm</string>
+    <!-- 답변 게시글 작성-->
+    <string name="write_answer_post_title">답변 게시물 작성</string>
+    <!-- 공지 작성-->
+    <string name="write_notice_title">공지 작성</string>
     <!-- 커뮤니티 프로필 메뉴 -->
     <string name="profile_edit">프로필 편집</string>
     <string name="post_notice">공지 작성</string>
@@ -125,10 +134,50 @@
     <string name="reference_link">참조 링크</string>
     <string name="reference_link_hint">불건전한 링크 활용시, 사용에 제한이 있을 수 있습니다.</string>
 
+    <string name="close_community">커뮤니티 종료하기</string>
 
+    <string name="community_profile_name">커뮤니티커뮤니티커뮤니티</string>
+    <string name="community_profile_date">2023.12.25 에 생성됨</string>
+    <string name="community_profile_member_active">22 명 활동 중</string>
+    <string name="community_profile_content">커뮤니티 설명 글자수 제한은 80자 입니다.</string>
+    <string name="community_profile_notice">공지</string>
+    <string name="community_profile_notice_num">12건</string>
+    <string name="community_profile_notice_content">전체 타임라인 게시글은 최대 120자 입니다.</string>
+    <string name="community_profile_day">2023.12.25 18:02</string>
+    <string name="community_profile_link">참조 링크</string>
+    <string name="community_profile_link_content">https://www.naver.com/</string>
+    <string name="community_profile_leader">모임장</string>
+    <string name="community_profile_leader_num">2명</string>
+    <string name="community_profile_leader_name">이름은열자이내로작성</string>
+    <string name="community_profile_leader_major">재학또는졸업 학과</string>
+    <string name="community_profile_member">가입 회원</string>
+    <string name="community_profile_member_num">22명</string>
+    <string name="community_profile_post">작성된 게시물</string>
+    <string name="community_profile_post_num">22건</string>
+    <string name="community_profile_join">가입중</string>
+    <string name="community_profile_join_request">가입 신청</string>
 
+    <!--회원관리-->
+    <string name="manage_member_leader">모임장</string>
+    <string name="manage_member_create_date">2023.12.25 에 생성됨</string>
+    <string name="manage_member_apply_date">2023.12.25 18:02 신청함</string>
+    <string name="manage_member_date">2023.12.25 18:02 신청함</string>
+    <string name="manage_member_active">22 명 활동 중</string>
+    <string name="manage_member_cnt">2명</string>
+    <string name="manage_member_community_register_apply">가입 신청 회원</string>
+    <string name="manage_member_community_all">전체 회원</string>
+    <string name="manage_member_bottom_dialog_export">내보내기</string>
+    <string name="manage_member_bottom_dialog_add_leader">모임장 추가하기</string>
+    <string name="manage_member_item_export">내보내기</string>
+    <string name="manage_member_item_add_leader">모임장 추가</string>
+    <!--프로필-->
+    <string name="my_profile">내 프로필</string>
+    <string name="user_profile_description">자기 소개</string>
+    <string name="user_profile_community_description">대표 커뮤니티</string>
+    <string name="user_profile_no_community">현재 커뮤니티가 없습니다!</string>
+    <string name="user_profile_no_select">대표 커뮤니티를 등록하지 않기</string>
 
-
-
-
+    <string name="user_profile_description_hint">소개는 80자 이하로 작성 할 수 있어요</string>
 </resources>
+
+

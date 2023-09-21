@@ -2,6 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
+        <variable
+            name="itemIndex"
+            type="int" />
+        <variable
+            name="clickListener"
+            type="com.gachon.garamgaebi2.adapter.thread.ThreadRVAdapter.PostClickListener" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -89,7 +96,9 @@
             android:layout_marginEnd="24dp"
             android:src="@drawable/ic_kebab_menu"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:onClick="@{() -> clickListener.onClick(itemIndex)}"
+            />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/answer_img"
@@ -102,7 +111,7 @@
             app:layout_constraintTop_toBottomOf="@+id/profile_img_1"/>
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/desc_first_iv"
+            android:id="@+id/write_post_desc_first_iv"
             android:layout_width="0dp"
             android:layout_height="160dp"
             android:layout_marginStart="25dp"
@@ -110,17 +119,17 @@
             android:layout_marginEnd="10dp"
             android:src="@color/light_gray"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/desc_second_iv"
+            app:layout_constraintEnd_toStartOf="@+id/write_post_desc_second_iv"
             app:layout_constraintTop_toBottomOf="@+id/answer_img"/>
 
         <ImageView
-            android:id="@+id/desc_second_iv"
+            android:id="@+id/write_post_desc_second_iv"
             android:layout_width="0dp"
             android:layout_height="160dp"
             android:layout_marginEnd="25dp"
             android:layout_marginTop="18dp"
             android:src="@color/light_gray"
-            app:layout_constraintStart_toEndOf="@id/desc_first_iv"
+            app:layout_constraintStart_toEndOf="@id/write_post_desc_first_iv"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/answer_img" />
 
@@ -134,7 +143,7 @@
             android:layout_marginBottom="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/desc_first_iv" />
+            app:layout_constraintTop_toBottomOf="@+id/write_post_desc_first_iv" />
 
         <TextView
             android:id="@+id/thumbs_tv"

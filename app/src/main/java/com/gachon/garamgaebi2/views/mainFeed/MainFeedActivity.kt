@@ -38,6 +38,7 @@ class MainFeedActivity : BaseActivity<MainMenuDrawerBinding>(MainMenuDrawerBindi
         }
 
     }
+
     private fun initToolbar() {
         setSupportActionBar(binding.mainContentLayout.toolbar)
         with(binding.mainContentLayout.toolbar) {
