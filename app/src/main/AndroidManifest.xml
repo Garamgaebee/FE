@@ -62,10 +62,19 @@
             android:exported="false" />
         <activity
             android:name=".views.communityProfile.CommunityProfileActivity"
-            android:exported="true"></activity>
+            android:exported="false"/>
         <activity
             android:name=".views.userProfile.UserProfileEditActivity"
-            android:exported="true"></activity>
+            android:exported="false"/>
+        <activity
+            android:name=".views.mainFeed.AllCommunityListActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".views.mainFeed.MyCommunityListActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".views.mainFeed.CommunityProfileMakeActivity"
+            android:exported="false"/>
         <activity
             android:name=".views.MainActivity"
             android:exported="true">

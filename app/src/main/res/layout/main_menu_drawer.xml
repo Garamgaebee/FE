@@ -14,7 +14,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_drawer_layout"
     tools:openDrawer="start"
-    android:fitsSystemWindows="true"
+    android:fitsSystemWindows="false"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -78,9 +78,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/spoqa_han_sans_neo_bold"
-                    android:textSize="14px"
+                    android:textSize="14sp"
                     android:textColor="@color/black"
                     android:text="@{name}"
+                    android:layout_marginStart="12dp"
                     app:layout_constraintStart_toEndOf="@id/profile_iv"
                     app:layout_constraintTop_toTopOf="@id/profile_iv"
                     app:layout_constraintBottom_toTopOf="@id/user_major_tv"
@@ -93,8 +94,9 @@
                     app:layout_constraintBottom_toBottomOf="@id/profile_iv"
                     app:layout_constraintTop_toBottomOf="@id/user_name_tv"
                     android:fontFamily="@font/spoqa_han_sans_neo_regular"
-                    android:textSize="12px"
+                    android:textSize="12sp"
                     android:textColor="@color/black"
+                    android:layout_marginStart="12dp"
                     android:text="@{major}"
                     />
 
@@ -138,12 +140,18 @@
 
             </LinearLayout>
 
-            <include
-                android:layout_width="77dp"
-                android:layout_height="42dp"
+            <Button
                 android:id="@+id/logout_btn"
-                layout="@layout/component_btn"
-                app:on = "@{true}"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:background="@drawable/round_btn_blue"
+                android:layout_marginHorizontal="120dp"
+                android:minWidth="77dp"
+                android:fontFamily="@font/spoqa_han_sans_neo_bold"
+                android:textColor="@{@color/white}"
+                android:textAlignment="center"
+                android:textSize="17sp"
+                android:text="@{@string/logout}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"

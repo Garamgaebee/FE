@@ -13,8 +13,12 @@ class ThreadActivity : BaseActivity<ActivityThreadBinding>(ActivityThreadBinding
     }
 
     private fun initListener(){
+        binding.backBtn.setOnClickListener {
+            finish()
+        }
 
     }
+
 
 
 }

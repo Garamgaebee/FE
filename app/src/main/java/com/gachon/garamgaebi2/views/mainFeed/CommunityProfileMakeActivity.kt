@@ -1,4 +1,4 @@
-package com.gachon.garamgaebi2.views.communityProfile
+package com.gachon.garamgaebi2.views.mainFeed
 
 import android.Manifest
 import androidx.appcompat.app.AppCompatActivity
@@ -18,7 +18,7 @@ import com.gachon.garamgaebi2.util.KeyboardVisibilityUtils
 import com.gachon.garamgaebi2.viewModel.CommunityProfileViewModel
 import com.gachon.garamgaebi2.viewModel.RegisterViewModel
 
-class CommunityProfileEditActivity : BaseActivity<ActivityCommunityProfileEditBinding>(ActivityCommunityProfileEditBinding::inflate){
+class CommunityProfileMakeActivity : BaseActivity<ActivityCommunityProfileEditBinding>(ActivityCommunityProfileEditBinding::inflate){
     private val viewModel by viewModels<CommunityProfileViewModel>()
 
     private val permissionList = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -71,9 +71,9 @@ class CommunityProfileEditActivity : BaseActivity<ActivityCommunityProfileEditBi
 
         binding.nameInput.root.setBackgroundResource(R.drawable.community_profile_input_container_bottom_border)
         binding.descriptionInput.root.setBackgroundResource(R.drawable.community_profile_input_container_bottom_border)
-        binding.referenceLinkInput.root.setBackgroundResource(R.drawable.community_profile_input_container_bottom_border)
 
-
+        binding.nextBtn.text = "시작 하기"
+        binding.titleTv.text = "커뮤니티 만들기"
         observe()
         initListener()
         initToolbar()
@@ -82,7 +82,7 @@ class CommunityProfileEditActivity : BaseActivity<ActivityCommunityProfileEditBi
 
     private fun observe(){
         with(viewModel){
-            nameInputClicked.observe(this@CommunityProfileEditActivity) {
+            nameInputClicked.observe(this@CommunityProfileMakeActivity) {
                 if (it) {
                     binding.nameInput.input.requestFocus()
                     binding.descriptionInput.root.visibility = View.GONE
@@ -92,7 +92,7 @@ class CommunityProfileEditActivity : BaseActivity<ActivityCommunityProfileEditBi
                 }
             }
 
-            descriptionInputClicked.observe(this@CommunityProfileEditActivity) {
+            descriptionInputClicked.observe(this@CommunityProfileMakeActivity) {
                 if (it) {
                     binding.descriptionInput.input.requestFocus()
                     binding.nameInput.root.visibility = View.GONE
@@ -102,7 +102,7 @@ class CommunityProfileEditActivity : BaseActivity<ActivityCommunityProfileEditBi
                 }
             }
 
-            linkInputClicked.observe(this@CommunityProfileEditActivity) {
+            linkInputClicked.observe(this@CommunityProfileMakeActivity) {
                 if (it) {
                     binding.referenceLinkInput.input.requestFocus()
                     binding.descriptionInput.root.visibility = View.GONE
@@ -112,7 +112,7 @@ class CommunityProfileEditActivity : BaseActivity<ActivityCommunityProfileEditBi
                 }
             }
 
-            imageUri.observe(this@CommunityProfileEditActivity){
+            imageUri.observe(this@CommunityProfileMakeActivity){
                 Log.d("uri_check",it.toString())
                 if(it != null && isLoadImage.value == true){
                     binding.profileIv.load(it)
