@@ -1,12 +1,8 @@
 package com.gachon.garamgaebi2.di.module
 
-import com.gachon.data.source.home.HomeDataSource
-import com.gachon.data.source.profile.ProfileDataSource
 import dagger.Module
-import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
