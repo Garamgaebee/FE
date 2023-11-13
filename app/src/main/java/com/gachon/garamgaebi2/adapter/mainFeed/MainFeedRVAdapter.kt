@@ -2,50 +2,58 @@ package com.gachon.garamgaebi2.adapter.mainFeed
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.drawable.ColorDrawable
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.gachon.garamgaebi2.databinding.ItemFragmentMainFeedMoreImageBinding
+import com.bumptech.glide.Glide
+import com.gachon.domain.model.ThreadMainListResult
+import com.gachon.garamgaebi2.R
+import com.gachon.garamgaebi2.databinding.ItemFragmentMainFeedImagesBinding
 import com.gachon.garamgaebi2.databinding.ItemFragmentMainFeedNoImageBinding
 import com.gachon.garamgaebi2.databinding.ItemFragmentMainFeedOneImageBinding
-import com.gachon.garamgaebi2.databinding.ItemFragmentMainFeedTwoImageBinding
 import com.gachon.garamgaebi2.views.thread.ThreadActivity
-import kotlinx.coroutines.withContext
 
 class MainFeedRVAdapter(
-    private val items: List<String>, val activityContext : Context
+    private val activityContext : Context
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
+    private val threadList = mutableListOf<ThreadMainListResult>()
     // Item types
     companion object {
         const val NO_IMAGE = 0
         const val ONE_IMAGE = 1
-        const val SECOND_IMAGE = 2
-        const val MORE_IMAGE = 3
+        const val IMAGES = 2
     }
 
     inner class NoImageViewHolder(private val noImageBinding: ItemFragmentMainFeedNoImageBinding)
         : RecyclerView.ViewHolder(noImageBinding.root) {
-        fun bind(item : String) {
+        fun bind(item : ThreadMainListResult) {
+            noImageBinding.result = item
+            setAuthorProfileImage(noImageBinding.profileIv, item.authorImgUrl)
+            setTeamProfileImage(noImageBinding.communityProfileIv, item.teamImgUrl)
+
         }
     }
 
     inner class OneImageViewHolder(private val oneImageBinding: ItemFragmentMainFeedOneImageBinding)
         : RecyclerView.ViewHolder(oneImageBinding.root) {
-        fun bind(item : String) {
+        fun bind(item : ThreadMainListResult) {
+            oneImageBinding.result = item
+            setAuthorProfileImage(oneImageBinding.profileIv, item.authorImgUrl)
+            setTeamProfileImage(oneImageBinding.communityProfileIv, item.teamImgUrl)
         }
     }
 
-    inner class SecondImageViewHolder(private val twoImageBinding: ItemFragmentMainFeedTwoImageBinding)
-        : RecyclerView.ViewHolder(twoImageBinding.root) {
-        fun bind(item : String) {
-        }
-    }
-
-    inner class MoreImageViewHolder(private val moreImageBinding: ItemFragmentMainFeedMoreImageBinding)
+    inner class MoreImageViewHolder(private val moreImageBinding: ItemFragmentMainFeedImagesBinding)
         : RecyclerView.ViewHolder(moreImageBinding.root) {
-        fun bind(item : String) {
+        fun bind(item : ThreadMainListResult) {
+            moreImageBinding.result = item
+            setAuthorProfileImage(moreImageBinding.profileIv, item.authorImgUrl)
+            setTeamProfileImage(moreImageBinding.communityProfileIv, item.teamImgUrl)
         }
     }
 
@@ -55,38 +63,62 @@ class MainFeedRVAdapter(
         return when (viewType) {
             NO_IMAGE -> NoImageViewHolder(ItemFragmentMainFeedNoImageBinding.inflate(inflater, parent, false))
             ONE_IMAGE -> OneImageViewHolder(ItemFragmentMainFeedOneImageBinding.inflate(inflater, parent, false))
-            SECOND_IMAGE -> SecondImageViewHolder(ItemFragmentMainFeedTwoImageBinding.inflate(inflater, parent, false))
-            MORE_IMAGE -> MoreImageViewHolder(ItemFragmentMainFeedMoreImageBinding.inflate(inflater, parent, false))
+            IMAGES -> MoreImageViewHolder(ItemFragmentMainFeedImagesBinding.inflate(inflater, parent, false))
             else -> NoImageViewHolder(ItemFragmentMainFeedNoImageBinding.inflate(inflater, parent, false))
         }
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val item = items[position]
+        val item = threadList[position]
         when (holder) {
             is NoImageViewHolder -> holder.bind(item)
             is OneImageViewHolder -> holder.bind(item)
-            is SecondImageViewHolder -> holder.bind(item)
             is MoreImageViewHolder -> holder.bind(item)
             else -> throw IllegalArgumentException("Unknown view holder")
-
         }
         holder.itemView.setOnClickListener {
             val intent = Intent( activityContext,ThreadActivity::class.java)
             activityContext.startActivity(intent)
-
         }
     }
 
     override fun getItemViewType(position: Int): Int {
-        return when (items[position]) {
-            "no_image" -> NO_IMAGE
-            "one_image" -> ONE_IMAGE
-            "second_image" -> SECOND_IMAGE
-            "more_image" -> MORE_IMAGE
+        return when (threadList[position].imgs.size) {
+            0 -> NO_IMAGE
+            1 -> ONE_IMAGE
+            2 -> IMAGES
             else -> throw IllegalArgumentException("Unknown item type")
         }
     }
 
-    override fun getItemCount(): Int = items.size
+    override fun getItemCount(): Int = threadList.size
+
+    fun setData(data: List<ThreadMainListResult>) {
+        threadList.clear()
+        threadList.addAll(data)
+        notifyDataSetChanged()
+    }
+
+    private fun setAuthorProfileImage(view: ImageView, url: String) {
+        Glide.with(view)
+            .load(url)
+            .fallback(
+                ColorDrawable(ContextCompat.getColor(activityContext, R.color.black)))
+            .into(view)
+    }
+    private fun setTeamProfileImage(view: ImageView, url: String) {
+        when (url) {
+            "NONE" -> {
+                Log.d("setTeamProfileImage", "NONE")
+                Glide.with(view).load(
+                    ColorDrawable(ContextCompat.getColor(activityContext, R.color.light_gray)))
+                .into(view)
+            }
+            null -> view.visibility = View.GONE
+            else -> {
+                Log.d("setTeamProfileImage", "else")
+                Glide.with(view).load(url).into(view)
+            }
+        }
+    }
 }

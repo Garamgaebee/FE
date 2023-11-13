@@ -55,17 +55,17 @@ class Register3InfoFragment  : BaseBindingFragment<FragmentRegister3InfoBinding>
             if(it) {
                 nickNameLayout.border.setBackgroundColor(
                     ContextCompat.getColor(
-                        GaramgaebiApplication.getApplication(), R.color.main_blue))
+                        GaramgaebiApplication(), R.color.main_blue))
                 nickNameLayout.border2.setBackgroundColor(
                     ContextCompat.getColor(
-                        GaramgaebiApplication.getApplication(), R.color.main_blue))
+                        GaramgaebiApplication(), R.color.main_blue))
             }else{
             nickNameLayout.border.setBackgroundColor(
                 ContextCompat.getColor(
-                    GaramgaebiApplication.getApplication(), R.color.red))
+                    GaramgaebiApplication(), R.color.red))
             nickNameLayout.border2.setBackgroundColor(
                 ContextCompat.getColor(
-                    GaramgaebiApplication.getApplication(), R.color.red))
+                    GaramgaebiApplication(), R.color.red))
             }
         }
 
@@ -74,17 +74,17 @@ class Register3InfoFragment  : BaseBindingFragment<FragmentRegister3InfoBinding>
             if(it) {
                 pwLayout.border.setBackgroundColor(
                     ContextCompat.getColor(
-                        GaramgaebiApplication.getApplication(), R.color.main_blue))
+                        GaramgaebiApplication(), R.color.main_blue))
                 pwLayout.border2.setBackgroundColor(
                     ContextCompat.getColor(
-                        GaramgaebiApplication.getApplication(), R.color.main_blue))
+                        GaramgaebiApplication(), R.color.main_blue))
             }else{
                 pwLayout.border.setBackgroundColor(
                     ContextCompat.getColor(
-                        GaramgaebiApplication.getApplication(), R.color.red))
+                        GaramgaebiApplication(), R.color.red))
                 pwLayout.border2.setBackgroundColor(
                     ContextCompat.getColor(
-                        GaramgaebiApplication.getApplication(), R.color.red))
+                        GaramgaebiApplication(), R.color.red))
             }
         }
 
@@ -93,17 +93,17 @@ class Register3InfoFragment  : BaseBindingFragment<FragmentRegister3InfoBinding>
             if(it) {
                 pwCheckLayout.border.setBackgroundColor(
                     ContextCompat.getColor(
-                        GaramgaebiApplication.getApplication(), R.color.main_blue))
+                        GaramgaebiApplication(), R.color.main_blue))
                 pwCheckLayout.border2.setBackgroundColor(
                     ContextCompat.getColor(
-                        GaramgaebiApplication.getApplication(), R.color.main_blue))
+                        GaramgaebiApplication(), R.color.main_blue))
             }else{
                 pwCheckLayout.border.setBackgroundColor(
                     ContextCompat.getColor(
-                        GaramgaebiApplication.getApplication(), R.color.red))
+                        GaramgaebiApplication(), R.color.red))
                 pwCheckLayout.border2.setBackgroundColor(
                     ContextCompat.getColor(
-                        GaramgaebiApplication.getApplication(), R.color.red))
+                        GaramgaebiApplication(), R.color.red))
             }
         }
     }
@@ -113,7 +113,7 @@ class Register3InfoFragment  : BaseBindingFragment<FragmentRegister3InfoBinding>
         nickNameLayout.input.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f) // 18sp로 텍스트 크기 설정
         nickNameLayout.checkTv.apply {
             visibility = View.VISIBLE
-            setTextColor(ContextCompat.getColorStateList(GaramgaebiApplication.getApplication(), R.color.black))
+            setTextColor(ContextCompat.getColorStateList(GaramgaebiApplication(), R.color.black))
         }
         nickNameLayout.input.hint = resources.getString(R.string.nickname_hint)
         nickNameLayout.input.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->

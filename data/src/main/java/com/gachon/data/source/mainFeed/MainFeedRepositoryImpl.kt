@@ -1,11 +1,12 @@
 package com.gachon.data.source.mainFeed
 
-import com.gachon.domain.repository.MainFeedRepository
+import com.gachon.domain.model.ThreadMainListResponse
+import com.gachon.domain.repository.MainThreadRepository
 import javax.inject.Inject
 
 class MainFeedRepositoryImpl @Inject constructor(
     private val dataSource: MainFeedDataSource
-) : MainFeedRepository {
-    /*override suspend fun setPurposeTime(userId: Long, purposeTime: Int): DefaultResponse =
-        dataSource.setPurposeTime(userId, purposeTime)*/
+) : MainThreadRepository {
+    override suspend fun getThreadMainList(orderType: Int): ThreadMainListResponse =
+        dataSource.getThreadMainList(orderType)
 }

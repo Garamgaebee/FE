@@ -15,6 +15,7 @@ import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gachon.garamgaebi2.R
 import com.gachon.garamgaebi2.adapter.mainFeed.MainFeedRVAdapter
+import com.gachon.garamgaebi2.adapter.write.ProfileSelectRVAdapter
 import com.gachon.garamgaebi2.base.BaseActivity
 import com.gachon.garamgaebi2.databinding.ActivityWriteAnswerPostBinding
 import com.gachon.garamgaebi2.viewModel.WriteViewModel
@@ -110,7 +111,7 @@ class WriteAnswerPostActivity : BaseActivity<ActivityWriteAnswerPostBinding>(Act
                         resources.displayMetrics
                     ).toInt())
             )
-            adapter = MainFeedRVAdapter(listOf("1","2","3","4"), this@WriteAnswerPostActivity)
+            adapter = ProfileSelectRVAdapter(listOf("1","2","3","4"))
         }
     }
 

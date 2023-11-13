@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
 import com.gachon.garamgaebi2.R
-import com.gachon.garamgaebi2.di.GaramgaebiApplication.Companion.getApplication
+import com.gachon.garamgaebi2.di.GaramgaebiApplication
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -32,7 +32,7 @@ class RegisterViewModel : ViewModel(){
     private val _nickNameIsValid = MutableLiveData<Boolean>()
     val nickNameSideText = MutableLiveData<String>("")
     val nickNameError = MutableLiveData<String>(
-        getApplication().resources.getString(R.string.nickname_description)
+        GaramgaebiApplication().resources.getString(R.string.nickname_description)
     )
 
     val pwCheck = MutableLiveData<String>("")
@@ -149,13 +149,13 @@ class RegisterViewModel : ViewModel(){
 
     fun onNicknameTextChanged(s: CharSequence, start: Int, before: Int, count: Int){
         if(s.toString().length > 10 || s.toString().length < 4) {
-            nickNameError.value = getApplication().resources.getString(R.string.nickname_error)
+            nickNameError.value = GaramgaebiApplication().resources.getString(R.string.nickname_error)
             _nickNameIsValid.value = false
         }else if(s.toString() == "중복"){
-            nickNameError.value = getApplication().resources.getString(R.string.nickname_duplicate)
+            nickNameError.value = GaramgaebiApplication().resources.getString(R.string.nickname_duplicate)
             _nickNameIsValid.value = false
         }else{
-            nickNameError.value = getApplication().resources.getString(R.string.nickname_description)
+            nickNameError.value = GaramgaebiApplication().resources.getString(R.string.nickname_description)
             _nickNameIsValid.value = true
         }
         _infoIsValid.value = nickNameIsValid.value == true && pwIsValid.value == true && pwCheckIsValid.value == true

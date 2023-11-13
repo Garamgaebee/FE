@@ -12,39 +12,35 @@ import android.net.Network
 import android.net.NetworkCapabilities
 import android.net.NetworkRequest
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.*
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.MutableLiveData
 import com.gachon.garamgaebi2.util.DataStoreUtil
+import com.gachon.garamgaebi2.util.SharedPreferenceUtil
 import com.gachon.garamgaebi2.util.Utils.BASE_URL
+import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.flow.first
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
-
-// 앱이 실행될때 1번만 실행이 됩니다.
+@HiltAndroidApp
 class GaramgaebiApplication : Application() {
 
     companion object {
-        private lateinit var appInstance: GaramgaebiApplication
-        fun getApplication() = appInstance
-
-        lateinit var sSharedPreferences: SharedPreferences
+        private lateinit var application: GaramgaebiApplication
+        lateinit var spfManager: SharedPreferenceUtil
         lateinit var dsManager: DataStoreUtil
-
 
         val gameOut : MutableLiveData<Boolean> = MutableLiveData(false)
         const val testEmail = "garamgaebiMaster2"
         const val testPW = "000000"
         var registerProcess = 0
 
-
-        // 네트워크 감지
-        val networkValid : MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)
-        private val networkCallback = NetworkConnectionCallback()
+        val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "my_data_store")
 
         // JWT Token Header 키 값
         const val X_ACCESS_TOKEN = "X-ACCESS-TOKEN"
@@ -63,20 +59,21 @@ class GaramgaebiApplication : Application() {
 
         // Retrofit 인스턴스, 앱 실행시 한번만 생성하여 사용합니다.
         lateinit var sRetrofit: Retrofit
+
+
+
     }
     // 앱이 처음 생성되는 순간, SP를 새로 만들어주고, 레트로핏 인스턴스를 생성합니다.
     override fun onCreate() {
         super.onCreate()
-        appInstance = this
+        application = this
+        spfManager = SharedPreferenceUtil(applicationContext)
+        dsManager = DataStoreUtil(applicationContext)
 
-        //registerNetworkCallback(this)
-        sSharedPreferences =
-            applicationContext.getSharedPreferences("GARAMGAEBI_APP", MODE_PRIVATE)
         //KakaoSdk.init(this, "${BuildConfig.KAKAO_API_KEY}")
         // 레트로핏 인스턴스 생성
         initRetrofitInstance()
 
-        dsManager = DataStoreUtil(applicationContext)
         settingScreenPortrait()
 
 
@@ -106,7 +103,7 @@ class GaramgaebiApplication : Application() {
             .connectTimeout(10000, TimeUnit.MILLISECONDS)
             // 로그캣에 okhttp.OkHttpClient로 검색하면 http 통신 내용을 보여줍니다.
             //.addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-            //.addInterceptor(XAccessTokenInterceptor()) // JWT 자동 헤더 전송
+            .addInterceptor(AuthInterceptor()) // JWT 자동 헤더 전송
             .build()
 
         // sRetrofit 이라는 전역변수에 API url, 인터셉터, Gson을 넣어주고 빌드해주는 코드
@@ -118,30 +115,4 @@ class GaramgaebiApplication : Application() {
             .build()
     }
 
-    class NetworkConnectionCallback : ConnectivityManager.NetworkCallback() {
-        override fun onAvailable(network: Network) {
-            super.onAvailable(network)
-            networkValid.postValue(true)
-        }
-        override fun onLost(network: Network) {
-            super.onLost(network)
-            networkValid.postValue(false)
-        }
-    }
-    private fun registerNetworkCallback(context: Context) {
-        val connectivityManager =
-            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val networkRequest = NetworkRequest.Builder()
-            .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
-            .build()
-
-        connectivityManager.registerNetworkCallback(networkRequest, networkCallback as ConnectivityManager.NetworkCallback)
-    }
-
-    private fun unregisterNetworkCallback(context: Context) {
-        val connectivityManager =
-            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-
-        connectivityManager.unregisterNetworkCallback(networkCallback as ConnectivityManager.NetworkCallback)
-    }
 }

@@ -12,23 +12,23 @@ import com.gachon.garamgaebi2.R
 import com.gachon.garamgaebi2.adapter.mainFeed.MainFeedVPAdapter
 import com.gachon.garamgaebi2.base.BaseActivity
 import com.gachon.garamgaebi2.databinding.MainMenuDrawerBinding
-import com.gachon.garamgaebi2.views.thread.RemoveThreadBottomDialogFragment
-import com.gachon.garamgaebi2.views.userProfile.UserProfileEditActivity
+import com.gachon.garamgaebi2.di.GaramgaebiApplication
 import com.gachon.garamgaebi2.views.write.WritePostActivity
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class MainFeedActivity : BaseActivity<MainMenuDrawerBinding>(MainMenuDrawerBinding::inflate) {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        GaramgaebiApplication.spfManager.setAccessToken("eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhOThlMjUwZi03ZDJjLTQxYzgtOWJlYS01MWJlYjQxMzEzMDAiLCJyb2xlcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNjk5ODU0MDY0LCJleHAiOjE2OTk4NTc2NjR9.QP6BInH9yyhkLbfwJWCF1fKpZiYgNY_eptXcca4Sgio")
+        GaramgaebiApplication.spfManager.setRefreshToken("eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJW77-9XHUwMDE5XHUwMDAy77-9Vk8iLCJpYXQiOjE2OTk4NTQwNjQsImV4cCI6MTcwMTA2MzY2NH0.pVz0q0C5oiqQ9VWrpvNVEU3UZS1QzG67oCPFe7zIRos")
         initToolbar()
         initListener()
         initViewPager()
-
     }
     override fun initView() {
         with(binding) {
@@ -40,9 +40,7 @@ class MainFeedActivity : BaseActivity<MainMenuDrawerBinding>(MainMenuDrawerBindi
             settingsBtn.btnIv.setImageResource(R.drawable.ic_settings)
             binding.name = "김가람"
             binding.major = "소프트웨어학과"
-
         }
-
     }
 
     private fun initToolbar() {
@@ -81,8 +79,6 @@ class MainFeedActivity : BaseActivity<MainMenuDrawerBinding>(MainMenuDrawerBindi
     }
 
     fun initListener() {
-
-
         with(binding.mainContentLayout) {
             icPostingCv.setOnClickListener {
                 Log.d("MainFeedActivity", "icPostingCv clicked")

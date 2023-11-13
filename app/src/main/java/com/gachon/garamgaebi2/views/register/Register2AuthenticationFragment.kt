@@ -43,7 +43,7 @@ class Register2AuthenticationFragment : BaseBindingFragment<FragmentRegister2Aut
         )
         binding.checkTv.apply{
             text = resources.getString(R.string.register2_2)
-            setTextColor(ContextCompat.getColorStateList(GaramgaebiApplication.getApplication(), R.color.black))
+            setTextColor(ContextCompat.getColorStateList(GaramgaebiApplication(), R.color.black))
         }
         binding.emailTextfield.input.isEnabled = false
 
@@ -80,12 +80,12 @@ class Register2AuthenticationFragment : BaseBindingFragment<FragmentRegister2Aut
                 }
                 binding.border.setBackgroundColor(
                     ContextCompat.getColor(
-                        GaramgaebiApplication.getApplication(), R.color.main_blue
+                        GaramgaebiApplication(), R.color.main_blue
                     )
                 )
                 binding.border2.setBackgroundColor(
                     ContextCompat.getColor(
-                        GaramgaebiApplication.getApplication(), R.color.main_blue
+                        GaramgaebiApplication(), R.color.main_blue
                     )
                 )
             } else {
@@ -94,12 +94,12 @@ class Register2AuthenticationFragment : BaseBindingFragment<FragmentRegister2Aut
                 }
                 binding.border.setBackgroundColor(
                     ContextCompat.getColor(
-                        GaramgaebiApplication.getApplication(), R.color.red
+                        GaramgaebiApplication(), R.color.red
                     )
                 )
                 binding.border2.setBackgroundColor(
                     ContextCompat.getColor(
-                        GaramgaebiApplication.getApplication(), R.color.red
+                        GaramgaebiApplication(), R.color.red
                     )
                 )
             }

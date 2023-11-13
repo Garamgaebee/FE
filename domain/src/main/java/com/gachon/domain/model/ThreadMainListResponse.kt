@@ -1,12 +1,12 @@
 package com.gachon.domain.model
 
-data class MainFeedListResponse(
+data class ThreadMainListResponse(
     val code: String,
     val isSuccess: Boolean,
     val message: String,
-    val result: List<MainFeedListResult>
+    val result: List<ThreadMainListResult>
 )
-data class MainFeedListResult(
+data class ThreadMainListResult(
     val authorIdx: String,
     val authorImgUrl: String,
     val authorName: String,
@@ -14,7 +14,7 @@ data class MainFeedListResult(
     val content: String,
     val createdAt: String,
     val department: String,
-    val imgs: String,
+    val imgs: List<String>,
     val isComment: Boolean,
     val likeNumber: Int,
     val rootThreadIdx: String,

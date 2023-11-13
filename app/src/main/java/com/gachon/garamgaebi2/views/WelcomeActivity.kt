@@ -33,5 +33,5 @@ class WelcomeActivity : BaseActivity<ActivityWelcomeBinding>(ActivityWelcomeBind
             val intent = Intent(this, MainFeedActivity::class.java)
             startActivity(intent)
         }
-        }
     }
+}

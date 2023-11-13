@@ -48,18 +48,18 @@ class Register1EmailFragment  : BaseBindingFragment<FragmentRegister1EmailBindin
             if(it == true){
                 binding.emailTextfield.border.setBackgroundColor(
                     ContextCompat.getColor(
-                        GaramgaebiApplication.getApplication(), R.color.main_blue))
+                        GaramgaebiApplication(), R.color.main_blue))
                 binding.emailTextfield.border2.setBackgroundColor(
                     ContextCompat.getColor(
-                        GaramgaebiApplication.getApplication(), R.color.main_blue))
+                        GaramgaebiApplication(), R.color.main_blue))
                 binding.emailTextfield.checkTv.visibility = View.INVISIBLE
             }else{
                 binding.emailTextfield.border.setBackgroundColor(
                     ContextCompat.getColor(
-                        GaramgaebiApplication.getApplication(), R.color.red))
+                        GaramgaebiApplication(), R.color.red))
                 binding.emailTextfield.border2.setBackgroundColor(
                     ContextCompat.getColor(
-                        GaramgaebiApplication.getApplication(), R.color.red))
+                        GaramgaebiApplication(), R.color.red))
             }
         }
 

@@ -1,27 +1,17 @@
 package com.gachon.garamgaebi2.di
 
-import android.util.Log
-import androidx.datastore.dataStore
-import com.gachon.garamgaebi2.di.GaramgaebiApplication.Companion.dsManager
-import kotlinx.coroutines.runBlocking
 
+import android.util.Log
+import com.gachon.garamgaebi2.di.GaramgaebiApplication.Companion.spfManager
 import okhttp3.Interceptor
 import okhttp3.Response
-import java.io.IOException
 import javax.inject.Inject
 
 class AuthInterceptor @Inject constructor(
 ): Interceptor {
-
-    @Throws(IOException::class)
     override fun intercept(chain: Interceptor.Chain): Response {
         val originalRequest = chain.request()
-
-        var token = ""
-        token = runBlocking{
-            dsManager.getUserAccessToken()?.first().toString()
-        }
-
+        val token = spfManager.getAccessToken()
         val authRequest = if (token.isEmpty()){
             originalRequest.newBuilder()
                 .build()
@@ -35,3 +25,4 @@ class AuthInterceptor @Inject constructor(
         return chain.proceed(authRequest)
     }
 }
+

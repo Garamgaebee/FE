@@ -3,6 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
+        <variable
+            name="result"
+            type="com.gachon.domain.model.ThreadMainListResult" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -56,7 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:text="이름은열자이내로작성"
+            android:text="@{result.authorName, default=닉네임}"
             android:textColor="@color/heavy_gray"
             android:textSize="14sp"
             android:fontFamily="@font/spoqa_han_sans_neo_bold"
@@ -69,7 +72,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/spoqa_han_sans_neo_regular"
-            android:text="재학또는졸업 학과"
+            android:text="@{result.department, default=재학또는졸업학과}"
             android:textColor="@color/heavy_gray"
             android:textSize="12sp"
             app:layout_constraintBottom_toTopOf="@id/study_tv"
@@ -81,7 +84,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/spoqa_han_sans_neo_medium"
-            android:text="스터디이름 스터디"
+            android:text="@{result.teamName ,default=스터디이름}"
             android:textColor="@color/heavy_gray"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="@+id/nickname_tv"
@@ -114,7 +117,7 @@
             android:id="@+id/desc_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="커뮤니티 프로필로 작성한 게시물 입니다."
+            android:text="@{result.content, default=게시물내용}"
             android:textColor="@color/black"
             android:fontFamily="@font/spoqa_han_sans_neo_regular"
             android:layout_marginTop="24dp"
@@ -138,7 +141,7 @@
             android:id="@+id/thumbs_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="999"
+            android:text="@{Integer.toString(result.likeNumber),default=0}"
             android:textColor="@color/black"
             android:fontFamily="@font/spoqa_han_sans_neo_regular"
             app:layout_constraintBottom_toBottomOf="@+id/thumbs_iv"
@@ -158,7 +161,7 @@
             android:id="@+id/comments_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="999"
+            android:text="@{Integer.toString(result.commentNumber),default=0}"
             android:textColor="@color/black"
             android:fontFamily="@font/spoqa_han_sans_neo_regular"
             app:layout_constraintBottom_toBottomOf="@+id/comments_iv"
@@ -170,7 +173,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/spoqa_han_sans_neo_medium"
-            android:text="2023.12.25 18:02"
+            android:text="@{result.createdAt}"
             android:textColor="@color/light_gray"
             android:layout_marginEnd="25dp"
             app:layout_constraintBottom_toBottomOf="@+id/comments_tv"

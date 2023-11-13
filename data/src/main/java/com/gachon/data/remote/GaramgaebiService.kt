@@ -1,5 +1,6 @@
 package com.gachon.data.remote
 
+import com.gachon.domain.model.ThreadMainListResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
@@ -115,7 +116,7 @@ interface GaramgaebiService {
 
     // 스레드 메인 리스트 조회 API
     @GET("/api/threads")
-    suspend fun getThreadMainList(@Query("page") page: Int, @Query("limit") limit: Int)
+    suspend fun getThreadMainList(@Query("order-type") orderType :Int) : ThreadMainListResponse
 
     // 스레드 팀 조회 API
     @GET("/api/threads/team")

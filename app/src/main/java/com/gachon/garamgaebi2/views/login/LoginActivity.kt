@@ -74,17 +74,17 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
                 if(viewModel.idIsValid.value == true) {
                     idInput.border.setBackgroundColor(
                         ContextCompat.getColor(
-                            GaramgaebiApplication.getApplication(), R.color.main_blue))
+                            GaramgaebiApplication(), R.color.main_blue))
                     idInput.border2.setBackgroundColor(
                         ContextCompat.getColor(
-                            GaramgaebiApplication.getApplication(), R.color.main_blue))
+                            GaramgaebiApplication(), R.color.main_blue))
                 }else{
                     idInput.border.setBackgroundColor(
                         ContextCompat.getColor(
-                            GaramgaebiApplication.getApplication(), R.color.red))
+                            GaramgaebiApplication(), R.color.red))
                     idInput.border2.setBackgroundColor(
                         ContextCompat.getColor(
-                            GaramgaebiApplication.getApplication(), R.color.red))                }
+                            GaramgaebiApplication(), R.color.red))                }
             }
 
             override fun afterTextChanged(p0: Editable?) {
@@ -116,17 +116,17 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
                 if(viewModel.pwIsValid.value == true) {
                     pwInput.border.setBackgroundColor(
                         ContextCompat.getColor(
-                            GaramgaebiApplication.getApplication(), R.color.main_blue))
+                            GaramgaebiApplication(), R.color.main_blue))
                     pwInput.border2.setBackgroundColor(
                         ContextCompat.getColor(
-                            GaramgaebiApplication.getApplication(), R.color.main_blue))
+                            GaramgaebiApplication(), R.color.main_blue))
                 }else{
                     pwInput.border.setBackgroundColor(
                         ContextCompat.getColor(
-                            GaramgaebiApplication.getApplication(), R.color.red))
+                            GaramgaebiApplication(), R.color.red))
                     pwInput.border2.setBackgroundColor(
                         ContextCompat.getColor(
-                            GaramgaebiApplication.getApplication(), R.color.red))                }
+                            GaramgaebiApplication(), R.color.red))                }
             }
 
             override fun afterTextChanged(p0: Editable?) {

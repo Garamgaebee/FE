@@ -54,17 +54,17 @@ class Register4detailFragment  : BaseBindingFragment<FragmentRegister4DetailBind
             if(it == true){
                 majorLayout.border.setBackgroundColor(
                     ContextCompat.getColor(
-                        GaramgaebiApplication.getApplication(), R.color.main_blue))
+                        GaramgaebiApplication(), R.color.main_blue))
                 majorLayout.border2.setBackgroundColor(
                     ContextCompat.getColor(
-                        GaramgaebiApplication.getApplication(), R.color.main_blue))
+                        GaramgaebiApplication(), R.color.main_blue))
             }else{
                 majorLayout.border.setBackgroundColor(
                     ContextCompat.getColor(
-                        GaramgaebiApplication.getApplication(), R.color.red))
+                        GaramgaebiApplication(), R.color.red))
                 majorLayout.border2.setBackgroundColor(
                     ContextCompat.getColor(
-                        GaramgaebiApplication.getApplication(), R.color.red))
+                        GaramgaebiApplication(), R.color.red))
             }
         }
         val companyLayout = binding.companyTextfield
@@ -72,17 +72,17 @@ class Register4detailFragment  : BaseBindingFragment<FragmentRegister4DetailBind
             if(it) {
                 companyLayout.border.setBackgroundColor(
                     ContextCompat.getColor(
-                        GaramgaebiApplication.getApplication(), R.color.main_blue))
+                        GaramgaebiApplication(), R.color.main_blue))
                 companyLayout.border2.setBackgroundColor(
                     ContextCompat.getColor(
-                        GaramgaebiApplication.getApplication(), R.color.main_blue))
+                        GaramgaebiApplication(), R.color.main_blue))
             }else{
                 companyLayout.border.setBackgroundColor(
                     ContextCompat.getColor(
-                        GaramgaebiApplication.getApplication(), R.color.red))
+                        GaramgaebiApplication(), R.color.red))
                 companyLayout.border2.setBackgroundColor(
                     ContextCompat.getColor(
-                        GaramgaebiApplication.getApplication(), R.color.red))
+                        GaramgaebiApplication(), R.color.red))
             }
         }
     }

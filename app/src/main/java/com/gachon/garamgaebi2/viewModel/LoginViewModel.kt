@@ -4,7 +4,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.gachon.garamgaebi2.R
-import com.gachon.garamgaebi2.di.GaramgaebiApplication.Companion.getApplication
+import com.gachon.garamgaebi2.di.GaramgaebiApplication
 
 class LoginViewModel : ViewModel(){
 
@@ -36,17 +36,17 @@ class LoginViewModel : ViewModel(){
     val loginIsValid = MutableLiveData<Boolean>(false)
 
     val editTextBorderColor = MutableLiveData<Int>(
-        ContextCompat.getColor(getApplication(), R.color.black)
+        ContextCompat.getColor(GaramgaebiApplication(), R.color.black)
     )
 
     private fun setEditTextBorderColor(color: Int) {
-        editTextBorderColor.value = ContextCompat.getColor(getApplication(), color)
+        editTextBorderColor.value = ContextCompat.getColor(GaramgaebiApplication(), color)
     }
     fun onInputChanged(){
         editTextBorderColor.value = if (id.value?.isEmpty() == true) {
-            ContextCompat.getColor(getApplication(), R.color.red)
+            ContextCompat.getColor(GaramgaebiApplication(), R.color.red)
         } else {
-            ContextCompat.getColor(getApplication(), R.color.main_blue)
+            ContextCompat.getColor(GaramgaebiApplication(), R.color.main_blue)
         }
     }
 
